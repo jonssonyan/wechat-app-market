@@ -2,7 +2,7 @@
 [Dd]esktop.ini
 Thumbs.db
 $RECYCLE.BIN/
-.idea
+.idea/
 
 # macOS
 .DS_Store
