@@ -12,9 +12,9 @@
         </view>
     </i-panel>
     <i-cell title="是否上架">
-        <i-switch value="{{state}}" bind:change="onChange" slot="footer">
-            <i-icon type="right" slot="上架"></i-icon>
-            <i-icon type="close" slot="下架"></i-icon>
+        <i-switch value="{{state}}" size="large" bind:change="onChange" slot="footer">
+            <view slot="open">上架</view>
+            <view slot="close">下架</view>
         </i-switch>
     </i-cell>
     <i-button bind:click="handleClick" type="success" shape="circle">发布</i-button>
