@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-input": "/components/input/index",
+    "i-panel": "/components/panel/index",
+    "i-input-number": "/components/input-number/index",
+    "i-button": "/components/button/index",
+    "i-switch": "/components/switch/index",
+    "i-icon": "/components/icon/index",
+    "i-cell-group": "/components/cell-group/index",
+    "i-cell": "/components/cell/index"
+  }
+}

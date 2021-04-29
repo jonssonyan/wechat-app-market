@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "A梦零食小铺",
+  "usingComponents": {
+    "mySearch":"/components/search/search"
+  }
 }

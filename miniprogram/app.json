@@ -1,13 +1,39 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/release/release",
+    "pages/me/me",
+    "pages/order/order"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#6c5ce7",
     "navigationBarTitleText": "A梦零食小铺",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#6c5ce7",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icon/index.png",
+        "selectedIconPath": "images/icon/_index.png"
+      },
+      {
+        "pagePath": "pages/release/release",
+        "text": "发布",
+        "iconPath": "images/icon/release.png",
+        "selectedIconPath": "images/icon/_release.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "images/icon/me.png",
+        "selectedIconPath": "images/icon/_me.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"

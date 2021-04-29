@@ -1,1 +1,4 @@
-<view>首页</view>
+<view class='myHomePage'>
+    <!--搜索框-->
+    <mySearch></mySearch>
+</view>
