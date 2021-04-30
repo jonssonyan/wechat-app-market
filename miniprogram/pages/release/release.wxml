@@ -1,7 +1,15 @@
 <i-cell-group>
     <i-input value="{{ product.name }}" title="商品名称" autofocus placeholder="请输入商品名称"/>
     <i-input value="{{ product.price }}" type="number" title="商品价格" placeholder="请输入商品价格"/>
-
+    <i-panel title="分类">
+        <view style="padding: 16px">
+            <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">
+                <view class="picker">
+                    当前选择：{{category.name}}
+                </view>
+            </picker>
+        </view>
+    </i-panel>
     <i-panel title="库存">
         <view style="padding: 16px">
             <i-input-number value="{{ product.stock }}" min="0" max="999" bind:change="handleChangeStock"/>

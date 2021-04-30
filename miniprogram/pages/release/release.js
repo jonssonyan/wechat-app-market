@@ -2,11 +2,14 @@ const {$Message} = require('../../components/base/index');
 
 Page({
     data: {
+        categorys: [],
+        category: {},
         product: {
             name: '',
             price: '',
             stock: 1,
-            state: true
+            state: true,
+            category_id: null
         },
         files: []
     },
@@ -14,6 +17,14 @@ Page({
         this.setData({
             selectFile: this.selectFile.bind(this),
             uplaodFile: this.uplaodFile.bind(this)
+        });
+        wx.cloud.callFunction({
+            name: 'selectCategoryList',
+            data: {}
+        }).then(e => {
+            this.setData({
+                categorys: e.result.data
+            })
         })
     },
     handleChangeStock({detail}) {
@@ -73,5 +84,12 @@ Page({
             content: '上传成功',
             type: 'success'
         });
-    }
+    },
+    bindPickerChange: function (e) {
+        let category = this.data.categorys[e.detail.value];
+        this.setData({
+            ['category']: category,
+            ['product.category_id']: category.id
+        });
+    },
 });
