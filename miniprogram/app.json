@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/release/release",
     "pages/me/me",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/product",
+    "pages/product/product"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
