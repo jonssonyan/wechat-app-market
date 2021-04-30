@@ -8,6 +8,8 @@
     "i-switch": "/components/switch/index",
     "i-icon": "/components/icon/index",
     "i-cell-group": "/components/cell-group/index",
-    "i-cell": "/components/cell/index"
+    "i-cell": "/components/cell/index",
+    "mp-uploader": "weui-miniprogram/uploader/uploader",
+    "i-message": "/components/message/index"
   }
 }

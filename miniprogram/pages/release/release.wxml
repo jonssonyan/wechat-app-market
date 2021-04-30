@@ -6,16 +6,16 @@
             <i-input-number value="{{ stock }}" min="0" max="999" bind:change="handleChangeStock"/>
         </view>
     </i-panel>
-    <i-panel title="图片">
-        <view style="padding: 16px">
-
-        </view>
-    </i-panel>
+    <view style="padding: 16px">
+        <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" upload="{{uplaodFile}}" files="{{files}}" max-count="5"
+                     title="图片上传" tips="图片大小<=5M"></mp-uploader>
+    </view>
     <i-cell title="是否上架">
-        <i-switch value="{{state}}" size="large" bind:change="onChange" slot="footer">
+        <i-switch value="{{state}}" size="large" bind:change="handleChangeState" slot="footer">
             <view slot="open">上架</view>
             <view slot="close">下架</view>
         </i-switch>
     </i-cell>
-    <i-button bind:click="handleClick" type="success" shape="circle">发布</i-button>
+    <i-button bind:click="handleSubmit" type="success" shape="circle">发布</i-button>
+    <i-message id="message"/>
 </i-cell-group>
