@@ -3,16 +3,16 @@
         <i-panel title="我的交易">
             <view style="padding: 15px;">
                 <i-cell-group>
-                    <i-cell title="我发布的" is-link url="/pages/dashboard/index"></i-cell>
-                    <i-cell title="我卖出的" is-link url="/pages/dashboard/index"></i-cell>
-                    <i-cell title="我买到的" is-link url="/pages/dashboard/index"></i-cell>
+                    <i-cell title="我发布的" is-link url="/pages/product/product"></i-cell>
+                    <i-cell title="我卖出的" is-link url="/pages/sell/sell"></i-cell>
+                    <i-cell title="我买到的" is-link url="/pages/buy/buy"></i-cell>
                 </i-cell-group>
             </view>
         </i-panel>
         <i-panel title="更多">
             <view style="padding: 15px;">
                 <i-cell-group>
-                    <i-cell title="我的收藏" is-link url="/pages/dashboard/index"></i-cell>
+                    <i-cell title="我的收藏" is-link="/pages/collection/collection"></i-cell>
                 </i-cell-group>
             </view>
         </i-panel>
