@@ -16,14 +16,20 @@ Page({
         wx.getUserProfile({
             desc: '用于完善会员资料',
             success: (res) => {
+                // 将用户信息设置到全局变量
+                var app = getApp();
+                app.globalData.userInfo = res.userInfo;
                 this.setData({
                     userInfo: res.userInfo,
                     hasUserInfo: true
-                })
+                });
             }
         })
     },
     getUserInfo(e) {
+        // 将用户信息设置到全局变量
+        var app = getApp();
+        app.globalData.userInfo = e.detail.userInfo;
         this.setData({
             userInfo: e.detail.userInfo,
             hasUserInfo: true

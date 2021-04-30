@@ -7,8 +7,9 @@
         </view>
     </i-panel>
     <view style="padding: 16px">
-        <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" upload="{{uplaodFile}}" files="{{files}}" max-count="5"
-                     title="图片上传" tips="图片大小<=5M"></mp-uploader>
+        <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" upload="{{uplaodFile}}" files="{{files}}"
+                     max-count="5"
+                     title="图片上传"></mp-uploader>
     </view>
     <i-cell title="是否上架">
         <i-switch value="{{state}}" size="large" bind:change="handleChangeState" slot="footer">
