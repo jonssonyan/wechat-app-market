@@ -10,6 +10,8 @@
     "i-cell-group": "/components/cell-group/index",
     "i-cell": "/components/cell/index",
     "mp-uploader": "weui-miniprogram/uploader/uploader",
-    "i-message": "/components/message/index"
+    "i-message": "/components/message/index",
+    "i-index": "/components/index/index",
+    "i-index-item": "/components/index-item/index"
   }
 }

@@ -4,8 +4,6 @@
     "i-card": "/components/card/index",
     "i-cell-group": "/components/cell-group/index",
     "i-cell": "/components/cell/index",
-    "i-panel": "/components/panel/index",
-    "i-row": "/components/row/index",
-    "i-col": "/components/col/index"
+    "i-panel": "/components/panel/index"
   }
 }

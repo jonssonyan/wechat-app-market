@@ -2,10 +2,12 @@ const {$Message} = require('../../components/base/index');
 
 Page({
     data: {
-        name: '',
-        price: '',
-        stock: 1,
-        state: true,
+        product: {
+            name: '',
+            price: '',
+            stock: 1,
+            state: true
+        },
         files: []
     },
     onLoad: function (options) {
@@ -16,17 +18,17 @@ Page({
     },
     handleChangeStock({detail}) {
         this.setData({
-            stock: detail.value
+            ['product.stock']: detail.value
         })
     },
     handleChangeState(event) {
         const detail = event.detail;
         this.setData({
-            state: detail.value
+            ['product.state']: detail.value
         })
     },
     handleSubmit() {
-        console.log(this.data.state)
+        console.log(this.data.product)
     },
     chooseImage: function (e) {
         var that = this;

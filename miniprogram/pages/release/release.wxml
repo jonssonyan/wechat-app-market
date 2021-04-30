@@ -1,9 +1,10 @@
 <i-cell-group>
-    <i-input value="{{ name }}" title="商品名称" autofocus placeholder="请输入商品名称"/>
-    <i-input value="{{ price }}" type="number" title="商品价格" placeholder="请输入商品价格"/>
+    <i-input value="{{ product.name }}" title="商品名称" autofocus placeholder="请输入商品名称"/>
+    <i-input value="{{ product.price }}" type="number" title="商品价格" placeholder="请输入商品价格"/>
+
     <i-panel title="库存">
         <view style="padding: 16px">
-            <i-input-number value="{{ stock }}" min="0" max="999" bind:change="handleChangeStock"/>
+            <i-input-number value="{{ product.stock }}" min="0" max="999" bind:change="handleChangeStock"/>
         </view>
     </i-panel>
     <view style="padding: 16px">
@@ -12,7 +13,7 @@
                      title="图片上传"></mp-uploader>
     </view>
     <i-cell title="是否上架">
-        <i-switch value="{{state}}" size="large" bind:change="handleChangeState" slot="footer">
+        <i-switch value="{{product.state}}" size="large" bind:change="handleChangeState" slot="footer">
             <view slot="open">上架</view>
             <view slot="close">下架</view>
         </i-switch>
