@@ -5,7 +5,9 @@
     "pages/me/me",
     "pages/order/order",
     "pages/product",
-    "pages/product/product"
+    "pages/product/product",
+    "pages/sell/sell",
+    "pages/buy/buy"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
