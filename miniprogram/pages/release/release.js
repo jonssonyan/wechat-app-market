@@ -1,18 +1,12 @@
 Page({
     data: {
         name: '',
-        num: 0,
         price: '',
         stock: 1,
         state: true
     },
     onLoad: function (options) {
 
-    },
-    handleChangePrice({detail}) {
-        this.setData({
-            num: detail.value
-        })
     },
     handleChangeStock({detail}) {
         this.setData({

@@ -1,14 +1,14 @@
 <i-cell-group>
     <i-input value="{{ name }}" title="商品名称" autofocus placeholder="请输入商品名称"/>
-    <i-panel title="数量">
-        <view style="padding: 16px">
-            <i-input-number value="{{ num }}" min="0" max="999" bind:change="handleChangePrice"/>
-        </view>
-    </i-panel>
     <i-input value="{{ price }}" type="number" title="商品价格" placeholder="请输入商品价格"/>
     <i-panel title="库存">
         <view style="padding: 16px">
             <i-input-number value="{{ stock }}" min="0" max="999" bind:change="handleChangeStock"/>
+        </view>
+    </i-panel>
+    <i-panel title="图片">
+        <view style="padding: 16px">
+
         </view>
     </i-panel>
     <i-cell title="是否上架">
