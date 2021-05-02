@@ -11,7 +11,8 @@ Page({
             state: true,
             category_id: null
         },
-        files: []
+        files: [],
+        urls: []
     },
     onLoad: function (options) {
         this.setData({
@@ -25,7 +26,7 @@ Page({
             this.setData({
                 categorys: e.result.data
             })
-        })
+        });
     },
     handleChangeStock({detail}) {
         this.setData({
@@ -39,7 +40,15 @@ Page({
         })
     },
     handleSubmit() {
-        console.log(this.data.product)
+        console.log(this.data.product);
+        console.log(this.data.urls)
+    },
+    bindPickerChange: function (e) {
+        let category = this.data.categorys[e.detail.value];
+        this.setData({
+            ['category']: category,
+            ['product.category_id']: category._id
+        });
     },
     chooseImage: function (e) {
         var that = this;
@@ -54,28 +63,48 @@ Page({
             }
         })
     },
+    selectFile(files) {
+        console.log('files', files)
+        // 返回false可以阻止某次文件上传
+    },
+    uplaodFile(files) {
+        let tempFiles = files.tempFiles;
+        var that = this;
+        return new Promise((resolve, reject) => {
+            for (let i = 0; i < tempFiles.length; i++) {
+                let path = tempFiles[i].path;
+                let pathCloud = 'image/' + new Date().getTime() + path.split('/')[3];
+                wx.cloud.uploadFile({
+                    cloudPath: pathCloud,
+                    // 本地文件路径
+                    filePath: path
+                }).then(res => {
+                    that.data.urls.push(res.fileID);
+                    resolve({'urls': that.data.urls});
+                }).catch(error => {
+                    reject(error)
+                })
+            }
+        })
+    },
     previewImage: function (e) {
         wx.previewImage({
             current: e.currentTarget.id, // 当前显示图片的http链接
             urls: this.data.files // 需要预览的图片http链接列表
         })
     },
-    selectFile(files) {
-        // 选择图片时的过滤函数，返回true表示图片有效
-        console.log('files', files)
-    },
-    uplaodFile(files) {
-        console.log('upload files', files)
-        // 文件上传的函数，返回一个promise
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                reject('some error')
-            }, 1000)
-        })
-    },
     uploadError(e) {
+        let type = e.detail.type;
+        let msg;
+        if (type === 1) {
+            msg = '图片超过大小限制';
+        } else if (type === 2) {
+            msg = '选择图片失败';
+        } else if (type === 3) {
+            msg = '图片上传失败';
+        }
         $Message({
-            content: '上传失败',
+            content: msg,
             type: 'warning'
         });
     },
@@ -84,12 +113,5 @@ Page({
             content: '上传成功',
             type: 'success'
         });
-    },
-    bindPickerChange: function (e) {
-        let category = this.data.categorys[e.detail.value];
-        this.setData({
-            ['category']: category,
-            ['product.category_id']: category.id
-        });
-    },
+    }
 });

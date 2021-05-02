@@ -19,7 +19,7 @@
                 <i-panel title="更多">
                     <view style="padding: 15px;">
                         <i-cell-group>
-                            <i-cell title="我的收藏" is-link="/pages/collection/collection"></i-cell>
+                            <i-cell title="我的收藏" is-link url="/pages/collection/collection"></i-cell>
                         </i-cell-group>
                     </view>
                 </i-panel>
