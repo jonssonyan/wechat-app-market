@@ -20,8 +20,10 @@ Page({
             uplaodFile: this.uplaodFile.bind(this)
         });
         wx.cloud.callFunction({
-            name: 'selectCategoryList',
-            data: {}
+            name: 'selectList',
+            data: {
+                dbName: 'category'
+            }
         }).then(e => {
             this.setData({
                 categorys: e.result.data

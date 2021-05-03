@@ -1,4 +1,17 @@
-<view class='myHomePage'>
-    <!--搜索框-->
-    <mySearch></mySearch>
+<view>
+    <swiper indicator-dots="{{indicatorDots}}"
+            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{categorys}}" wx:key="*this">
+            <swiper-item>
+                <i-grid>
+                    <i-grid-item wx:for="{{item}}" wx:key="*this">
+                        <i-grid-icon>
+                            <image src="../../images/icon/_index.png"/>
+                        </i-grid-icon>
+                        <i-grid-label>{{item.name}}</i-grid-label>
+                    </i-grid-item>
+                </i-grid>
+            </swiper-item>
+        </block>
+    </swiper>
 </view>

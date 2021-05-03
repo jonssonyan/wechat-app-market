@@ -1,6 +1,9 @@
 {
   "navigationBarTitleText": "A梦零食小铺",
   "usingComponents": {
-    "mySearch":"/components/search/search"
+    "i-grid": "/components/grid/index",
+    "i-grid-item": "/components/grid-item/index",
+    "i-grid-icon": "/components/grid-icon/index",
+    "i-grid-label": "/components/grid-label/index"
   }
 }

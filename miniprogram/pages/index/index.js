@@ -3,12 +3,44 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        categorys: [],
+        indicatorDots: true,
+        vertical: false,
+        autoplay: false,
+        interval: 2000,
+        duration: 500
+    },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.cloud.callFunction({
+            name: 'selectList',
+            data: {
+                dbName: 'category'
+            }
+        }).then(e => {
+            let categorys = [];
+            let data = e.result.data;
+            let pageNum = 1;
+            let totalPage = Math.ceil(data.length / 6);
+            while (pageNum <= totalPage) {
+                let category = [];
+                let start = (pageNum - 1) * 6;
+                let end = (start + 6) <= data.length ? (start + 6) : data.length;
+                for (let i = start; i < end; i++) {
+                    category.push(data[i]);
+                }
+                categorys.push(category);
+                pageNum++;
+            }
+            console.log(categorys);
+            this.setData({
+                categorys: categorys
+            })
+        });
     },
 
     /**
