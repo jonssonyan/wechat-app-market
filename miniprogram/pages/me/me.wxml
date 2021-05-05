@@ -1,7 +1,7 @@
 <view>
     <block wx:if="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">微信登录</button>
-        <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登录</button>
+        <i-button type="success" shape="circle" wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">微信登录</i-button>
+        <i-button type="success" shape="circle" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登录</i-button>
     </block>
     <block wx:else>
         <i-card title="{{userInfo.nickName}}" thumb="{{userInfo.avatarUrl}}"

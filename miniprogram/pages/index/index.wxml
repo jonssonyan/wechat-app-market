@@ -16,4 +16,15 @@
             </swiper-item>
         </block>
     </swiper>
+
+    <i-grid>
+        <i-grid-item>
+            <image class="grid-item-image" src="https://636c-cloud-dev-0gdnwbahb5c0f90d-1305663683.tcb.qcloud.la/image/1619965954988YpM9eYbDt1pxa1a6d77b15d527a100251bd39bf00783.png?sign=6da2786c1e13b1fa2ff3c767f5bce7ce&t=1620228201"/>
+            <i-grid-label>手机iphone11 行货</i-grid-label>
+        </i-grid-item>
+        <i-grid-item>
+                <image class="grid-item-image" src="https://636c-cloud-dev-0gdnwbahb5c0f90d-1305663683.tcb.qcloud.la/image/1619965954988YpM9eYbDt1pxa1a6d77b15d527a100251bd39bf00783.png?sign=6da2786c1e13b1fa2ff3c767f5bce7ce&t=1620228201"/>
+            <i-grid-label>手机iphone11 行货</i-grid-label>
+        </i-grid-item>
+    </i-grid>
 </view>

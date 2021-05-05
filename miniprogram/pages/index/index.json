@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "A梦二手交易",
+  "navigationBarTitleText": "二手交易",
   "usingComponents": {
     "i-grid": "/components/grid/index",
     "i-grid-item": "/components/grid-item/index",

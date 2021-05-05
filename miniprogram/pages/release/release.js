@@ -42,14 +42,32 @@ Page({
         })
     },
     handleSubmit() {
-        console.log(this.data.product);
-        console.log(this.data.urls)
+        var that = this;
+        wx.cloud.callFunction({
+            name: 'addProduct',
+            data: that.data.product
+        }).then((e) => {
+            let productId = e.result._id;
+            let urls = that.data.urls;
+            urls.forEach(url => {
+                wx.cloud.callFunction({
+                    name: 'addImage',
+                    data: {
+                        productId: productId,
+                        fileId: url
+                    }
+                }).catch(e => {
+                    console.log(e)
+                })
+            })
+        });
+
     },
     bindPickerChange: function (e) {
         let category = this.data.categorys[e.detail.value];
         this.setData({
             ['category']: category,
-            ['product.category_id']: category._id
+            ['product.categoryId']: category._id
         });
     },
     chooseImage: function (e) {
