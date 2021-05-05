@@ -1,9 +1,12 @@
 {
-  "navigationBarTitleText": "A梦零食小铺",
+  "navigationBarTitleText": "A梦二手交易",
   "usingComponents": {
     "i-grid": "/components/grid/index",
     "i-grid-item": "/components/grid-item/index",
     "i-grid-icon": "/components/grid-icon/index",
-    "i-grid-label": "/components/grid-label/index"
+    "i-grid-label": "/components/grid-label/index",
+    "i-icon": "/components/icon/index",
+    "i-row": "/components/row/index",
+    "i-col": "/components/col/index"
   }
 }

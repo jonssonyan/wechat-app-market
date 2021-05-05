@@ -3,13 +3,15 @@
             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
         <block wx:for="{{categorys}}" wx:key="*this">
             <swiper-item>
-                <i-grid>
-                    <i-grid-item wx:for="{{item}}" wx:key="*this">
-                        <i-grid-icon>
-                            <image src="../../images/icon/_index.png"/>
-                        </i-grid-icon>
-                        <i-grid-label>{{item.name}}</i-grid-label>
-                    </i-grid-item>
+                <i-grid class="grid">
+                    <i-row>
+                        <i-grid-item wx:for="{{item}}" wx:key="*this" class="grid-item">
+                            <i-grid-icon>
+                                <i-icon type="{{item.type}}" size="24"/>
+                                <i-grid-label class="grid-label">{{item.name}}</i-grid-label>
+                            </i-grid-icon>
+                        </i-grid-item>
+                    </i-row>
                 </i-grid>
             </swiper-item>
         </block>

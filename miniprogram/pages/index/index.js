@@ -36,7 +36,6 @@ Page({
                 categorys.push(category);
                 pageNum++;
             }
-            console.log(categorys);
             this.setData({
                 categorys: categorys
             })
