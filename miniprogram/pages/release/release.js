@@ -61,7 +61,6 @@ Page({
                 })
             })
         });
-
     },
     bindPickerChange: function (e) {
         let category = this.data.categorys[e.detail.value];
@@ -133,5 +132,8 @@ Page({
             content: '上传成功',
             type: 'success'
         });
+    },
+    deleteFile(e) {
+        this.data.urls.splice(e.detail.index, 1)
     }
 });

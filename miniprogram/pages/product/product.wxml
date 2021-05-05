@@ -1,1 +1,3 @@
-<text>我发布的</text>
+<i-card title="卡片标题" extra="额外内容" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg" full="true">
+    <view slot="content">内容不错</view>
+</i-card>
