@@ -19,7 +19,8 @@ Page({
         wx.cloud.callFunction({
             name: 'selectList',
             data: {
-                dbName: 'category'
+                dbName: 'category',
+                filter:{}
             }
         }).then(e => {
             let categorys = [];

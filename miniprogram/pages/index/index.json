@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "二手交易",
+  "navigationBarTitleText": "淘淘二手市场",
   "usingComponents": {
     "i-grid": "/components/grid/index",
     "i-grid-item": "/components/grid-item/index",
