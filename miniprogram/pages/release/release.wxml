@@ -1,31 +1,44 @@
-<i-cell-group>
-    <i-input value="{{ product.name }}" title="商品名称" autofocus placeholder="请输入商品名称"/>
-    <i-input value="{{ product.price }}" type="number" title="商品价格" placeholder="请输入商品价格"/>
-    <i-panel title="分类">
-        <view style="padding: 16px">
-            <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">
-                <view class="picker">
-                    当前选择：{{category.name}}
+<view>
+    <!--没有用户信息-->
+    <block wx:if="{{hasUserInfo}}">
+        <i-cell-group>
+            <i-input value="{{ product.name }}" title="商品名称" autofocus placeholder="请输入商品名称"/>
+            <i-input value="{{ product.price }}" type="number" title="商品价格" placeholder="请输入商品价格"/>
+            <i-panel title="分类">
+                <view style="padding: 16px">
+                    <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">
+                        <view class="picker">
+                            当前选择：{{category.name}}
+                        </view>
+                    </picker>
                 </view>
-            </picker>
-        </view>
-    </i-panel>
-    <i-panel title="库存">
-        <view style="padding: 16px">
-            <i-input-number value="{{ product.stock }}" min="0" max="999" bind:change="handleChangeStock"/>
-        </view>
-    </i-panel>
-    <view style="padding: 16px">
-        <mp-uploader bindfail="uploadError" binddelete="deleteFile" select="{{selectFile}}" bindsuccess="uploadSuccess" upload="{{uplaodFile}}" files="{{files}}"
-                     max-count="5"
-                     title="图片上传"></mp-uploader>
-    </view>
-    <i-cell title="是否上架">
-        <i-switch value="{{product.state}}" size="large" bind:change="handleChangeState" slot="footer">
-            <view slot="open">上架</view>
-            <view slot="close">下架</view>
-        </i-switch>
-    </i-cell>
-    <i-button bind:click="handleSubmit" type="success" shape="circle">发布</i-button>
-    <i-message id="message"/>
-</i-cell-group>
+            </i-panel>
+            <i-panel title="库存">
+                <view style="padding: 16px">
+                    <i-input-number value="{{ product.stock }}" min="0" max="999" bind:change="handleChangeStock"/>
+                </view>
+            </i-panel>
+            <view style="padding: 16px">
+                <mp-uploader bindfail="uploadError" binddelete="deleteFile" select="{{selectFile}}"
+                             bindsuccess="uploadSuccess"
+                             upload="{{uplaodFile}}" files="{{files}}"
+                             max-count="5"
+                             title="图片上传"></mp-uploader>
+            </view>
+            <i-cell title="是否上架">
+                <i-switch value="{{product.state}}" size="large" bind:change="handleChangeState" slot="footer">
+                    <view slot="open">上架</view>
+                    <view slot="close">下架</view>
+                </i-switch>
+            </i-cell>
+            <i-button bind:click="handleSubmit" type="success" shape="circle">发布</i-button>
+            <i-message id="message"/>
+        </i-cell-group>
+    </block>
+    <!--有用户信息-->
+    <block wx:else>
+        <i-modal title="提示" visible="{{ visible }}" bind:ok="handleOk" bind:cancel="handleCancel">
+            <view>请先登录</view>
+        </i-modal>
+    </block>
+</view>

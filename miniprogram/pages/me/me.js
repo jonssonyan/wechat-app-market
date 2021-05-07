@@ -1,7 +1,7 @@
 Page({
     data: {
         userInfo: {},
-        hasUserInfo: true,
+        hasUserInfo: false,
         canIUseGetUserProfile: false
     },
     onLoad: function (options) {
@@ -19,6 +19,7 @@ Page({
                 // 将用户信息设置到全局变量
                 var app = getApp();
                 app.globalData.userInfo = res.userInfo;
+                app.globalData.hasUserInfo = true;
                 this.setData({
                     userInfo: res.userInfo,
                     hasUserInfo: true
@@ -30,6 +31,7 @@ Page({
         // 将用户信息设置到全局变量
         var app = getApp();
         app.globalData.userInfo = e.detail.userInfo;
+        app.globalData.hasUserInfo = true;
         this.setData({
             userInfo: e.detail.userInfo,
             hasUserInfo: true

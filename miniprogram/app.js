@@ -18,6 +18,8 @@ App({
     },
     // 全局变量
     globalData: {
+        // 默认未登录
+        hasUserInfo: false,
         userInfo: null,
         sysInfo: null,
         windowW: null,

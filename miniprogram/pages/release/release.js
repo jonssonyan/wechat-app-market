@@ -2,6 +2,9 @@ const {$Message} = require('../../components/base/index');
 
 Page({
     data: {
+        // 控制弹窗的显示与隐藏
+        visible: true,
+        hasUserInfo: false,
         categorys: [],
         category: {},
         product: {
@@ -15,20 +18,7 @@ Page({
         urls: []
     },
     onLoad: function (options) {
-        this.setData({
-            selectFile: this.selectFile.bind(this),
-            uplaodFile: this.uplaodFile.bind(this)
-        });
-        wx.cloud.callFunction({
-            name: 'selectList',
-            data: {
-                dbName: 'category'
-            }
-        }).then(e => {
-            this.setData({
-                categorys: e.result.data
-            })
-        });
+
     },
     handleChangeStock({detail}) {
         this.setData({
@@ -135,5 +125,43 @@ Page({
     },
     deleteFile(e) {
         this.data.urls.splice(e.detail.index, 1)
+    },
+    handleOk() {
+        wx.switchTab({
+            url: '/pages/me/me'
+        })
+    },
+    handleCancel() {
+        this.setData({
+            visible: false
+        })
+    },
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow() {
+        const app = getApp();
+        let hasUserInfo = app.globalData.hasUserInfo;
+        this.setData({
+            hasUserInfo: hasUserInfo
+        });
+        // 如果又用户信息情况才加载分类等信息
+        if (hasUserInfo) {
+            this.setData({
+                selectFile: this.selectFile.bind(this),
+                uplaodFile: this.uplaodFile.bind(this)
+            });
+            wx.cloud.callFunction({
+                name: 'selectList',
+                data: {
+                    dbName: 'category',
+                    filter: {}
+                }
+            }).then(e => {
+                this.setData({
+                    categorys: e.result.data
+                })
+            });
+        }
     }
 });

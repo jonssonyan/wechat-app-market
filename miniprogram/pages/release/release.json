@@ -12,6 +12,7 @@
     "mp-uploader": "weui-miniprogram/uploader/uploader",
     "i-message": "/components/message/index",
     "i-index": "/components/index/index",
-    "i-index-item": "/components/index-item/index"
+    "i-index-item": "/components/index-item/index",
+    "i-modal": "/components/modal/index"
   }
 }
