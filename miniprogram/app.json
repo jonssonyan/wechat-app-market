@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/release/release",
     "pages/me/me",
-    "pages/order/order",
     "pages/product/product",
     "pages/sell/sell",
     "pages/buy/buy",

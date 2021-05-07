@@ -55,7 +55,7 @@ Page({
                             }]
                         }).then(res => {
                             if (res.fileList.length > 0) {
-                                products[i].pic = res.fileList[0].tempFileURL
+                                products[i].thumb = res.fileList[0].tempFileURL
                             }
                         }).catch(error => {
                             console.log(error)
@@ -63,7 +63,6 @@ Page({
                     }
                 });
             }
-            console.log(products)
             that.setData({
                 ['products']: products
             })
@@ -103,5 +102,9 @@ Page({
      */
     onShareAppMessage: function () {
 
-    }
-})
+    },
+
+    cardClick(e){
+        console.log(e)
+    },
+});
