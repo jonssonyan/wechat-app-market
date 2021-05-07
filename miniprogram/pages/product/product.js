@@ -104,7 +104,7 @@ Page({
 
     },
 
-    cardClick(e){
+    cardClick: function (e) {
         console.log(e)
     },
 });
