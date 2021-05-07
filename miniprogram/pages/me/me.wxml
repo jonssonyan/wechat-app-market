@@ -1,3 +1,4 @@
+<!--个人中心，我的-->
 <view>
     <block wx:if="{{!hasUserInfo}}">
         <i-button type="success" shape="circle" wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">微信登录</i-button>

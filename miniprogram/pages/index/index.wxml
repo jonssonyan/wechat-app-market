@@ -1,3 +1,4 @@
+<!--首页-->
 <view>
     <swiper indicator-dots="{{indicatorDots}}"
             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -23,7 +24,7 @@
             <i-grid-label>手机iphone11 行货</i-grid-label>
         </i-grid-item>
         <i-grid-item>
-                <image class="grid-item-image" src=""/>
+            <image class="grid-item-image" src=""/>
             <i-grid-label>手机iphone11 行货</i-grid-label>
         </i-grid-item>
     </i-grid>

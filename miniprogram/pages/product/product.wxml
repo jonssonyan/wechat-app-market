@@ -1,3 +1,4 @@
+<!--我发布的-->
 <i-card wx:for="{{products}}" wx:key="*this" title="{{item.name}}" thumb="{{item.pic}}"
         full="true">
     <view slot="content">创建时间：{{item.createTime}}</view>

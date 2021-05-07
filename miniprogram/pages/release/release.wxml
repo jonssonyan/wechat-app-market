@@ -1,3 +1,4 @@
+<!--我的发布-->
 <view>
     <!--没有用户信息-->
     <block wx:if="{{hasUserInfo}}">
