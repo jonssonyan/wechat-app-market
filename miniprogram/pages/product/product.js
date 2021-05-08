@@ -30,6 +30,52 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        this.selectPage();
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+        let that = this;
+        this.setData({
+            ['param.pageNum']: that.data.param.pageNum++
+        })
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
+
+    },
+
+    cardClick: function (e) {
+        console.log(e)
+    },
+
+    selectPage() {
         const that = this;
         wx.cloud.callFunction({
             name: 'selectPage',
@@ -37,6 +83,14 @@ Page({
         }).then((e) => {
             let products = e.result.data;
             for (let i = 0; i < products.length; i++) {
+                let da = new Date(products[i].create_time);
+                let year = da.getFullYear();
+                let month = da.getMonth() + 1;
+                let date = da.getDate();
+                let hours = da.getHours();
+                let minutes = da.getMinutes();
+                let seconds = da.getSeconds();
+                products[i].create_time = [year, month, date].join("-") + " " + [hours, minutes, seconds].join(':');
                 wx.cloud.callFunction({
                     name: 'selectList',
                     data: {
@@ -67,44 +121,5 @@ Page({
                 ['products']: products
             })
         })
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
-
-    cardClick: function (e) {
-        console.log(e)
-    },
+    }
 });
