@@ -1,5 +1,5 @@
 <!--我的卖出-->
-<i-card wx:for="{{orders}}" wx:key="*this" data-product="{{item}}" title="{{product.name}}" bindtap="cardClick"
+<i-card wx:for="{{orders}}" wx:key="*this" data-order="{{item}}" title="{{item.product.name}}" bindtap="cardClick"
         full="true">
     <view slot="content">创建时间：{{item.create_time}}</view>
 </i-card>

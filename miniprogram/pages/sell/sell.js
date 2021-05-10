@@ -7,12 +7,8 @@ Page({
     data: {
         orders: [],
         param: {
-            dbName: 'order',
             pageNum: 1,
             pageSize: 10
-        },
-        product: {
-            name: ''
         }
     },
 
@@ -77,20 +73,11 @@ Page({
     selectPage() {
         const that = this;
         wx.cloud.callFunction({
-            name: 'selectPage',
-            data: that.data.param
+            name: 'selectOrder',
+            data: this.data.param
         }).then((e) => {
             let orders = e.result.data;
-            for (let i = 0; i < orders.length; i++) {
-                let da = new Date(orders[i].create_time);
-                let year = da.getFullYear();
-                let month = da.getMonth() + 1;
-                let date = da.getDate();
-                let hours = da.getHours();
-                let minutes = da.getMinutes();
-                let seconds = da.getSeconds();
-              orders[i].create_time = [year, month, date].join("-") + " " + [hours, minutes, seconds].join(':');
-            }
+            console.log(orders);
             that.setData({
                 ['orders']: orders
             })
