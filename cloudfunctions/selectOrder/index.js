@@ -30,9 +30,7 @@ exports.main = async (event, context) => {
                     db.collection('product').where({_id: productId})
                         .get().then(products => {
                         orders[i] = products[0];
-                        return orders[i];
                     });
-                    return orders[i];
                 });
             }
             return orders;
