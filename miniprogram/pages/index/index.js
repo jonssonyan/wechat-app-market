@@ -5,8 +5,8 @@ Page({
      */
     data: {
         categorys: [],
+        images: ['/images/picture/index_1.png','/images/picture/index_2.png'],
         indicatorDots: true,
-        vertical: false,
         autoplay: false,
         interval: 2000,
         duration: 500
@@ -16,11 +16,25 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
         wx.cloud.callFunction({
             name: 'selectList',
             data: {
                 dbName: 'category',
-                filter:{}
+                filter: {}
             }
         }).then(e => {
             let categorys = [];
@@ -41,20 +55,6 @@ Page({
                 categorys: categorys
             })
         });
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
     },
 
     /**

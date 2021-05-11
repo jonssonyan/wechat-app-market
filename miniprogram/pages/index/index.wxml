@@ -2,30 +2,30 @@
 <view>
     <swiper indicator-dots="{{indicatorDots}}"
             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{categorys}}" wx:key="*this">
+        <block wx:for="{{images}}" wx:key="*this">
             <swiper-item>
-                <i-grid class="grid">
-                    <i-row>
-                        <i-grid-item wx:for="{{item}}" wx:key="*this" class="grid-item">
-                            <i-grid-icon>
-                                <i-icon type="{{item.type}}" size="24"/>
-                                <i-grid-label class="grid-label">{{item.name}}</i-grid-label>
-                            </i-grid-icon>
-                        </i-grid-item>
-                    </i-row>
-                </i-grid>
+                <view>
+                    <image src="{{item}}"></image>
+                </view>
             </swiper-item>
         </block>
     </swiper>
 
-    <i-grid>
-        <i-grid-item>
+    <i-row wx:for="{{categorys}}" wx:key="*this">
+        <i-col span="8" wx:for="{{item}}" wx:key="*this" i-class="col-class">
+            <i-icon type="{{item.type}}" size="24"/>
+            <view>{{item.name}}</view>
+        </i-col>
+    </i-row>
+
+    <i-row>
+        <i-col span="12" i-class="col-class">
             <image class="grid-item-image" src=""/>
-            <i-grid-label>手机iphone11 行货</i-grid-label>
-        </i-grid-item>
-        <i-grid-item>
+            <view>手机iphone11 行货</view>
+        </i-col>
+        <i-col span="12" i-class="col-class">
             <image class="grid-item-image" src=""/>
-            <i-grid-label>手机iphone11 行货</i-grid-label>
-        </i-grid-item>
-    </i-grid>
+            <view>手机iphone11 行货</view>
+        </i-col>
+    </i-row>
 </view>

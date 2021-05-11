@@ -29,14 +29,14 @@ exports.main = async (event, context) => {
         }).catch((e) => {
             console.log('selectOrder error' + e)
         });
-    for (let i = 0; i < orders.length; i++) {
-        orders[i].products = await db.collection('product').where({_id: orders[i].product_id).get()
-            .then(products => {
-                return products
-            }).catch(e => {
-                console.log('selectProduct error' + e)
-            });
-        console.log(orders[i])
-    }
+    // for (let i = 0; i < orders.length; i++) {
+    //     orders[i].products = await db.collection('product').where({_id: orders[i].product_id).get()
+    //         .then(products => {
+    //             return products
+    //         }).catch(e => {
+    //             console.log('selectProduct error' + e)
+    //         });
+    //     console.log(orders[i])
+    // }
     return orders;
 };
