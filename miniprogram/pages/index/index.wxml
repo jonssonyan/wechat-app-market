@@ -5,7 +5,7 @@
         <block wx:for="{{images}}" wx:key="*this">
             <swiper-item>
                 <view>
-                    <image src="{{item}}"></image>
+                    <image style="width: 100%;" mode="aspectFill" src="{{item}}"></image>
                 </view>
             </swiper-item>
         </block>
