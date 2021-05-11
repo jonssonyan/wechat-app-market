@@ -24,10 +24,6 @@ exports.main = async (event, context) => {
                 let minutes = da.getMinutes();
                 let seconds = da.getSeconds();
                 orders[i].create_time = [year, month, date].join("-") + " " + [hours, minutes, seconds].join(':');
-                db.collection('product').where({_id: orders[i].product_id})
-                    .get().then(products => {
-                    orders[i].product = products[0];
-                });
             }
             return orders;
         });
