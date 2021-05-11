@@ -26,11 +26,15 @@ exports.main = async (event, context) => {
                 orders[i].create_time = [year, month, date].join("-") + " " + [hours, minutes, seconds].join(':');
             }
             return orders;
+        }).catch((e) => {
+            console.log('selectOrder error' + e)
         });
     for (let i = 0; i < orders.length; i++) {
         orders[i].products = await db.collection('product').where({_id: orders[i].product_id).get()
             .then(products => {
                 return products
+            }).catch(e => {
+                console.log('selectProduct error' + e)
             });
         console.log(orders[i])
     }

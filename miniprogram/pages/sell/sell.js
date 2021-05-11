@@ -7,6 +7,7 @@ Page({
     data: {
         orders: [],
         param: {
+            dbName: 'order',
             pageNum: 1,
             pageSize: 10
         },
@@ -84,16 +85,16 @@ Page({
             data: this.data.param
         }).then((e) => {
             let orders = e.result.data;
-            for (let i = 0; i < orders.length; i++) {
-                this.data.productParam._id = orders[i].product_id;
-                wx.cloud.callFunction({
-                    name: 'selectList',
-                    data: this.data.productParam
-                }).then((e) => {
-                    let products = e.result.data;
-                    orders[i].productName = products[0].name
-                })
-            }
+            // for (let i = 0; i < orders.length; i++) {
+            //     this.data.productParam._id = orders[i].product_id;
+            //     wx.cloud.callFunction({
+            //         name: 'selectList',
+            //         data: this.data.productParam
+            //     }).then((e) => {
+            //         let products = e.result.data;
+            //         orders[i].productName = products[0].name
+            //     })
+            // }
             console.log(orders);
             that.setData({
                 ['orders']: orders
