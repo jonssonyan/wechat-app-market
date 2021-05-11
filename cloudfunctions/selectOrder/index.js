@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
 
     const wxContext = cloud.getWXContext();
     let openid = wxContext.OPENID;
-    return db.collection('order').where({seller: openid})
+    let orders = await db.collection('order').where({seller: openid})
         .skip((pageNum - 1) * pageSize)
         .limit(pageSize).get().then(orders => {
             for (let i = 0; i < orders.length; i++) {
@@ -27,4 +27,12 @@ exports.main = async (event, context) => {
             }
             return orders;
         });
+    for (let i = 0; i < orders.length; i++) {
+        orders[i].products = await db.collection('product').where({_id: orders[i].product_id).get()
+            .then(products => {
+                return products
+            });
+        console.log(orders[i])
+    }
+    return orders;
 };
