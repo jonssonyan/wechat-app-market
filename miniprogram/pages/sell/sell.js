@@ -79,9 +79,9 @@ Page({
     cardClick: function (e) {
         console.log(e)
     },
-    selectPage() {
+    async selectPage() {
         const that = this;
-        wx.cloud.callFunction({
+        await wx.cloud.callFunction({
             name: 'selectList',
             data: this.data.productParam
         }).then((e) => {
@@ -94,25 +94,14 @@ Page({
                 ['productMap']: map
             })
         })
-
-        wx.cloud.callFunction({
+        await wx.cloud.callFunction({
             name: 'selectOrder',
             data: this.data.param
         }).then((e) => {
             let orders = e.result.data;
             for (let i = 0; i < orders.length; i++) {
-                // this.data.productParam._id = orders[i].product_id;
-                // wx.cloud.callFunction({
-                //     name: 'selectList',
-                //     data: this.data.productParam
-                // }).then((e) => {
-                //     let products = e.result.data;
-                //     orders[i].productName = products[0].name
-                // })
-
+                orders[i].productName = that.data.productMap.get(orders[i].product_id)
             }
-            console.log(that.data.productMap)
-            console.log(orders);
             that.setData({
                 ['orders']: orders
             })
