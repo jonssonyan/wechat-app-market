@@ -4,7 +4,7 @@
   "setting": {
     "urlCheck": true,
     "es6": true,
-    "enhance": false,
+    "enhance": true,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
@@ -28,7 +28,6 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
-    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,

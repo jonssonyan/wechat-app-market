@@ -14,7 +14,8 @@ Page({
         productParam: {
             dbName: 'product',
             filter: {}
-        }
+        },
+        productMap: null
     },
 
     /**
@@ -81,20 +82,36 @@ Page({
     selectPage() {
         const that = this;
         wx.cloud.callFunction({
+            name: 'selectList',
+            data: this.data.productParam
+        }).then((e) => {
+            let map = new Map();
+            let productList = e.result.data;
+            for (let i = 0; i < productList.length; i++) {
+                map.set(productList[i]._id, productList[i].name)
+            }
+            that.setData({
+                ['productMap']: map
+            })
+        })
+
+        wx.cloud.callFunction({
             name: 'selectOrder',
             data: this.data.param
         }).then((e) => {
             let orders = e.result.data;
             for (let i = 0; i < orders.length; i++) {
-                this.data.productParam._id = orders[i].product_id;
-                wx.cloud.callFunction({
-                    name: 'selectList',
-                    data: this.data.productParam
-                }).then((e) => {
-                    let products = e.result.data;
-                    orders[i].productName = products[0].name
-                })
+                // this.data.productParam._id = orders[i].product_id;
+                // wx.cloud.callFunction({
+                //     name: 'selectList',
+                //     data: this.data.productParam
+                // }).then((e) => {
+                //     let products = e.result.data;
+                //     orders[i].productName = products[0].name
+                // })
+
             }
+            console.log(that.data.productMap)
             console.log(orders);
             that.setData({
                 ['orders']: orders
