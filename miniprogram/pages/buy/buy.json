@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "i-card": "/components/card/index"
+    "i-card": "/components/card/index",
+    "i-alert": "/components/alert/index"
   }
 }

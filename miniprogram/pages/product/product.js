@@ -96,7 +96,7 @@ Page({
                 ['param.filter.open_id']: e.result.openid
             })
         })
-        if (that.param.filter.open_id) {
+        if (that.data.param.filter.open_id) {
             await wx.cloud.callFunction({
                 name: 'selectPage',
                 data: that.data.param

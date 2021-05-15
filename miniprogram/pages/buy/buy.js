@@ -117,7 +117,7 @@ Page({
             })
 
         })
-        if (that.param.filter.buyer) {
+        if (that.data.param.filter.buyer) {
             await wx.cloud.callFunction({
                 name: 'selectOrder',
                 data: that.data.param

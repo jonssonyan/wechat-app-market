@@ -1,5 +1,13 @@
 <!--我的卖出-->
-<i-card wx:for="{{orders}}" wx:key="*this" data-order="{{item}}" title="{{item.productName}}" bindtap="cardClick"
-        full="true">
-    <view slot="content">创建时间：{{item.create_time}}</view>
-</i-card>
+<view>
+    <block wx:if="{{orders.length!==0}}">
+        <i-card wx:for="{{orders}}" wx:key="*this" data-order="{{item}}" title="{{item.productName}}"
+                bindtap="cardClick"
+                full="true">
+            <view slot="content">创建时间：{{item.create_time}}</view>
+        </i-card>
+    </block>
+    <block wx:else>
+        <i-alert>暂无卖出，快去卖出一件吧</i-alert>
+    </block>
+</view>
