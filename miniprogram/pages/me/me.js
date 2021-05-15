@@ -1,7 +1,7 @@
 Page({
     data: {
         userInfo: {},
-        hasUserInfo: true,
+        hasUserInfo: false,
         canIUseGetUserProfile: false
     },
     onLoad: function (options) {

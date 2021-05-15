@@ -15,10 +15,8 @@ Page({
         },
         products: [],
         productParam: {
-            dbName: 'product'
-        },
-        imageParam: {
-            dbName: 'image'
+            pageNum: 1,
+            pageSize: 10
         }
     },
 
@@ -26,7 +24,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        // 展示分类
+        this.selectCategory();
+        // 展示商品
+        this.selectProductPage().then(res => {
+            this.setData({
+                ['products']: res
+            })
+        })
     },
 
     /**
@@ -40,10 +45,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        // 展示分类
-        this.selectCategory();
-        // 展示商品
-        this.selectProductPage()
+
     },
 
     /**
@@ -71,7 +73,13 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        let that = this;
+        this.setData({
+            ['productParam.pageNum']: that.data.productParam.pageNum++
+        })
+        this.selectPage().then((res) => {
+            that.data.products.push(res)
+        });
     },
 
     /**
@@ -81,29 +89,28 @@ Page({
 
     },
     // 分页查询商品
-    selectProductPage() {
-        let that = this;
+    async selectProductPage() {
         let products = [];
-        let imageMap = new Map();
-        wx.cloud.callFunction({
-            name: 'selectPage',
-            data: that.data.productParam
+        await wx.cloud.callFunction({
+            name: 'selectPageProduct',
+            data: this.data.productParam
         }).then(e => {
-            products = e
-        });
-        wx.cloud.callFunction({
-            name: 'selectList',
-            data: this.data.imageParam
-        }).then(e => {
-            let images = e.result.data;
-            images.forEach(image => {
-                imageMap.set(image.product_id, image.file_id)
-            })
+            console.log(e)
+            products = e.result.data
         });
         for (let i = 0; i < products.length; i++) {
-            let fileId = imageMap.get(products[i]._id);
-
+            await wx.cloud.getTempFileURL({
+                fileList: [{
+                    fileID: products[i].images[0].file_id,
+                    maxAge: 60 * 60, // one hour
+                }]
+            }).then(res => {
+                // get temp file URL
+                console.log(res)
+                products[i].tempFileURL = res.fileList[0].tempFileURL
+            })
         }
+        return products;
     },
     // 商品单击事件
     productClick(product) {
