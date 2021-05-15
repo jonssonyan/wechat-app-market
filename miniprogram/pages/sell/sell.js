@@ -5,16 +5,20 @@ Page({
      * 页面的初始数据
      */
     data: {
+        // 订单列表
         orders: [],
+        // 查询订单时的参数对象
         param: {
             dbName: 'order',
             pageNum: 1,
             pageSize: 10
         },
+        // 查询商品时的参数对象
         productParam: {
             dbName: 'product',
             filter: {}
         },
+        // 存放 商品id和商品名称 键值对Map
         productMap: null
     },
 
@@ -36,7 +40,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.selectPage();
+        let that = this;
+        this.selectPage().then((res) => {
+            that.setData({
+                ['orders']: res
+            })
+        });
     },
 
     /**
@@ -68,6 +77,9 @@ Page({
         this.setData({
             ['param.pageNum']: that.data.param.pageNum++
         })
+        this.selectPage().then(res => {
+            that.data.orders.push(res)
+        })
     },
 
     /**
@@ -81,6 +93,7 @@ Page({
     },
     async selectPage() {
         const that = this;
+        // 获取商品列表，商品id=>商品名称
         await wx.cloud.callFunction({
             name: 'selectList',
             data: this.data.productParam
@@ -94,17 +107,18 @@ Page({
                 ['productMap']: map
             })
         })
+        let orders = [];
+        // 获取订单列表
         await wx.cloud.callFunction({
             name: 'selectOrder',
             data: this.data.param
         }).then((e) => {
-            let orders = e.result.data;
+            orders = e.result.data;
+            // 遍历订单列表，获取商品的名称，两个云函数嵌套，得到的数据没有渲染到界面上，所以采用存在data中然后在取值的方法
             for (let i = 0; i < orders.length; i++) {
                 orders[i].productName = that.data.productMap.get(orders[i].product_id)
             }
-            that.setData({
-                ['orders']: orders
-            })
         })
+        return orders;
     }
 });

@@ -30,7 +30,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.selectPage();
+        let that = this;
+        this.selectPage().then(res => {
+            that.setData({
+                ['products']: res
+            })
+        });
     },
 
     /**
@@ -62,6 +67,9 @@ Page({
         this.setData({
             ['param.pageNum']: that.data.param.pageNum++
         })
+        this.selectPage().then(res => {
+            that.data.products.push(res)
+        })
     },
 
     /**
@@ -75,51 +83,55 @@ Page({
         console.log(e)
     },
 
-    selectPage() {
+    async selectPage() {
         const that = this;
-        wx.cloud.callFunction({
+        let products = [];
+        await wx.cloud.callFunction({
             name: 'selectPage',
             data: that.data.param
         }).then((e) => {
-            let products = e.result.data;
+            products = e.result.data;
             for (let i = 0; i < products.length; i++) {
-                let da = new Date(products[i].create_time);
-                let year = da.getFullYear();
-                let month = da.getMonth() + 1;
-                let date = da.getDate();
-                let hours = da.getHours();
-                let minutes = da.getMinutes();
-                let seconds = da.getSeconds();
-                products[i].create_time = [year, month, date].join("-") + " " + [hours, minutes, seconds].join(':');
-                wx.cloud.callFunction({
-                    name: 'selectList',
-                    data: {
-                        dbName: 'image',
-                        filter: {
-                            product_id: products[i]._id
-                        }
-                    }
-                }).then(e => {
-                    let fileId = e.result.data[0].file_id;
-                    if (fileId !== undefined && fileId !== null && fileId !== '') {
-                        wx.cloud.getTempFileURL({
-                            fileList: [{
-                                fileID: fileId,
-                                maxAge: 60 * 60,
-                            }]
-                        }).then(res => {
-                            if (res.fileList.length > 0) {
-                                products[i].thumb = res.fileList[0].tempFileURL
-                            }
-                        }).catch(error => {
-                            console.log(error)
-                        });
-                    }
-                });
+                // 设置创建日期
+                products[i].create_time = that.dataToString(products[i].create_time);
+                // wx.cloud.callFunction({
+                //     name: 'selectList',
+                //     data: {
+                //         dbName: 'image',
+                //         filter: {
+                //             product_id: products[i]._id
+                //         }
+                //     }
+                // }).then(e => {
+                //     let fileId = e.result.data[0].file_id;
+                //     if (fileId !== undefined && fileId !== null && fileId !== '') {
+                //         wx.cloud.getTempFileURL({
+                //             fileList: [{
+                //                 fileID: fileId,
+                //                 maxAge: 60 * 60,
+                //             }]
+                //         }).then(res => {
+                //             if (res.fileList.length > 0) {
+                //                 products[i].thumb = res.fileList[0].tempFileURL
+                //             }
+                //         }).catch(error => {
+                //             console.log(error)
+                //         });
+                //     }
+                // });
             }
-            that.setData({
-                ['products']: products
-            })
         })
+        return products;
+    },
+    // 时间戳转换为 yyyy-MM-dd HH:mm:ss 的字符串格式
+    dataToString(time) {
+        let da = new Date(time);
+        let year = da.getFullYear();
+        let month = da.getMonth() + 1;
+        let date = da.getDate();
+        let hours = da.getHours();
+        let minutes = da.getMinutes();
+        let seconds = da.getSeconds();
+        return [year, month, date].join("-") + " " + [hours, minutes, seconds].join(':');
     }
 });
