@@ -95,7 +95,6 @@ Page({
             name: 'selectPageProduct',
             data: this.data.productParam
         }).then(e => {
-            console.log(e)
             products = e.result.data
         });
         for (let i = 0; i < products.length; i++) {
@@ -106,7 +105,6 @@ Page({
                 }]
             }).then(res => {
                 // get temp file URL
-                console.log(res)
                 products[i].tempFileURL = res.fileList[0].tempFileURL
             })
         }
