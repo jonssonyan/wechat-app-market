@@ -123,10 +123,11 @@ Page({
         })
         if (that.data.param.filter.seller) {
             await wx.cloud.callFunction({
-                name: 'selectOrder',
+                name: 'selectPageOrder',
                 data: that.data.param
             }).then((e) => {
                 orders = e.result.data;
+                console.log(orders)
                 // 遍历订单列表，获取商品的名称，两个云函数嵌套，得到的数据没有渲染到界面上，所以采用存在data中然后在取值的方法
                 for (let i = 0; i < orders.length; i++) {
                     orders[i].productName = that.data.productMap.get(orders[i].product_id)

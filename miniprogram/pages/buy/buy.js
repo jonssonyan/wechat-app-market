@@ -119,7 +119,7 @@ Page({
         })
         if (that.data.param.filter.buyer) {
             await wx.cloud.callFunction({
-                name: 'selectOrder',
+                name: 'selectPageOrder',
                 data: that.data.param
             }).then((e) => {
                 orders = e.result.data;
