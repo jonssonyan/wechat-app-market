@@ -126,9 +126,21 @@ Page({
                 // 遍历订单列表，获取商品的名称，两个云函数嵌套，得到的数据没有渲染到界面上，所以采用存在data中然后在取值的方法
                 for (let i = 0; i < orders.length; i++) {
                     orders[i].productName = that.data.productMap.get(orders[i].product_id)
+                    orders[i].create_time = this.dataToString(orders[i].create_time)
                 }
             })
         }
         return orders;
+    },
+    // 时间戳转换为 yyyy-MM-dd HH:mm:ss 的字符串格式
+    dataToString(time) {
+        let da = new Date(time);
+        let year = da.getFullYear();
+        let month = da.getMonth() + 1;
+        let date = da.getDate();
+        let hours = da.getHours();
+        let minutes = da.getMinutes();
+        let seconds = da.getSeconds();
+        return [year, month, date].join("-") + " " + [hours, minutes, seconds].join(':');
     }
 })
