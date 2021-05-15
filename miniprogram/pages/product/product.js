@@ -105,31 +105,6 @@ Page({
                 for (let i = 0; i < products.length; i++) {
                     // 设置创建日期
                     products[i].create_time = that.dataToString(products[i].create_time);
-                    // wx.cloud.callFunction({
-                    //     name: 'selectList',
-                    //     data: {
-                    //         dbName: 'image',
-                    //         filter: {
-                    //             product_id: products[i]._id
-                    //         }
-                    //     }
-                    // }).then(e => {
-                    //     let fileId = e.result.data[0].file_id;
-                    //     if (fileId !== undefined && fileId !== null && fileId !== '') {
-                    //         wx.cloud.getTempFileURL({
-                    //             fileList: [{
-                    //                 fileID: fileId,
-                    //                 maxAge: 60 * 60,
-                    //             }]
-                    //         }).then(res => {
-                    //             if (res.fileList.length > 0) {
-                    //                 products[i].thumb = res.fileList[0].tempFileURL
-                    //             }
-                    //         }).catch(error => {
-                    //             console.log(error)
-                    //         });
-                    //     }
-                    // });
                 }
             })
         }

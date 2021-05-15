@@ -5,11 +5,7 @@ Page({
         canIUseGetUserProfile: false
     },
     onLoad: function (options) {
-        if (wx.getUserProfile) {
-            this.setData({
-                canIUseGetUserProfile: true
-            })
-        }
+
     },
     // 请求API授权，获得用户头像和昵称
     getUserProfile(e) {
@@ -36,5 +32,12 @@ Page({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
         })
+    },
+    onShow:function () {
+        if (wx.getUserProfile) {
+            this.setData({
+                canIUseGetUserProfile: true
+            })
+        }
     }
 });

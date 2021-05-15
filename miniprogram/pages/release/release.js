@@ -18,29 +18,7 @@ Page({
         urls: []
     },
     onLoad: function (options) {
-        const app = getApp();
-        let hasUserInfo = app.globalData.hasUserInfo;
-        this.setData({
-            hasUserInfo: hasUserInfo
-        });
-        // 如果又用户信息情况才加载分类等信息
-        if (hasUserInfo) {
-            this.setData({
-                selectFile: this.selectFile.bind(this),
-                uplaodFile: this.uplaodFile.bind(this)
-            });
-            wx.cloud.callFunction({
-                name: 'selectList',
-                data: {
-                    dbName: 'category',
-                    filter: {}
-                }
-            }).then(e => {
-                this.setData({
-                    categorys: e.result.data
-                })
-            });
-        }
+
     },
     handleChangeStock({detail}) {
         this.setData({
@@ -162,6 +140,28 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        const app = getApp();
+        let hasUserInfo = app.globalData.hasUserInfo;
+        this.setData({
+            hasUserInfo: hasUserInfo
+        });
+        // 如果又用户信息情况才加载分类等信息
+        if (hasUserInfo) {
+            this.setData({
+                selectFile: this.selectFile.bind(this),
+                uplaodFile: this.uplaodFile.bind(this)
+            });
+            wx.cloud.callFunction({
+                name: 'selectList',
+                data: {
+                    dbName: 'category',
+                    filter: {}
+                }
+            }).then(e => {
+                this.setData({
+                    categorys: e.result.data
+                })
+            });
+        }
     }
 });

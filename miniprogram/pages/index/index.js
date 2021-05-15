@@ -26,12 +26,7 @@ Page({
     onLoad: function (options) {
         // 展示分类
         this.selectCategory();
-        // 展示商品
-        this.selectProductPage().then(res => {
-            this.setData({
-                ['products']: res
-            })
-        })
+
     },
 
     /**
@@ -45,7 +40,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        // 展示商品
+        this.selectProductPage().then(res => {
+            this.setData({
+                ['products']: res
+            })
+        })
     },
 
     /**
