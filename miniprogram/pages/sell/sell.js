@@ -16,14 +16,7 @@ Page({
             filter: {
                 open_id: null
             }
-        },
-        // // 查询商品时的参数对象
-        // productParam: {
-        //     dbName: 'product',
-        //     filter: {}
-        // },
-        // // 存放 商品id和商品名称 键值对Map
-        // productMap: null
+        }
     },
 
     /**
@@ -96,21 +89,6 @@ Page({
         console.log(e)
     },
     async selectPage() {
-
-        // 获取商品列表，商品id=>商品名称
-        // await wx.cloud.callFunction({
-        //     name: 'selectList',
-        //     data: that.data.productParam
-        // }).then((e) => {
-        //     let map = new Map();
-        //     let productList = e.result.data;
-        //     for (let i = 0; i < productList.length; i++) {
-        //         map.set(productList[i]._id, productList[i].name)
-        //     }
-        //     that.setData({
-        //         ['productMap']: map
-        //     })
-        // })
         const that = this;
         let orders = [];
         // 设置当前用户的openid

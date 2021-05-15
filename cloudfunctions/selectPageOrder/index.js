@@ -7,16 +7,27 @@ const db = cloud.database();
 exports.main = async (event, context) => {
     const {pageNum = 1, pageSize = 10, filter = {}} = event;
 
-    let orders = await db.collection('order')
+    const countResult = await db.collection('order').where(filter).count();
+    const total = countResult.total; // 总记录数
+    const totalPage = Math.ceil(total / pageSize); // 总共有多少页
+    let hasMore = pageNum < totalPage;
+
+    let ordersResult = await db.collection('order')
         .where(filter)
         .skip((pageNum - 1) * pageSize)
-        .limit(pageSize).get();
-    let res = orders.data;
+        .limit(pageSize).get().then(res => {
+            res.hasMore = hasMore;
+            res.pageNum = pageNum;
+            res.pageSize = pageSize;
+            res.total = total;
+            return res;
+        });
+    let res = ordersResult.data;
     for (let i = 0; i < res.length; i++) {
         res[i].product = await db.collection('product').where({_id: res[i].product_id}).limit(1).get().then(res => res.data[0])
         res[i].createTime = dataToString(res[i].create_time)
     }
-    return orders;
+    return ordersResult;
 };
 
 // 时间戳转换为 yyyy-MM-dd HH:mm:ss 的字符串格式
