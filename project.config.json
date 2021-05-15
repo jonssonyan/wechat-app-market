@@ -37,7 +37,7 @@
     "minifyWXSS": true
   },
   "appid": "wx39f424770800bc04",
-  "projectname": "wechat-app-snack",
+  "projectname": "wechat-app-market",
   "libVersion": "2.14.1",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
