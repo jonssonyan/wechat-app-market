@@ -8,7 +8,8 @@ Page({
         param: {
             dbName: 'product',
             pageNum: 1,
-            pageSize: 10
+            pageSize: 10,
+            filter: {}
         }
     },
 
@@ -87,39 +88,46 @@ Page({
         const that = this;
         let products = [];
         await wx.cloud.callFunction({
-            name: 'selectPage',
-            data: that.data.param
-        }).then((e) => {
-            products = e.result.data;
-            for (let i = 0; i < products.length; i++) {
-                // 设置创建日期
-                products[i].create_time = that.dataToString(products[i].create_time);
-                // wx.cloud.callFunction({
-                //     name: 'selectList',
-                //     data: {
-                //         dbName: 'image',
-                //         filter: {
-                //             product_id: products[i]._id
-                //         }
-                //     }
-                // }).then(e => {
-                //     let fileId = e.result.data[0].file_id;
-                //     if (fileId !== undefined && fileId !== null && fileId !== '') {
-                //         wx.cloud.getTempFileURL({
-                //             fileList: [{
-                //                 fileID: fileId,
-                //                 maxAge: 60 * 60,
-                //             }]
-                //         }).then(res => {
-                //             if (res.fileList.length > 0) {
-                //                 products[i].thumb = res.fileList[0].tempFileURL
-                //             }
-                //         }).catch(error => {
-                //             console.log(error)
-                //         });
-                //     }
-                // });
-            }
+            name: 'getWXContext'
+        }).then(e => {
+            that.setData({
+                ['param.filter.open_id']: e.result.openid
+            })
+            wx.cloud.callFunction({
+                name: 'selectPage',
+                data: that.data.param
+            }).then((e) => {
+                products = e.result.data;
+                for (let i = 0; i < products.length; i++) {
+                    // 设置创建日期
+                    products[i].create_time = that.dataToString(products[i].create_time);
+                    // wx.cloud.callFunction({
+                    //     name: 'selectList',
+                    //     data: {
+                    //         dbName: 'image',
+                    //         filter: {
+                    //             product_id: products[i]._id
+                    //         }
+                    //     }
+                    // }).then(e => {
+                    //     let fileId = e.result.data[0].file_id;
+                    //     if (fileId !== undefined && fileId !== null && fileId !== '') {
+                    //         wx.cloud.getTempFileURL({
+                    //             fileList: [{
+                    //                 fileID: fileId,
+                    //                 maxAge: 60 * 60,
+                    //             }]
+                    //         }).then(res => {
+                    //             if (res.fileList.length > 0) {
+                    //                 products[i].thumb = res.fileList[0].tempFileURL
+                    //             }
+                    //         }).catch(error => {
+                    //             console.log(error)
+                    //         });
+                    //     }
+                    // });
+                }
+            })
         })
         return products;
     },

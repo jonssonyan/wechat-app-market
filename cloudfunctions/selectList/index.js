@@ -7,9 +7,11 @@ const MAX_LIMIT = 100;
 // 查询所有分类，不分页
 exports.main = async (event, context) => {
     let {dbName, filter} = event;
+
     const countResult = await db.collection(dbName).where(filter).count();
     const total = countResult.total;
     filter = filter ? filter : {};
+
     // 计算需分几次取
     const batchTimes = Math.ceil(total / 100);
     // 承载所有读操作的 promise 的数组

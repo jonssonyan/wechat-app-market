@@ -8,7 +8,7 @@ exports.main = async (event, context) => {
     const {address, buyer, seller, state} = event;
     const wxContext = cloud.getWXContext();
     try {
-        return await db.collection('todos').add({
+        return await db.collection('order').add({
             // data 字段表示需新增的 JSON 数据
             data: {
                 address: address,
