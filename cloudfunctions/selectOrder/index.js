@@ -5,38 +5,17 @@ cloud.init();
 const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
-    let {pageNum, pageSize} = event;
+    let {pageNum, pageSize, filter} = event;
 
     pageNum = pageNum ? pageNum : 1; // 不传默认第一页
     pageSize = pageSize ? pageSize : 10; // 不传默认一个10条数据
+    filter = filter ? filter : {};
 
-    const wxContext = cloud.getWXContext();
-    let openid = wxContext.OPENID;
-    let orders = await db.collection('order').where({seller: openid})
+    return await db.collection('order').where(filter)
         .skip((pageNum - 1) * pageSize)
         .limit(pageSize).get().then(orders => {
-            for (let i = 0; i < orders.length; i++) {
-                let da = new Date(orders[i].create_time);
-                let year = da.getFullYear();
-                let month = da.getMonth() + 1;
-                let date = da.getDate();
-                let hours = da.getHours();
-                let minutes = da.getMinutes();
-                let seconds = da.getSeconds();
-                orders[i].create_time = [year, month, date].join("-") + " " + [hours, minutes, seconds].join(':');
-            }
             return orders;
         }).catch((e) => {
             console.log('selectOrder error' + e)
         });
-    // for (let i = 0; i < orders.length; i++) {
-    //     orders[i].products = await db.collection('product').where({_id: orders[i].product_id).get()
-    //         .then(products => {
-    //             return products
-    //         }).catch(e => {
-    //             console.log('selectProduct error' + e)
-    //         });
-    //     console.log(orders[i])
-    // }
-    return orders;
 };
