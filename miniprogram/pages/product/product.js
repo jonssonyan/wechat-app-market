@@ -9,7 +9,9 @@ Page({
             dbName: 'product',
             pageNum: 1,
             pageSize: 10,
-            filter: {}
+            filter: {
+                open_id: null
+            }
         }
     },
 
@@ -93,7 +95,9 @@ Page({
             that.setData({
                 ['param.filter.open_id']: e.result.openid
             })
-            wx.cloud.callFunction({
+        })
+        if (that.param.filter.open_id) {
+            await wx.cloud.callFunction({
                 name: 'selectPage',
                 data: that.data.param
             }).then((e) => {
@@ -128,7 +132,7 @@ Page({
                     // });
                 }
             })
-        })
+        }
         return products;
     },
     // 时间戳转换为 yyyy-MM-dd HH:mm:ss 的字符串格式

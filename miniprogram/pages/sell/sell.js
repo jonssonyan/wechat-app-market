@@ -13,7 +13,9 @@ Page({
             dbName: 'order',
             pageNum: 1,
             pageSize: 10,
-            filter: {}
+            filter: {
+                open_id: null
+            }
         },
         // 查询商品时的参数对象
         productParam: {
@@ -117,7 +119,10 @@ Page({
             that.setData({
                 ['param.filter.seller']: e.result.openid
             })
-            wx.cloud.callFunction({
+
+        })
+        if (that.param.filter.seller) {
+            await wx.cloud.callFunction({
                 name: 'selectOrder',
                 data: that.data.param
             }).then((e) => {
@@ -127,7 +132,7 @@ Page({
                     orders[i].productName = that.data.productMap.get(orders[i].product_id)
                 }
             })
-        })
+        }
         return orders;
     }
 });
