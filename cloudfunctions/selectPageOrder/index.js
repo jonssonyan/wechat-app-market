@@ -24,7 +24,7 @@ exports.main = async (event, context) => {
         });
     let res = ordersResult.data;
     for (let i = 0; i < res.length; i++) {
-        res[i].product = await db.collection('product').where({_id: res[i].product_id}).limit(1).get().then(res => res.data[0])
+        res[i].products = await db.collection('product').where({_id: res[i].product_id}).get().then(res => res.data)
         res[i].createTime = dataToString(res[i].create_time)
     }
     return ordersResult;
