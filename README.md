@@ -18,3 +18,6 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+## 规范
+
+前后端代码中采用小驼峰命名法，数据库采用蟒蛇命名法
