@@ -3,5 +3,6 @@
     height: 150px;
 }
 .col-class{
+    width: 50vh;
     text-align: center;
 }

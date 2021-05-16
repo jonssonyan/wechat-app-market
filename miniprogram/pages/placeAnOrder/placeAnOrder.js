@@ -6,15 +6,19 @@ Page({
      */
     data: {
         methods: [{id: 1, name: '见面交易'}],
-        method: {},
+        method: null,
         orderParam: {
             dbName: 'order',
             order: {
                 num: 1,
-                address: null
+                address: null,
+                buyer: null,
+                seller: null
             }
         },
-        product: {}
+        product: {},
+        visible: false,
+        msg: ''
     },
 
     /**
@@ -39,7 +43,8 @@ Page({
         const eventChannel = this.getOpenerEventChannel()
         eventChannel.on('acceptDataFromOpenerPage', function (data) {
             that.setData({
-                ['product']: data.product
+                ['product']: data.product,
+                ['orderParam.order.totalPrice']: that.data.orderParam.order.num * data.product.price
             })
         })
     },
@@ -87,11 +92,60 @@ Page({
     },
     // 切换下单数量
     handleChangeNum({detail}) {
+        let that = this;
         this.setData({
-            ['orderParam.order.num']: detail.value
+            ['orderParam.order.num']: detail.value,
+            ['orderParam.order.totalPrice']: that.data.product.price * detail.value
         })
     },
-    placeAnOrder() {
-        console.log(this.data.orderParam)
+    async placeAnOrder() {
+        // if (this.data.address == null) {
+        //     this.setData({
+        //         ['visible']: true,
+        //         ['msg']: '请输入收货地址'
+        //     })
+        //     return
+        // }
+        if (this.data.method == null) {
+            this.setData({
+                ['visible']: true,
+                ['msg']: '请输入付款方式'
+            })
+            return
+        }
+        let that = this;
+        let openid = '';
+        await wx.cloud.callFunction({
+            name: 'getWXContext',
+            data: {}
+        }).then(e => {
+            openid = e.result.openid
+        })
+        if (openid !== null) {
+            // if (openid === this.data.product.open_id) {
+            //     this.setData({
+            //         ['visible']: true,
+            //         ['msg']: '不能购买自己发布的商品'
+            //     })
+            //     return
+            // }
+            this.setData({
+                ['orderParam.order.buyer']: openid,
+                ['orderParam.order.seller']: that.data.product.open_id
+            });
+            await wx.cloud.callFunction({
+                name: 'addOrder',
+                data: this.data.orderParam
+            }).then(e => {
+                wx.switchTab({
+                    url: '/pages/buy/buy'
+                })
+            })
+        }
+    },
+    handleOk() {
+        this.setData({
+            ['visible']: false
+        })
     }
 })

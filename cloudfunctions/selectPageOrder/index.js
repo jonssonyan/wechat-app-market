@@ -14,6 +14,7 @@ exports.main = async (event, context) => {
 
     let ordersResult = await db.collection('order')
         .where(filter)
+        .orderBy('create_time', 'desc')
         .skip((pageNum - 1) * pageSize)
         .limit(pageSize).get().then(res => {
             res.hasMore = hasMore;

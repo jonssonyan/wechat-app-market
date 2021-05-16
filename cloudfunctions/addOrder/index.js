@@ -5,17 +5,18 @@ cloud.init()
 const db = cloud.database()
 // 添加订单
 exports.main = async (event, context) => {
-    const {address, buyer, seller, state} = event;
-    const wxContext = cloud.getWXContext();
+    const {order} = event;
     try {
         return await db.collection('order').add({
             // data 字段表示需新增的 JSON 数据
             data: {
-                address: address,
-                buyer: wxContext.OPENID,
-                create_time: new Date(),
-                seller: seller,
-                state: state
+                address: order.address,
+                buyer: order.buyer,
+                create_time: new Date().getTime(),
+                seller: order.seller,
+                state: 0, // 等待交易
+                num: order.num,
+                totalPrice: order.totalPrice
             }
         })
     } catch (e) {

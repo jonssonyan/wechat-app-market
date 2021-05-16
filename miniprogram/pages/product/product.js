@@ -36,7 +36,6 @@ Page({
      */
     onShow: function () {
         this.selectOneProduct().then(res => {
-            console.log(res)
             this.setData({
                 ['product']: res,
                 ['images']: res.tempFileURLs
