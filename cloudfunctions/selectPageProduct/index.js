@@ -7,6 +7,9 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
     const {filter = {}, pageSize = 10, pageNum = 1} = event;
+    const _ = db.command
+
+    filter.stock = _.gt(1);
 
     const countResult = await db.collection('product').where(filter).count();
     const total = countResult.total; // 总记录数
