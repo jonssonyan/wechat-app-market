@@ -16,7 +16,7 @@
             </i-panel>
             <i-panel title="库存">
                 <view style="padding: 16px">
-                    <i-input-number value="{{ product.stock }}" min="0" max="999" bind:change="handleChangeStock"/>
+                    <i-input-number value="{{ product.stock }}" min="1" max="999" bind:change="handleChangeStock"/>
                 </view>
             </i-panel>
             <view style="padding: 16px">
