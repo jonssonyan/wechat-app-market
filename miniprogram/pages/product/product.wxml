@@ -1,12 +1,14 @@
-<!--我发布的-->
+<!--商品详情-->
 <view>
-    <block wx:if="{{orders.length!==0}}">
-        <i-card wx:for="{{products}}" wx:key="*this" data-product="{{item}}" title="{{item.name}}" bindtap="cardClick"
-                full="true">
-            <view slot="content">创建时间：{{item.create_time}}</view>
-        </i-card>
-    </block>
-    <block wx:else>
-        <i-alert>暂无商品，快去添加一件吧</i-alert>
-    </block>
+    <swiper indicator-dots="{{indicatorDots}}"
+            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{images}}" wx:key="*this">
+            <swiper-item>
+                <view>
+                    <image style="width: 100%;" mode="aspectFill" src="{{item}}"></image>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view>{{product.name}}</view>
 </view>

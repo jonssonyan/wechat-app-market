@@ -11,7 +11,7 @@
                 <i-panel title="我的交易">
                     <view style="padding: 15px;">
                         <i-cell-group>
-                            <i-cell title="我发布的" is-link url="/pages/product/product"></i-cell>
+                            <i-cell title="我发布的" is-link url="/pages/myProduct/myProduct"></i-cell>
                             <i-cell title="我卖出的" is-link url="/pages/sell/sell"></i-cell>
                             <i-cell title="我买到的" is-link url="/pages/buy/buy"></i-cell>
                         </i-cell-group>

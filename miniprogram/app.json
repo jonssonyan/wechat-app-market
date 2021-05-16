@@ -3,11 +3,12 @@
     "pages/index/index",
     "pages/release/release",
     "pages/me/me",
-    "pages/product/product",
+    "pages/myProduct/myProduct",
     "pages/sell/sell",
     "pages/buy/buy",
     "pages/collection/collection",
-    "pages/productList/productList"
+    "pages/productList/productList",
+    "pages/product/product"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

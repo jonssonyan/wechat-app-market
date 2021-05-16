@@ -1,7 +1,3 @@
 {
-  "component": true,
-  "usingComponents": {
-    "i-card": "/components/card/index",
-    "i-alert": "/components/alert/index"
-  }
+  "usingComponents": {}
 }
