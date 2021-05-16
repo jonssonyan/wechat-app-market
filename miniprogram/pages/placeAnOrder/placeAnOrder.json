@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-input": "/components/input/index",
+    "i-input-number": "/components/input-number/index",
+    "i-button": "/components/button/index"
+  }
+}
