@@ -8,12 +8,19 @@ const db = cloud.database();
 exports.main = async (event, context) => {
     const {filter = {}} = event;
 
+    const wxContext = cloud.getWXContext()
+
     let productResult = await db.collection('product').where(filter).limit(1).get();
     let res = productResult.data;
     for (let i = 0; i < res.length; i++) {
         res[i].images = await db.collection('image').where({product_id: res[i]._id}).get().then(res => res.data)
         res[i].category = await db.collection('category').where({_id: res[i].category_id}).get().then(res => res.data);
         res[i].createTime = dataToString(res[i].create_time)
+        let countResult = await db.collection('collection').where({
+            product_id: res[i]._id,
+            open_id: wxContext.OPENID
+        }).count();
+        res[i].isCollection = countResult.total > 0;
     }
     return productResult;
 }

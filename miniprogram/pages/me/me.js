@@ -33,7 +33,7 @@ Page({
             hasUserInfo: true
         })
     },
-    onShow:function () {
+    onShow: function () {
         if (wx.getUserProfile) {
             this.setData({
                 canIUseGetUserProfile: true

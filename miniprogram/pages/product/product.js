@@ -12,9 +12,15 @@ Page({
         duration: 500,
         product: {},
         productParam: {
-            name: 'product',
+            dbName: 'product',
             filter: {}
-        }
+        },
+        collectionParam: {
+            dbName: 'collection',
+            collection: {}
+        },
+        visible: false,
+        msg: ''
     },
 
     /**
@@ -40,6 +46,7 @@ Page({
                 ['product']: res,
                 ['images']: res.tempFileURLs
             })
+            console.log(res)
         })
     },
 
@@ -118,7 +125,43 @@ Page({
             }
         })
     },
-    collection(product) {
-        console.log(product)
+    async collection(product) {
+        let openId = null;
+        await wx.cloud.callFunction({
+            name: 'getWXContext'
+        }).then(e => {
+            openId = e.result.openid
+        })
+        // 设置参数
+        this.setData({
+            ['collectionParam.collection.open_id']: openId,
+            ['collectionParam.collection.product_id']: product.currentTarget.dataset.product._id
+        });
+        // 添加至收藏
+        let suc = false;
+        await wx.cloud.callFunction({
+            name: 'addCollection',
+            data: this.data.collectionParam
+        }).then(e => {
+            if (e.result) {
+                suc = true;
+            }
+        });
+        if (suc) {
+            this.setData({
+                ['visible']: true,
+                ['msg']: '收藏成功'
+            })
+        } else {
+            this.setData({
+                ['visible']: true,
+                ['msg']: '您已经收藏了该商品'
+            })
+        }
+    },
+    handleOk() {
+        this.setData({
+            ['visible']: false
+        })
     }
 })

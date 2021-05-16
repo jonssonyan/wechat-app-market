@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "i-swipeout": "/components/swipeout/index"
+    "i-swipeout": "/components/swipeout/index",
+    "i-card": "/components/card/index",
+    "i-alert": "/components/alert/index"
   }
 }
