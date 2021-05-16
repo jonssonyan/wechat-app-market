@@ -9,7 +9,7 @@
         </i-col>
     </i-row>
     <i-row>
-        <i-col wx:for="{{products}}" wx:key="*this" data-order="{{item}}" span="12" i-class="col-class"
+        <i-col wx:for="{{products}}" wx:key="*this" data-product="{{item}}" span="12" i-class="col-class"
                bindtap="productClick">
             <image class="grid-item-image" src="{{item.tempFileURL}}"/>
             <view>{{item.name}}</view>

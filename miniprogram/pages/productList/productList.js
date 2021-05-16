@@ -110,7 +110,15 @@ Page({
     },
     // 商品单击事件
     productClick(product) {
-        console.log(product)
+        let productId = product.currentTarget.dataset.product._id;
+        wx.navigateTo({
+            url: '/pages/product/product',
+            events: {},
+            success: function (res) {
+                // 通过eventChannel向被打开页面传送数据
+                res.eventChannel.emit('acceptDataFromOpenerPage', {productId: productId})
+            }
+        })
     },
     searchProduct() {
         this.selectProductPage().then(res => {
