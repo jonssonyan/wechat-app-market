@@ -43,8 +43,12 @@ Page({
         const eventChannel = this.getOpenerEventChannel()
         eventChannel.on('acceptDataFromOpenerPage', function (data) {
             that.setData({
+                // 商品
                 ['product']: data.product,
-                ['orderParam.order.totalPrice']: that.data.orderParam.order.num * data.product.price
+                // 商品总价
+                ['orderParam.order.totalPrice']: that.data.orderParam.order.num * data.product.price,
+                // 商品id
+                ['orderParam.order.productId']: data.product._id
             })
         })
     },
@@ -133,14 +137,18 @@ Page({
                 ['orderParam.order.buyer']: openid,
                 ['orderParam.order.seller']: that.data.product.open_id
             });
+            let suc = false;
             await wx.cloud.callFunction({
                 name: 'addOrder',
                 data: this.data.orderParam
             }).then(e => {
-                wx.switchTab({
+                suc = true;
+            })
+            if (suc) {
+                wx.reLaunch({
                     url: '/pages/buy/buy'
                 })
-            })
+            }
         }
     },
     handleOk() {

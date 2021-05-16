@@ -9,7 +9,7 @@
     </block>
     <block wx:else>
         <i-alert>
-            暂无购买，快去买一件吧
+            加载中...
         </i-alert>
     </block>
 </view>

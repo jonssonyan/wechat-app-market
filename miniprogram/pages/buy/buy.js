@@ -13,7 +13,7 @@ Page({
             pageNum: 1,
             pageSize: 10,
             filter: {
-                open_id: null
+                buyer: null
             }
         }
     },

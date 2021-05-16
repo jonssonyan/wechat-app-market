@@ -6,7 +6,6 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
     const {pageNum = 1, pageSize = 10, filter = {}} = event;
-
     const countResult = await db.collection('order').where(filter).count();
     const total = countResult.total; // 总记录数
     const totalPage = Math.ceil(total / pageSize); // 总共有多少页

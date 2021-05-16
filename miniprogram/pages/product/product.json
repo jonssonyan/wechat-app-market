@@ -3,6 +3,7 @@
     "i-input": "/components/input/index",
     "i-row": "/components/row/index",
     "i-col": "/components/col/index",
-    "i-button": "/components/button/index"
+    "i-button": "/components/button/index",
+    "i-alert": "/components/alert/index"
   }
 }
