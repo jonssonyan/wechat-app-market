@@ -1,2 +1,18 @@
 <!--商品列表，显示所有的商品-->
-<text>商品列表</text>
+<view>
+    <i-row>
+        <i-col span="16" i-class="col-class">
+            <i-input value="{{ productParam.filter.name }}" autofocus placeholder="请输入商品名称"/>
+        </i-col>
+        <i-col span="8" i-class="col-class">
+            <i-button bind:click="searchProduct" type="primary" size="small" shape="circle">查询</i-button>
+        </i-col>
+    </i-row>
+    <i-row>
+        <i-col wx:for="{{products}}" wx:key="*this" data-order="{{item}}" span="12" i-class="col-class"
+               bindtap="productClick">
+            <image class="grid-item-image" src="{{item.tempFileURL}}"/>
+            <view>{{item.name}}</view>
+        </i-col>
+    </i-row>
+</view>

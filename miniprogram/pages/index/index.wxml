@@ -12,7 +12,7 @@
     </swiper>
 
     <i-row wx:for="{{categorys}}" wx:key="*this">
-        <i-col span="8" wx:for="{{item}}" wx:key="*this" i-class="col-class" data-order="{{item}}"
+        <i-col span="8" wx:for="{{item}}" wx:key="*this" i-class="col-class" data-category="{{item}}"
                bindtap="categoryClick">
             <i-icon type="{{item.type}}" size="24"/>
             <view>{{item.name}}</view>
@@ -20,7 +20,7 @@
     </i-row>
 
     <i-row>
-        <i-col wx:for="{{products}}" wx:key="*this" data-order="{{item}}" span="12" i-class="col-class"
+        <i-col wx:for="{{products}}" wx:key="*this" data-product="{{item}}" span="12" i-class="col-class"
                bindtap="productClick">
             <image class="grid-item-image" src="{{item.tempFileURL}}"/>
             <view>{{item.name}}</view>

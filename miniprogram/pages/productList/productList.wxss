@@ -1,1 +1,7 @@
-/* miniprogram/productList.wxss */
+.grid-item-image {
+    width: 120px;
+    height: 150px;
+}
+.col-class{
+    text-align: center;
+}

@@ -110,7 +110,7 @@ Page({
         }
         return products;
     },
-    // 商品单击事件
+    // 商品的单击事件
     productClick(product) {
         console.log(product)
     },
@@ -139,7 +139,16 @@ Page({
             })
         });
     },
+    // 分类的单击事件
     categoryClick(category) {
-        console.log(category)
+        let categoryId = category.currentTarget.dataset.category._id;
+        wx.navigateTo({
+            url: '/pages/productList/productList',
+            events: {},
+            success: function (res) {
+                // 通过eventChannel向被打开页面传送数据
+                res.eventChannel.emit('acceptDataFromOpenerPage', {categoryId: categoryId})
+            }
+        })
     }
 })

@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "i-row": "/components/row/index",
+    "i-col": "/components/col/index",
+    "i-input": "/components/input/index",
+    "i-button": "/components/button/index"
+  }
 }
