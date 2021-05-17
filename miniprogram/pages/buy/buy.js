@@ -115,5 +115,8 @@ Page({
             products[i].tempFileURL = res.fileList[0].tempFileURL
         }
         return orders;
+    },
+    cardClick(product) {
+        console.log(product)
     }
 })

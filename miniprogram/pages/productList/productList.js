@@ -10,7 +10,7 @@ Page({
             pageNum: 1,
             pageSize: 10,
             filter: {
-                name: '13'
+                name: ''
             }
         }
     },
