@@ -31,14 +31,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        let openId = null;
-        wx.cloud.callFunction({
-            name: 'getWXContext'
-        }).then(e => {
-            openId = e.result.openid
-        })
-        this.setData({
-            ['addCollectionParam.open_id']: openId
+        this.selectPageCollection().then(collections => {
+            this.setData({
+                ['collections']: collections
+            })
         })
     },
 
@@ -77,6 +73,23 @@ Page({
 
     },
     async selectPageCollection() {
-
+        // 获取openid
+        let openId = null;
+        await wx.cloud.callFunction({
+            name: 'getWXContext'
+        }).then(e => {
+            openId = e.result.openid
+        })
+        this.setData({
+            ['addCollectionParam.filter.open_id']: openId
+        })
+        let collectionsResult = await wx.cloud.callFunction({
+            name: 'selectPageCollection',
+            data: this.data.addCollectionParam
+        });
+        return collectionsResult.result.data
+    },
+    cardClick(collection) {
+        console.log(collection)
     }
 })
