@@ -4,6 +4,7 @@
     <block wx:if="{{hasUserInfo}}">
         <i-cell-group>
             <i-input value="{{ product.name }}" title="商品名称" autofocus placeholder="请输入商品名称"/>
+            <i-input value="{{ product.description }}" title="商品描述" autofocus placeholder="请输入商品描述"/>
             <i-input value="{{ product.price }}" type="number" title="商品价格" placeholder="请输入商品价格"/>
             <view style="padding: 16px">
                 <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">

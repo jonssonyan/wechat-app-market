@@ -5,7 +5,7 @@ cloud.init();
 const db = cloud.database();
 // 添加商品
 exports.main = async (event, context) => {
-    const {categoryId, name, price, state, stock} = event;
+    const {categoryId, name, price, state, stock,description} = event;
     const wxContext = cloud.getWXContext();
     try {
         return await db.collection('product').add({
@@ -16,7 +16,8 @@ exports.main = async (event, context) => {
                 open_id: wxContext.OPENID,
                 price: price,
                 state: state,
-                stock: stock
+                stock: stock,
+                description:description
             }
         })
     } catch (e) {
