@@ -1,9 +1,12 @@
 <!--我买到的-->
 <view>
     <block wx:if="{{orders.length!==0}}">
-        <i-card wx:for="{{orders}}" wx:key="*this" extra="{{'总价：'+item.total_price+'元'}}" data-order="{{item}}" title="{{item.products[0].name}}"
+        <i-card wx:for="{{orders}}" wx:key="*this" thumb="{{item.products[0].tempFileURL}}"
+                extra="{{item.state===0?'等待收货':'交易完成'}}" data-order="{{item}}"
+                title="{{item.products[0].name}}"
                 bindtap="cardClick"
                 full="true">
+            <view slot="content">{{'总价：' + item.total_price + '元'}}</view>
             <view slot="content">下单时间：{{item.createTime}}</view>
         </i-card>
     </block>

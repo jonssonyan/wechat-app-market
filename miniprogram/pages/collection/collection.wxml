@@ -1,7 +1,8 @@
 <!--我的收藏-->
 <view>
     <block wx:if="{{collections.length!==0}}">
-        <i-card wx:for="{{collections}}" thumb="{{item.products[0].tempFileURL}}" wx:key="*this"
+        <i-card wx:for="{{collections}}" extra="{{(item.products[0].state?'正在出售':'已经买完')}}"
+                thumb="{{item.products[0].tempFileURL}}" wx:key="*this"
                 data-collection="{{item}}" title="{{item.products[0].name}}"
                 bindtap="cardClick"
                 full="true">

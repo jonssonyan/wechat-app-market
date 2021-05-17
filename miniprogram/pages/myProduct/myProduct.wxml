@@ -1,10 +1,13 @@
 <!--我发布的-->
 <view>
     <block wx:if="{{orders.length!==0}}">
-        <i-card wx:for="{{products}}" extra="{{'库存：'+item.stock+' 状态：'+(item.state?'上架':'下架')}}" wx:key="*this"
+        <i-card wx:for="{{products}}" extra="{{item.state?'上架':'下架'}}" wx:key="*this"
+                thumb="{{item.tempFileURL}}"
                 data-product="{{item}}"
                 title="{{item.name}}" bindtap="cardClick"
                 full="true">
+            <view slot="content">{{'单价：' + item.price}}</view>
+            <view slot="content">{{'库存：' + item.stock}}</view>
             <view slot="content">发布时间：{{item.create_time}}</view>
         </i-card>
     </block>

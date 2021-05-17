@@ -14,7 +14,7 @@ exports.main = async (event, context) => {
                 buyer: order.buyer,
                 create_time: new Date().getTime(),
                 seller: order.seller,
-                state: 0, // 等待交易
+                state: 0, // 等待收获
                 num: order.num,
                 total_price: order.totalPrice,
                 product_id: order.productId

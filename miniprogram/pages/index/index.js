@@ -77,7 +77,7 @@ Page({
         this.setData({
             ['productParam.pageNum']: that.data.productParam.pageNum++
         })
-        this.selectPage().then((res) => {
+        this.selectProductPage().then((res) => {
             that.data.products.push(res)
         });
     },
