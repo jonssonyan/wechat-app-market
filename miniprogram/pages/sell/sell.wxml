@@ -7,6 +7,7 @@
                 title="{{item.products[0].name}}"
                 bindtap="cardClick"
                 full="true">
+            <view slot="content">{{'描述：' + item.products[0].description}}</view>
             <view slot="content">{{'总价：' + item.total_price + '元'}}</view>
             <view slot="content">创建时间：{{item.createTime}}</view>
         </i-card>

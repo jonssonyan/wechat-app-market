@@ -6,6 +6,7 @@
                 data-product="{{item}}"
                 title="{{item.name}}" bindtap="cardClick"
                 full="true">
+            <view slot="content">{{'描述：' + item.description}}</view>
             <view slot="content">{{'单价：' + item.price}}</view>
             <view slot="content">{{'库存：' + item.stock}}</view>
             <view slot="content">发布时间：{{item.create_time}}</view>
