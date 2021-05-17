@@ -13,6 +13,6 @@
         </i-card>
     </block>
     <block wx:else>
-        <i-alert>暂无商品，快去添加一件吧</i-alert>
+        <i-alert>加载中...</i-alert>
     </block>
 </view>

@@ -105,7 +105,6 @@ Page({
             // get temp file URL
             products[i].tempFileURL = res.fileList[0].tempFileURL
         }
-        console.log(products)
         return products;
     },
     // 商品单击事件
