@@ -96,15 +96,14 @@ Page({
             products = e.result.data
         });
         for (let i = 0; i < products.length; i++) {
-            wx.cloud.getTempFileURL({
+            let res = await wx.cloud.getTempFileURL({
                 fileList: [{
                     fileID: products[i].images[0].file_id,
                     maxAge: 60 * 60, // one hour
                 }]
-            }).then(res => {
-                // get temp file URL
-                products[i].tempFileURL = res.fileList[0].tempFileURL
             })
+            // get temp file URL
+            products[i].tempFileURL = res.fileList[0].tempFileURL
         }
         console.log(products)
         return products;

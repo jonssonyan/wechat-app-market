@@ -11,6 +11,7 @@
         </block>
     </swiper>
     <i-input value="{{product.name}}" title="商品名称" disabled/>
+    <i-input value="{{product.description}}" title="描述" disabled/>
     <i-input value="{{product.category[0].name}}" title="分类" disabled/>
     <i-input value="{{product.price}}" title="价格" disabled/>
     <i-input value="{{product.stock}}" title="库存" disabled/>
