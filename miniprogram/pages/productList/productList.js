@@ -9,7 +9,9 @@ Page({
         productParam: {
             pageNum: 1,
             pageSize: 10,
-            filter: {}
+            filter: {
+                name: '13'
+            }
         }
     },
 
