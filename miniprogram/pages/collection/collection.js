@@ -1,6 +1,5 @@
 // miniprogram/pages/collection/collection.js
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -87,7 +86,24 @@ Page({
             name: 'selectPageCollection',
             data: this.data.addCollectionParam
         });
-        return collectionsResult.result.data
+        let collections = collectionsResult.result.data
+
+        for (let i = 0; i < collections.length; i++) {
+            let products = collections[i].products;
+            for (let j = 0; j < products.length; j++) {
+                wx.cloud.getTempFileURL({
+                    fileList: [{
+                        fileID: products[i].images[0].file_id,
+                        maxAge: 60 * 60, // one hour
+                    }]
+                }).then(res => {
+                    // get temp file URL
+                    products[i].tempFileURL = res.fileList[0].tempFileURL
+                })
+            }
+        }
+        console.log(collections)
+        return collections;
     },
     cardClick(collection) {
         console.log(collection)

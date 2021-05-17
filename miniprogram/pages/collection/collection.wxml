@@ -1,10 +1,11 @@
 <!--我的收藏-->
 <view>
     <block wx:if="{{collections.length!==0}}">
-        <i-card wx:for="{{collections}}" wx:key="*this" data-collection="{{item}}" title="{{item.products[0].name}}"
+        <i-card wx:for="{{collections}}" thumb="{{item.products[0].tempFileURL}}" wx:key="*this"
+                data-collection="{{item}}" title="{{item.products[0].name}}"
                 bindtap="cardClick"
                 full="true">
-            <view slot="content">创建时间：{{item.createTime}}</view>
+            <view slot="content">收藏时间：{{item.createTime}}</view>
         </i-card>
     </block>
     <block wx:else>

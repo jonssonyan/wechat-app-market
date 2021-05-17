@@ -26,6 +26,11 @@ exports.main = async (event, context) => {
     for (let i = 0; i < res.length; i++) {
         res[i].products = await db.collection('product').where({_id: res[i].product_id}).get().then(res => res.data)
         res[i].createTime = dataToString(res[i].create_time)
+        let products = res[i].products;
+        for (let j = 0; j < products.length; j++) {
+            // 设置商品图片
+            products[j].images = await db.collection('image').where({product_id: products[j]._id}).get().then(res => res.data)
+        }
     }
     return collectionsResult;
 }

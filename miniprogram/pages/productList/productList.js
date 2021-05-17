@@ -96,7 +96,7 @@ Page({
             products = e.result.data
         });
         for (let i = 0; i < products.length; i++) {
-            await wx.cloud.getTempFileURL({
+            wx.cloud.getTempFileURL({
                 fileList: [{
                     fileID: products[i].images[0].file_id,
                     maxAge: 60 * 60, // one hour

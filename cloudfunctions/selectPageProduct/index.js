@@ -11,6 +11,8 @@ exports.main = async (event, context) => {
 
     filter.stock = _.gt(1);
 
+    filter.state = true
+
     const countResult = await db.collection('product').where(filter).count();
     const total = countResult.total; // 总记录数
     const totalPage = Math.ceil(total / pageNum); // 总共有多少页
