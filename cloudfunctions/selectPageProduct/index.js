@@ -18,9 +18,7 @@ exports.main = async (event, context) => {
             options: 'i',
         });
     }
-
     filter.state = true
-    console.log(filter)
 
     const countResult = await db.collection('product').where(filter).count();
     const total = countResult.total; // 总记录数

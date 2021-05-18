@@ -1,3 +1,4 @@
+const {$Message} = require('../../components/base/index');
 Page({
 
     /**
@@ -12,7 +13,19 @@ Page({
             filter: {
                 open_id: null
             }
-        }
+        },
+        visible: false,
+        visible1: false,
+        actions: [
+            {
+                name: '查看',
+            },
+            {
+                name: '删除',
+                color: '#ed3f14'
+            }
+        ],
+        product: {}
     },
 
     /**
@@ -80,8 +93,11 @@ Page({
 
     },
 
-    cardClick: function (e) {
-        console.log(e)
+    cardClick: function (product) {
+        this.setData({
+            ['visible']: true,
+            ['product']: product.currentTarget.dataset.product
+        });
     },
 
     async selectPage() {
@@ -113,5 +129,47 @@ Page({
             products[i].tempFileURL = res.fileList[0].tempFileURL
         }
         return products;
+    },
+    handleClickItem({detail}) {
+        let that = this;
+        switch (detail.index) {
+            case 0:
+                // 跳转至商品详情界面
+                wx.navigateTo({
+                    url: '/pages/productDetail/productDetail',
+                    events: {},
+                    success: function (res) {
+                        // 通过eventChannel向被打开页面传送数据
+                        res.eventChannel.emit('acceptDataFromOpenerPage', {product: that.data.product})
+                    }
+                })
+                break
+            case 1:
+                this.setData({
+                    visible1: true
+                });
+                break
+        }
+    },
+    handleCancel() {
+        this.setData({
+            ['visible']: false
+        });
+    },
+    async handleClick1() {
+        await wx.cloud.callFunction({
+            name: 'deleteProduct',
+            data: {
+                filter: {
+                    _id: this.data.product._id
+                }
+            }
+        })
+    },
+    handleClose1() {
+        this.setData({
+            ['visible']: false,
+            ['visible1']: false
+        });
     }
 });

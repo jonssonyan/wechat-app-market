@@ -9,7 +9,8 @@
     "pages/collection/collection",
     "pages/productList/productList",
     "pages/product/product",
-    "pages/placeAnOrder/placeAnOrder"
+    "pages/placeAnOrder/placeAnOrder",
+    "pages/productDetail/productDetail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -2,6 +2,8 @@
   "component": true,
   "usingComponents": {
     "i-card": "/components/card/index",
-    "i-alert": "/components/alert/index"
+    "i-alert": "/components/alert/index",
+    "i-action-sheet": "/components/action-sheet/index",
+    "i-modal": "/components/modal/index"
   }
 }

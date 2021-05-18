@@ -3,16 +3,19 @@
     <block wx:if="{{orders.length!==0}}">
         <i-card wx:for="{{products}}" extra="{{item.state?'上架':'下架'}}" wx:key="*this"
                 thumb="{{item.tempFileURL}}"
-                data-product="{{item}}"
                 title="{{item.name}}" bindtap="cardClick"
-                full="true">
-            <view slot="content">{{'描述：' + item.description}}</view>
-            <view slot="content">{{'单价：' + item.price + '元'}}</view>
-            <view slot="content">{{'库存：' + item.stock}}</view>
+                full="true" data-product="{{item}}">
             <view slot="content">发布时间：{{item.create_time}}</view>
         </i-card>
+        <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel
+                        bind:cancel="handleCancel"
+                        bind:click="handleClickItem"/>
+        <i-modal title="删除确认" visible="{{ visible1 }}" bind:cancel="handleClose1" bind:ok="handleClick1">
+            <view>删除后无法恢复哦</view>
+        </i-modal>
     </block>
     <block wx:else>
         <i-alert>加载中...</i-alert>
     </block>
 </view>
+
