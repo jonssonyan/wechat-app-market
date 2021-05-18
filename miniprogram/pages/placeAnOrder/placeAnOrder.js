@@ -106,13 +106,13 @@ Page({
         })
     },
     async placeAnOrder() {
-        // if (this.data.address == null) {
-        //     this.setData({
-        //         ['visible']: true,
-        //         ['msg']: '请输入收货地址'
-        //     })
-        //     return
-        // }
+        if (this.data.address == null) {
+            this.setData({
+                ['visible']: true,
+                ['msg']: '请输入收货地址'
+            })
+            return
+        }
         if (this.data.method == null) {
             this.setData({
                 ['visible']: true,
@@ -129,13 +129,13 @@ Page({
             openid = e.result.openid
         })
         if (openid !== null) {
-            // if (openid === this.data.product.open_id) {
-            //     this.setData({
-            //         ['visible']: true,
-            //         ['msg']: '不能购买自己发布的商品'
-            //     })
-            //     return
-            // }
+            if (openid === this.data.product.open_id) {
+                this.setData({
+                    ['visible']: true,
+                    ['msg']: '不能购买自己发布的商品'
+                })
+                return
+            }
             this.setData({
                 ['orderParam.order.buyer']: openid,
                 ['orderParam.order.seller']: that.data.product.open_id
