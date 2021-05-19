@@ -5,6 +5,7 @@
                 thumb="{{item.tempFileURL}}"
                 title="{{item.name}}" bindtap="cardClick"
                 full="true" data-product="{{item}}">
+            <view slot="content">库存：{{item.stock}}</view>
             <view slot="content">发布时间：{{item.create_time}}</view>
         </i-card>
         <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel
