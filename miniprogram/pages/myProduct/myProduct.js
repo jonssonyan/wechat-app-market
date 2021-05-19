@@ -165,6 +165,9 @@ Page({
                 }
             }
         })
+        wx.switchTab({
+            url: '/pages/me/me'
+        })
     },
     handleClose1() {
         this.setData({

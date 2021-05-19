@@ -7,7 +7,8 @@ const db = cloud.database()
 exports.main = async (event, context) => {
 
     const {product = {}} = event;
-    if (product._id) {
+    console.log(product)
+    if (product._id !== undefined || null || '') {
         try {
             return await db.collection('product').where({
                 _id: product._id
@@ -16,7 +17,9 @@ exports.main = async (event, context) => {
                     name: product.name,
                     stock: product.stock,
                     price: product.price,
-                    state: product.state
+                    state: product.state,
+                    category_id: product.category_id,
+                    description: product.description
                 },
             })
         } catch (e) {

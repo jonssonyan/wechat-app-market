@@ -16,7 +16,11 @@ Page({
         products: [],
         productParam: {
             pageNum: 1,
-            pageSize: 10
+            pageSize: 10,
+            stockGt1Flag: true,
+            filter: {
+                state: true
+            }
         }
     },
 

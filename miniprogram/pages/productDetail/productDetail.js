@@ -31,8 +31,18 @@ Page({
             ['product.state']: detail.value
         })
     },
-    handleSubmit() {
+    async handleSubmit() {
         // 修改商品
+        await wx.cloud.callFunction({
+            name: 'updateProduct',
+            data: {
+                product: this.data.product
+            }
+        });
+        // 修改成功后跳转至我的商品界面
+        wx.switchTab({
+            url: '/pages/me/me'
+        });
     },
     bindPickerChange: function (e) {
         let category = this.data.categorys[e.detail.value];
@@ -126,7 +136,6 @@ Page({
         let that = this;
         const eventChannel = this.getOpenerEventChannel()
         eventChannel.on('acceptDataFromOpenerPage', function (data) {
-            console.log(data)
             that.setData({
                 ['product']: data.product
             })
@@ -145,6 +154,18 @@ Page({
         }).then(e => {
             this.setData({
                 categorys: e.result.data
+            })
+        });
+
+        wx.cloud.callFunction({
+            name: 'selectList',
+            data: {
+                dbName: 'category',
+                filter: {_id: that.data.category_id}
+            }
+        }).then(e => {
+            this.setData({
+                ['category']: e.result.data[0]
             })
         });
     }
