@@ -1,7 +1,6 @@
 // miniprogram/pages/sell/sell.js
-var app = getApp();
+const {$Message} = require('../../components/base/index');
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -16,7 +15,19 @@ Page({
             filter: {
                 open_id: null
             }
-        }
+        },
+        visible: false,
+        visible1: false,
+        actions: [
+            {
+                name: '查看',
+            },
+            {
+                name: '删除',
+                color: '#ed3f14'
+            }
+        ],
+        order: {}
     },
 
     /**
@@ -85,8 +96,11 @@ Page({
     onShareAppMessage: function () {
 
     },
-    cardClick: function (e) {
-        console.log(e)
+    cardClick: function (order) {
+        this.setData({
+            ['visible']: true,
+            ['order']: order.currentTarget.dataset.order
+        });
     },
     async selectPage() {
         const that = this;
@@ -120,5 +134,64 @@ Page({
             products[i].tempFileURL = res.fileList[0].tempFileURL
         }
         return orders;
+    },
+    // 删除订单
+    async handleClick1() {
+        if (this.data.order.state === 0) {
+            $Message({
+                content: '订单未完成,暂不可删除',
+                type: 'warning'
+            });
+            this.handleClose1();
+            return
+        }
+        await wx.cloud.callFunction({
+            name: 'delete',
+            data: {
+                filter: {
+                    dbName: 'order',
+                    filter: {
+                        _id: this.data.order._id
+                    }
+                }
+            }
+        })
+        wx.switchTab({
+            url: '/pages/me/me'
+        })
+    },
+    // 取消删除
+    handleClose1() {
+        this.setData({
+            ['visible']: false,
+            ['visible1']: false
+        });
+    },
+    handleClickItem({detail}) {
+        let that = this;
+        switch (detail.index) {
+            case 0:
+                // 跳转至商品详情界面
+                // wx.navigateTo({
+                //     url: '/pages/sellDetail/sellDetail',
+                //     events: {},
+                //     success: function (res) {
+                //         // 通过eventChannel向被打开页面传送数据
+                //         res.eventChannel.emit('acceptDataFromOpenerPage', {order: that.data.order})
+                //     }
+                // })
+                console.log(that.data.order)
+                break
+            case 1:
+                this.setData({
+                    visible1: true
+                });
+                break
+        }
+    },
+    handleCancel() {
+        this.setData({
+            ['visible']: false
+        });
     }
 });

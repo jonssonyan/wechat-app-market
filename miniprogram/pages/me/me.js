@@ -2,7 +2,10 @@ Page({
     data: {
         userInfo: {},
         hasUserInfo: false,
-        canIUseGetUserProfile: false
+        canIUseGetUserProfile: false,
+        addUserParam: {
+            user: {}
+        }
     },
     onLoad: function (options) {
 
@@ -20,6 +23,12 @@ Page({
                     userInfo: res.userInfo,
                     hasUserInfo: true
                 });
+                wx.cloud.callFunction({
+                    name: 'addUser',
+                    data: {
+                        user: res.userInfo
+                    }
+                })
             }
         })
     },
