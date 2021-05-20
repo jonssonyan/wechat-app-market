@@ -8,8 +8,15 @@
                 full="true">
             <view slot="content">收藏时间：{{item.createTime}}</view>
         </i-card>
+        <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel
+                        bind:cancel="handleCancel"
+                        bind:click="handleClickItem"/>
+        <i-modal title="取消确认" visible="{{ visible1 }}" bind:cancel="handleClose1" bind:ok="handleClick1">
+            <view>取消收藏后无法恢复哦</view>
+        </i-modal>
     </block>
     <block wx:else>
         <i-alert>加载中...</i-alert>
     </block>
 </view>
+<i-message id="message"/>

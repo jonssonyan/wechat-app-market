@@ -20,7 +20,8 @@ Page({
             collection: {}
         },
         visible: false,
-        msg: ''
+        msg: '',
+        hasUserInfo: false
     },
 
     /**
@@ -47,6 +48,10 @@ Page({
                 ['images']: res.tempFileURLs
             })
             console.log(res)
+        })
+        let app = getApp();
+        this.setData({
+            ['hasUserInfo']:app.globalData.hasUserInfo
         })
     },
 
@@ -162,7 +167,7 @@ Page({
     handleOk() {
         this.setData({
             ['visible']: false,
-            ['product.isCollection']:true
+            ['product.isCollection']: true
         })
     }
 })

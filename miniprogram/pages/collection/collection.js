@@ -1,4 +1,5 @@
 // miniprogram/pages/collection/collection.js
+const {$Message} = require('../../components/base/index');
 Page({
     /**
      * 页面的初始数据
@@ -9,7 +10,19 @@ Page({
             filter: {
                 open_id: null
             }
-        }
+        },
+        visible: false,
+        visible1: false,
+        actions: [
+            {
+                name: '查看',
+            },
+            {
+                name: '取消收藏',
+                color: '#ed3f14'
+            }
+        ],
+        product: {}
     },
 
     /**
@@ -93,18 +106,73 @@ Page({
             for (let j = 0; j < products.length; j++) {
                 let res = await wx.cloud.getTempFileURL({
                     fileList: [{
-                        fileID: products[i].images[0].file_id,
+                        fileID: products[j].images[0].file_id,
                         maxAge: 60 * 60, // one hour
                     }]
                 });
                 // get temp file URL
-                products[i].tempFileURL = res.fileList[0].tempFileURL
+                products[j].tempFileURL = res.fileList[0].tempFileURL
             }
         }
-        console.log(collections)
         return collections;
     },
-    cardClick(collection) {
+    cardClick: function (collection) {
         console.log(collection)
+        this.setData({
+            ['visible']: true,
+            ['product']: collection.currentTarget.dataset.collection.products[0]
+        });
+    },
+    handleCancel() {
+        this.setData({
+            ['visible']: false
+        });
+    },
+    // 取消
+    handleClose1() {
+        this.setData({
+            ['visible']: false,
+            ['visible1']: false
+        });
+    },
+    handleClickItem({detail}) {
+        let that = this;
+        switch (detail.index) {
+            case 0:
+                // 跳转至商品详情界面
+                wx.navigateTo({
+                    url: '/pages/productDetail/productDetail',
+                    events: {},
+                    success: function (res) {
+                        // 通过eventChannel向被打开页面传送数据
+                        console.log(that.data.product)
+                        res.eventChannel.emit('acceptDataFromOpenerPage', {product: that.data.product})
+                    }
+                })
+                break
+            case 1:
+                this.setData({
+                    visible1: true
+                });
+                break
+        }
+    },
+    // 取消收藏
+    async handleClick1() {
+        let openid = await wx.cloud.callFunction({
+            name: 'getWXContext'
+        }).then(e => e.result.openid);
+        await wx.cloud.callFunction({
+            name: 'delete',
+            data: {dbName: 'collection', filter: {open_id: openid, product_id: this.data.product._id}}
+        }).then(e => {
+            $Message({
+                content: '取消收藏成功',
+                type: 'success'
+            });
+            this.handleClose1();
+            this.onShow();
+        });
     }
+
 })

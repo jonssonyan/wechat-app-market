@@ -17,20 +17,21 @@
     <i-input value="{{product.stock}}" title="库存" disabled/>
     <i-input value="{{product.createTime}}" title="上架时间" disabled/>
     <i-row>
-        <block wx:if="{{product.isCollection}}">
-            <i-col span="12" i-class="col-class">
-                <i-button type="ghost" size="small" shape="circle" disabled>已收藏
-                </i-button>
-            </i-col>
-        </block>
-        <block wx:else>
-            <i-col span="12" i-class="col-class">
-                <i-button data-product="{{product}}" bindtap="collection"
-                          type="info" size="small" shape="circle">收藏
-                </i-button>
-            </i-col>
-        </block>
-
+        <view wx:if="{{hasUserInfo}}">
+            <block wx:if="{{product.isCollection}}">
+                <i-col span="12" i-class="col-class">
+                    <i-button type="ghost" size="small" shape="circle" disabled>已收藏
+                    </i-button>
+                </i-col>
+            </block>
+            <block wx:else>
+                <i-col span="12" i-class="col-class">
+                    <i-button data-product="{{product}}" bindtap="collection"
+                              type="info" size="small" shape="circle">收藏
+                    </i-button>
+                </i-col>
+            </block>
+        </view>
         <i-col span="12" i-class="col-class">
             <i-button data-product="{{product}}" bindtap="buy"
                       type="success" size="small" shape="circle">下单

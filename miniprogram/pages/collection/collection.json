@@ -2,6 +2,9 @@
   "usingComponents": {
     "i-swipeout": "/components/swipeout/index",
     "i-card": "/components/card/index",
-    "i-alert": "/components/alert/index"
+    "i-alert": "/components/alert/index",
+    "i-modal": "/components/modal/index",
+    "i-action-sheet": "/components/action-sheet/index",
+    "i-message": "/components/message/index"
   }
 }
