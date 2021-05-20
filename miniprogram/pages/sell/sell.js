@@ -155,7 +155,7 @@ Page({
                     }
                 }
             }
-        })
+        });
         wx.switchTab({
             url: '/pages/me/me'
         })
@@ -172,15 +172,14 @@ Page({
         switch (detail.index) {
             case 0:
                 // 跳转至商品详情界面
-                // wx.navigateTo({
-                //     url: '/pages/sellDetail/sellDetail',
-                //     events: {},
-                //     success: function (res) {
-                //         // 通过eventChannel向被打开页面传送数据
-                //         res.eventChannel.emit('acceptDataFromOpenerPage', {order: that.data.order})
-                //     }
-                // })
-                console.log(that.data.order)
+                wx.navigateTo({
+                    url: '/pages/sellDetail/sellDetail',
+                    events: {},
+                    success: function (res) {
+                        // 通过eventChannel向被打开页面传送数据
+                        res.eventChannel.emit('acceptDataFromOpenerPage', {order: that.data.order})
+                    }
+                })
                 break
             case 1:
                 this.setData({

@@ -78,6 +78,6 @@ Page({
         return await wx.cloud.callFunction({
             name: 'selectOneOrder',
             data: {_id: _id}
-        });
+        }).then(e => e.result.data);
     }
 })

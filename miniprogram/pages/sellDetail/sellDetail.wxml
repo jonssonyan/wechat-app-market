@@ -1,5 +1,3 @@
 <i-cell-group>
     <i-input value="{{ order.product.name }}" title="商品名称" disabled/>
-
-    <i-message id="message"/>
 </i-cell-group>
