@@ -1,3 +1,4 @@
+<!--我卖出的-->
 <i-cell-group>
     <i-input value="{{ order.product[0].name }}" title="商品名称" disabled/>
     <i-input value="{{ order.address }}" title="收货地址" disabled/>

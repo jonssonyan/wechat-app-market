@@ -76,7 +76,7 @@ Page({
         });
         return await wx.cloud.callFunction({
             name: 'selectOneOrder',
-            data: {filter: {_id: _id}}
+            data: {filter: {_id: _id}, isBuy: false}
         }).then(e => e.result[0]);
     }
 })

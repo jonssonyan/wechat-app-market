@@ -5,14 +5,14 @@ cloud.init()
 const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
-    const {filter = {}} = event;
+    const {filter = {}, isBuy = false} = event;
 
     let orderResult = await db.collection('order').where(filter).limit(1).get();
     let res = orderResult.data;
     for (let i = 0; i < res.length; i++) {
         res[i].createTime = dataToString(res[i].create_time)
         res[i].product = await db.collection('product').where({_id: res[i].product_id}).get().then(res => res.data);
-        res[i].user = await db.collection('user').where({open_id: res[i].buyer}).get().then(res => res.data)
+        res[i].user = await db.collection('user').where({open_id: (isBuy ? res[i].seller : res[i].buyer)}).get().then(res => res.data)
     }
     return res;
 }

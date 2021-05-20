@@ -1,4 +1,5 @@
 // miniprogram/pages/buy/buy.js
+const {$Message} = require('../../components/base/index');
 Page({
 
     /**
@@ -15,7 +16,19 @@ Page({
             filter: {
                 buyer: null
             }
-        }
+        },
+        visible: false,
+        visible1: false,
+        actions: [
+            {
+                name: '查看',
+            },
+            {
+                name: '删除',
+                color: '#ed3f14'
+            }
+        ],
+        order: {}
     },
 
     /**
@@ -116,7 +129,68 @@ Page({
         }
         return orders;
     },
-    cardClick(product) {
-        console.log(product)
+    cardClick(order) {
+        this.setData({
+            ['visible']: true,
+            ['order']: order.currentTarget.dataset.order
+        });
+    },
+    // 删除订单
+    async handleClick1() {
+        if (this.data.order.state === 0) {
+            $Message({
+                content: '订单未完成,暂不可删除',
+                type: 'warning'
+            });
+            this.handleClose1();
+            return
+        }
+        await wx.cloud.callFunction({
+            name: 'delete',
+            data: {
+                filter: {
+                    dbName: 'order',
+                    filter: {
+                        _id: this.data.order._id
+                    }
+                }
+            }
+        });
+        wx.switchTab({
+            url: '/pages/me/me'
+        })
+    },
+    // 取消删除
+    handleClose1() {
+        this.setData({
+            ['visible']: false,
+            ['visible1']: false
+        });
+    },
+    handleClickItem({detail}) {
+        let that = this;
+        switch (detail.index) {
+            case 0:
+                // 跳转至商品详情界面
+                wx.navigateTo({
+                    url: '/pages/buyDetail/buyDetail',
+                    events: {},
+                    success: function (res) {
+                        // 通过eventChannel向被打开页面传送数据
+                        res.eventChannel.emit('acceptDataFromOpenerPage', {order: that.data.order})
+                    }
+                })
+                break
+            case 1:
+                this.setData({
+                    visible1: true
+                });
+                break
+        }
+    },
+    handleCancel() {
+        this.setData({
+            ['visible']: false
+        });
     }
 })
