@@ -6,7 +6,6 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
     const {filter = {}} = event;
-    const wxContext = cloud.getWXContext()
 
     let orderResult = await db.collection('order').where(filter).limit(1).get();
     let res = orderResult.data;
@@ -15,6 +14,7 @@ exports.main = async (event, context) => {
         res[i].product = await db.collection('product').where({_id: res[i].product_id}).get().then(res => res.data);
         res[i].user = await db.collection('user').where({open_id: res[i].buyer}).get().then(res => res.data)
     }
+    return res;
 }
 
 // 时间戳转换为 yyyy-MM-dd HH:mm:ss 的字符串格式

@@ -74,10 +74,9 @@ Page({
         eventChannel.on('acceptDataFromOpenerPage', function (data) {
             _id = data.order._id
         });
-        console.log(_id)
         return await wx.cloud.callFunction({
             name: 'selectOneOrder',
-            data: {_id: _id}
-        }).then(e => e.result.data);
+            data: {filter: {_id: _id}}
+        }).then(e => e.result[0]);
     }
 })
