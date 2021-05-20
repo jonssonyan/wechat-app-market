@@ -47,7 +47,6 @@ Page({
                 ['product']: res,
                 ['images']: res.tempFileURLs
             })
-            console.log(res)
         })
         let app = getApp();
         this.setData({

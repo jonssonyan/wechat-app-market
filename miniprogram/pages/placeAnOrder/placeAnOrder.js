@@ -152,7 +152,6 @@ Page({
                     ['updateProductParam.product._id']: that.data.product._id,
                     ['updateProductParam.product.stock']: that.data.product.stock - 1
                 })
-                console.log(that.data.updateProductParam)
                 await wx.cloud.callFunction({
                     name: 'updateProduct',
                     data: that.data.updateProductParam

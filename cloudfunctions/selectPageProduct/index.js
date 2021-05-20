@@ -8,7 +8,6 @@ const db = cloud.database();
 exports.main = async (event, context) => {
     const {filter = {}, stockGt1Flag = false, pageSize = 10, pageNum = 1} = event;
     const _ = db.command
-    console.log(filter)
     if (stockGt1Flag === true) {
         filter.stock = _.gt(1);
     }

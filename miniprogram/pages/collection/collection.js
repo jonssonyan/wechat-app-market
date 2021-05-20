@@ -117,7 +117,6 @@ Page({
         return collections;
     },
     cardClick: function (collection) {
-        console.log(collection)
         this.setData({
             ['visible']: true,
             ['product']: collection.currentTarget.dataset.collection.products[0]
@@ -145,7 +144,6 @@ Page({
                     events: {},
                     success: function (res) {
                         // 通过eventChannel向被打开页面传送数据
-                        console.log(that.data.product)
                         res.eventChannel.emit('acceptDataFromOpenerPage', {product: that.data.product})
                     }
                 })
