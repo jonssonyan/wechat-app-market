@@ -161,7 +161,8 @@ Page({
     },
     handleOk() {
         this.setData({
-            ['visible']: false
+            ['visible']: false,
+            ['product.isCollection']:true
         })
     }
 })
