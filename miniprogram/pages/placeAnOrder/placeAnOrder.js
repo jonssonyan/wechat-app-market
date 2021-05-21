@@ -1,4 +1,3 @@
-// miniprogram/pages/placeAnOrder/placeAnOrder.js
 const {$Message} = require('../../components/base/index');
 Page({
 
@@ -105,14 +104,14 @@ Page({
     },
     async placeAnOrder() {
         // 表单验证
-        if (this.data.address === null || '') {
+        if (this.data.address === undefined || null) {
             $Message({
                 content: '请输入收货地址',
                 type: 'warning'
             });
             return
         }
-        if (this.data.method == null) {
+        if (this.data.method === undefined || null) {
             $Message({
                 content: '请输入付款方式',
                 type: 'warning'

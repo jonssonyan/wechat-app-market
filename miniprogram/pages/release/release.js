@@ -1,5 +1,4 @@
 const {$Message} = require('../../components/base/index');
-
 Page({
     data: {
         // 控制弹窗的显示与隐藏
@@ -31,14 +30,14 @@ Page({
         })
     },
     handleSubmit() {
-        if (this.data.product.name === '') {
+        if (this.data.product.name === undefined || null) {
             $Message({
                 content: '请输入商品名称',
                 type: 'warning'
             });
             return
         }
-        if (this.data.product.price === null) {
+        if (this.data.product.price === undefined || null) {
             $Message({
                 content: '请输入商品价格',
                 type: 'warning'
@@ -52,7 +51,7 @@ Page({
             });
             return
         }
-        if (this.data.product.stock === null) {
+        if (this.data.product.stock === undefined || null) {
             $Message({
                 content: '请输入商品库存',
                 type: 'warning'
