@@ -48,9 +48,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        let that = this;
         this.selectPage().then((res) => {
-            that.setData({
+            this.setData({
                 ['orders']: res
             })
         });
@@ -81,12 +80,11 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-        let that = this;
         this.setData({
-            ['param.pageNum']: that.data.orderParam.pageNum++
+            ['param.pageNum']: this.data.orderParam.pageNum++
         })
         this.selectPage().then(res => {
-            that.data.orders.push(res)
+            this.data.orders.push(res)
         })
     },
 
@@ -103,37 +101,33 @@ Page({
         });
     },
     async selectPage() {
-        const that = this;
-        let orders = [];
         // 设置当前用户的openid
         await wx.cloud.callFunction({
             name: 'getWXContext'
         }).then(e => {
-            that.setData({
+            this.setData({
                 ['orderParam.filter.seller']: e.result.openid
             })
         })
-        if (that.data.orderParam.filter.seller) {
+        if (this.data.orderParam.filter.seller) {
             // 获取订单列表
-            await wx.cloud.callFunction({
+            let orders = await wx.cloud.callFunction({
                 name: 'selectPageOrder',
-                data: that.data.orderParam
-            }).then((e) => {
-                orders = e.result.data
-            })
+                data: this.data.orderParam
+            }).then((e) => e.result.data);
+            for (let i = 0; i < orders.length; i++) {
+                let products = orders[i].products;
+                let res = await wx.cloud.getTempFileURL({
+                    fileList: [{
+                        fileID: products[i].images[0].file_id,
+                        maxAge: 60 * 60, // one hour
+                    }]
+                });
+                // get temp file URL
+                products[i].tempFileURL = res.fileList[0].tempFileURL
+            }
+            return orders;
         }
-        for (let i = 0; i < orders.length; i++) {
-            let products = orders[i].products;
-            let res = await wx.cloud.getTempFileURL({
-                fileList: [{
-                    fileID: products[i].images[0].file_id,
-                    maxAge: 60 * 60, // one hour
-                }]
-            });
-            // get temp file URL
-            products[i].tempFileURL = res.fileList[0].tempFileURL
-        }
-        return orders;
     },
     // 删除订单
     async handleClick1() {
@@ -167,7 +161,6 @@ Page({
         });
     },
     handleClickItem({detail}) {
-        let that = this;
         switch (detail.index) {
             case 0:
                 // 跳转至商品详情界面
@@ -176,7 +169,7 @@ Page({
                     events: {},
                     success: function (res) {
                         // 通过eventChannel向被打开页面传送数据
-                        res.eventChannel.emit('acceptDataFromOpenerPage', {order: that.data.order})
+                        res.eventChannel.emit('acceptDataFromOpenerPage', {order: this.data.order})
                     }
                 })
                 break
