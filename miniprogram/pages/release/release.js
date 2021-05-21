@@ -14,7 +14,23 @@ Page({
             category_id: null
         },
         files: [],
-        urls: []
+        urls: [],
+        rules: [{
+            name: 'name',
+            rules: {required: true, message: '请输入商品名称'}
+        },
+            {
+                name: 'description',
+                rules: {required: true, message: '请输入商品描述'}
+            },
+            {
+                name: 'price',
+                rules: {required: true, message: '请输入商品价格'}
+            },
+            {
+                name: 'stock',
+                rules: {required: true, message: '请输入库存'}
+            }]
     },
     onLoad: function (options) {
 
@@ -30,6 +46,22 @@ Page({
         })
     },
     handleSubmit() {
+        // 表单校验
+        let suc = true;
+        this.selectComponent('#form').validate((valid, errors) => {
+            if (!valid) {
+                const firstError = Object.keys(errors)
+                if (firstError.length) {
+                    $Message({
+                        content: errors[firstError[0]].message,
+                        type: 'warning'
+                    });
+                }
+                suc = false;
+            }
+        })
+        if (!suc) return
+
         if (this.data.product.category_id === null) {
             $Message({
                 content: '请输入商品分类',

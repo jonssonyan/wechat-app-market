@@ -5,6 +5,7 @@
     "i-button": "/components/button/index",
     "i-modal": "/components/modal/index",
     "i-panel": "/components/panel/index",
-    "i-message": "/components/message/index"
+    "i-message": "/components/message/index",
+    "mp-form": "weui-miniprogram/form/form"
   }
 }
