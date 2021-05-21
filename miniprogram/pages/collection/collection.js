@@ -127,20 +127,21 @@ Page({
             ['visible']: false
         });
     },
-    // 取消
+    // 取消删除
     handleClose1() {
         this.setData({
             ['visible']: false,
             ['visible1']: false
         });
     },
+    // 查看收藏商品详情
     handleClickItem({detail}) {
         let that = this;
         switch (detail.index) {
             case 0:
                 // 跳转至商品详情界面
                 wx.navigateTo({
-                    url: '/pages/productDetail/productDetail',
+                    url: '/pages/product/product',
                     events: {},
                     success: function (res) {
                         // 通过eventChannel向被打开页面传送数据
@@ -163,13 +164,13 @@ Page({
         await wx.cloud.callFunction({
             name: 'delete',
             data: {dbName: 'collection', filter: {open_id: openid, product_id: this.data.product._id}}
-        }).then(e => {
-            $Message({
-                content: '取消收藏成功',
-                type: 'success'
-            });
-            this.handleClose1();
-            this.onShow();
+        });
+        wx.switchTab({
+            url: '/pages/me/me'
+        })
+        $Message({
+            content: '取消收藏成功',
+            type: 'success'
         });
     }
 
