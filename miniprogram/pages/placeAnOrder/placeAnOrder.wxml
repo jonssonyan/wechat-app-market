@@ -22,11 +22,3 @@
 <i-button bind:click="placeAnOrder"
           type="success" size="small" shape="circle">立即下单
 </i-button>
-
-<i-modal title="提示" visible="{{ visible }}" bind:ok="handleOk" bind:cancel="handleOk">
-    <view>{{msg}}</view>
-</i-modal>
-
-<i-modal title="成功" visible="{{ visible1 }}" bind:ok="handleOk1" bind:cancel="handleOk1">
-    <view>{{msg1}}</view>
-</i-modal>

@@ -1,4 +1,5 @@
 // miniprogram/pages/placeAnOrder/placeAnOrder.js
+const {$Message} = require('../../components/base/index');
 Page({
 
     /**
@@ -17,8 +18,6 @@ Page({
             }
         },
         product: {},
-        visible: false,
-        msg: '',
         updateProductParam: {
             product: {}
         }
@@ -106,18 +105,18 @@ Page({
     },
     async placeAnOrder() {
         // 表单验证
-        if (this.data.address === '') {
-            this.setData({
-                ['visible']: true,
-                ['msg']: '请输入收货地址'
-            })
+        if (this.data.address === null || '') {
+            $Message({
+                content: '请输入收货地址',
+                type: 'warning'
+            });
             return
         }
         if (this.data.method == null) {
-            this.setData({
-                ['visible']: true,
-                ['msg']: '请输入付款方式'
-            })
+            $Message({
+                content: '请输入付款方式',
+                type: 'warning'
+            });
             return
         }
         let that = this;
@@ -127,10 +126,10 @@ Page({
         }).then(e => e.result.openid);
         if (openid !== undefined || null) {
             if (openid === this.data.product.open_id) {
-                this.setData({
-                    ['visible']: true,
-                    ['msg']: '不能购买自己发布的商品'
-                })
+                $Message({
+                    content: '不能购买自己发布的商品',
+                    type: 'warning'
+                });
                 return
             }
             this.setData({
@@ -158,10 +157,5 @@ Page({
                 })
             }
         }
-    },
-    handleOk() {
-        this.setData({
-            ['visible']: false
-        })
     }
 })
