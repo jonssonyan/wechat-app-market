@@ -25,5 +25,21 @@ exports.main = async (event, context) => {
         } catch (e) {
             console.error(e)
         }
+    } else {
+        // 如果已经存在库里则更新用户信息
+        try {
+            await db.collection('user').update({
+                data: {
+                    open_id: wxContext.OPENID,
+                    nickName: user.nickName,
+                    avatarUrl: user.avatarUrl,
+                    country: user.country,
+                    province: user.province,
+                    gender: user.gender,
+                }
+            })
+        } catch (e) {
+            console.error(e)
+        }
     }
 }

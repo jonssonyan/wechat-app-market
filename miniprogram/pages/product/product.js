@@ -1,4 +1,5 @@
 // miniprogram/pages/product/product.js
+const {$Message} = require('../../components/base/index');
 Page({
 
     /**
@@ -113,14 +114,21 @@ Page({
         return product;
     },
     buy(product) {
-        wx.navigateTo({
-            url: '/pages/placeAnOrder/placeAnOrder',
-            events: {},
-            success: function (res) {
-                // 通过eventChannel向被打开页面传送数据
-                res.eventChannel.emit('acceptDataFromOpenerPage', {product: product.currentTarget.dataset.product})
-            }
-        })
+        if (this.data.hasUserInfo) {
+            wx.navigateTo({
+                url: '/pages/placeAnOrder/placeAnOrder',
+                events: {},
+                success: function (res) {
+                    // 通过eventChannel向被打开页面传送数据
+                    res.eventChannel.emit('acceptDataFromOpenerPage', {product: product.currentTarget.dataset.product})
+                }
+            })
+        } else {
+            // 跳转至登录界面
+            wx.switchTab({
+                url: '/pages/me/me'
+            });
+        }
     },
     async collection(product) {
         let openId = null;
@@ -149,6 +157,10 @@ Page({
             this.setData({
                 ['product.isCollection']: true
             })
+            $Message({
+                content: '收藏成功',
+                type: 'success'
+            });
         }
     }
 })
