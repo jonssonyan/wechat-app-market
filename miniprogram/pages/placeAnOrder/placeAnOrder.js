@@ -20,7 +20,7 @@ Page({
         visible: false,
         msg: '',
         updateProductParam: {
-            product:{}
+            product: {}
         }
     },
 
@@ -99,14 +99,14 @@ Page({
     },
     // 切换下单数量
     handleChangeNum({detail}) {
-        let that = this;
         this.setData({
             ['orderParam.order.num']: detail.value,
-            ['orderParam.order.totalPrice']: that.data.product.price * detail.value
+            ['orderParam.order.totalPrice']: this.data.product.price * detail.value
         })
     },
     async placeAnOrder() {
-        if (this.data.address == null) {
+        // 表单验证
+        if (this.data.address === '') {
             this.setData({
                 ['visible']: true,
                 ['msg']: '请输入收货地址'
@@ -121,14 +121,11 @@ Page({
             return
         }
         let that = this;
-        let openid = '';
-        await wx.cloud.callFunction({
+        let openid = await wx.cloud.callFunction({
             name: 'getWXContext',
             data: {}
-        }).then(e => {
-            openid = e.result.openid
-        })
-        if (openid !== null) {
+        }).then(e => e.result.openid);
+        if (openid !== undefined || null) {
             if (openid === this.data.product.open_id) {
                 this.setData({
                     ['visible']: true,
