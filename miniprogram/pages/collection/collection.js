@@ -165,13 +165,12 @@ Page({
             name: 'delete',
             data: {dbName: 'collection', filter: {open_id: openid, product_id: this.data.product._id}}
         });
-        wx.switchTab({
-            url: '/pages/me/me'
-        })
         $Message({
             content: '取消收藏成功',
             type: 'success'
         });
+        this.handleClose1();
+        this.onShow();
     }
 
 })

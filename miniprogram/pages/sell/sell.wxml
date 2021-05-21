@@ -19,7 +19,7 @@
         </i-modal>
     </block>
     <block wx:else>
-        <i-alert>加载中...</i-alert>
+        <i-alert>暂无卖出</i-alert>
     </block>
 </view>
 <i-message id="message" />

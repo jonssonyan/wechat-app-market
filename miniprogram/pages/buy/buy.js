@@ -156,9 +156,8 @@ Page({
                 }
             }
         });
-        wx.switchTab({
-            url: '/pages/me/me'
-        })
+        this.handleClose1();
+        this.onShow();
     },
     // 取消删除
     handleClose1() {
