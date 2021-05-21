@@ -161,6 +161,7 @@ Page({
         });
     },
     handleClickItem({detail}) {
+        let that = this;
         switch (detail.index) {
             case 0:
                 // 跳转至商品详情界面
@@ -169,7 +170,7 @@ Page({
                     events: {},
                     success: function (res) {
                         // 通过eventChannel向被打开页面传送数据
-                        res.eventChannel.emit('acceptDataFromOpenerPage', {order: this.data.order})
+                        res.eventChannel.emit('acceptDataFromOpenerPage', {order: that.data.order})
                     }
                 })
                 break
