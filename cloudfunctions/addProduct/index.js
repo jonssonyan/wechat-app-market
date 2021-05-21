@@ -5,19 +5,19 @@ cloud.init();
 const db = cloud.database();
 // 添加商品
 exports.main = async (event, context) => {
-    const {categoryId, name, price, state, stock,description} = event;
+    const {category_id, name, price, state, stock, description} = event;
     const wxContext = cloud.getWXContext();
     try {
         return await db.collection('product').add({
             // data 字段表示需新增的 JSON 数据
             data: {
-                category_id: categoryId,
+                category_id: category_id,
                 name: name,
                 open_id: wxContext.OPENID,
                 price: price,
                 state: state,
                 stock: stock,
-                description:description
+                description: description
             }
         })
     } catch (e) {

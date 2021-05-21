@@ -47,21 +47,21 @@ Page({
     },
     handleSubmit() {
         // 表单校验
-        let suc = true;
-        this.selectComponent('#form').validate((valid, errors) => {
-            if (!valid) {
-                const firstError = Object.keys(errors)
-                if (firstError.length) {
-                    $Message({
-                        content: errors[firstError[0]].message,
-                        type: 'warning'
-                    });
-                }
-                suc = false;
-            }
-        })
-        if (!suc) return
-
+        // let suc = true;
+        // this.selectComponent('#form').validate((valid, errors) => {
+        //     if (!valid) {
+        //         const firstError = Object.keys(errors)
+        //         if (firstError.length) {
+        //             $Message({
+        //                 content: errors[firstError[0]].message,
+        //                 type: 'warning'
+        //             });
+        //         }
+        //         suc = false;
+        //     }
+        // })
+        // if (!suc) return
+        console.log(this.data.product.category_id)
         if (this.data.product.category_id === null) {
             $Message({
                 content: '请输入商品分类',
@@ -98,7 +98,7 @@ Page({
         let category = this.data.categorys[e.detail.value];
         this.setData({
             ['category']: category,
-            ['product.categoryId']: category._id
+            ['product.category_id']: category._id
         });
     },
     chooseImage: function (e) {
