@@ -60,7 +60,7 @@ Page({
             });
             return
         }
-        // 修改商品
+        修改商品
         await wx.cloud.callFunction({
             name: 'updateProduct',
             data: {
@@ -76,7 +76,7 @@ Page({
         let category = this.data.categorys[e.detail.value];
         this.setData({
             ['category']: category,
-            ['product.categoryId']: category._id
+            ['product.category_id']: category._id
         });
     },
     chooseImage: function (e) {
