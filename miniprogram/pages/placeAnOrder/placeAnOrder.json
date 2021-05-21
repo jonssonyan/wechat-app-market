@@ -4,6 +4,7 @@
     "i-input-number": "/components/input-number/index",
     "i-button": "/components/button/index",
     "i-modal": "/components/modal/index",
-    "i-panel": "/components/panel/index"
+    "i-panel": "/components/panel/index",
+    "i-message": "/components/message/index"
   }
 }

@@ -22,3 +22,5 @@
 <i-button bind:click="placeAnOrder"
           type="success" size="small" shape="circle">立即下单
 </i-button>
+
+<i-message id="message"/>

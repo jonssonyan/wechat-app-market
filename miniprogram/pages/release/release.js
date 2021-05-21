@@ -30,35 +30,36 @@ Page({
         })
     },
     handleSubmit() {
-        if (this.data.product.name === undefined || null) {
+        console.log(this.data.product)
+        if (this.data.product.name === '') {
             $Message({
                 content: '请输入商品名称',
                 type: 'warning'
             });
             return
         }
-        if (this.data.product.price === undefined || null) {
+        if (this.data.product.price === '') {
             $Message({
                 content: '请输入商品价格',
                 type: 'warning'
             });
             return
         }
-        if (this.data.category === {}) {
+        if (this.data.product.category_id === null) {
             $Message({
                 content: '请输入商品分类',
                 type: 'warning'
             });
             return
         }
-        if (this.data.product.stock === undefined || null) {
+        if (this.data.product.stock === 0) {
             $Message({
                 content: '请输入商品库存',
                 type: 'warning'
             });
             return
         }
-        if (this.files.length === 0) {
+        if (this.data.files.length === 0) {
             $Message({
                 content: '至少上传一张商品图片',
                 type: 'warning'
