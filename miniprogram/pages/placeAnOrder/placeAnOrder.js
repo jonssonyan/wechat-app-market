@@ -11,7 +11,7 @@ Page({
             dbName: 'order',
             order: {
                 num: 1,
-                address: '',
+                address: null,
                 buyer: null,
                 seller: null
             }
@@ -104,13 +104,6 @@ Page({
     },
     async placeAnOrder() {
         // 表单验证
-        if (this.data.orderParam.order.address === '') {
-            $Message({
-                content: '请输入收货地址',
-                type: 'warning'
-            });
-            return
-        }
         if (this.data.method === null) {
             $Message({
                 content: '请输入付款方式',

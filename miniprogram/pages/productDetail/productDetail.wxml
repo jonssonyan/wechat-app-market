@@ -1,8 +1,8 @@
 <!--商品详情，可以修改商品-->
 <i-cell-group>
-    <i-input value="{{ product.name }}" title="商品名称" autofocus placeholder="请输入商品名称"/>
+    <i-input value="{{ product.name }}" title="商品名称" autofocus placeholder="请输入商品名称" required/>
     <i-input value="{{ product.description }}" title="商品描述" autofocus placeholder="请输入商品描述"/>
-    <i-input value="{{ product.price }}" type="number" title="商品价格(元)" placeholder="请输入商品价格"/>
+    <i-input value="{{ product.price }}" type="number" title="商品价格(元)" placeholder="请输入商品价格" required/>
     <view style="padding: 16px">
         <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">
             <view class="picker">
@@ -12,7 +12,7 @@
     </view>
     <i-panel title="库存">
         <view style="padding: 16px">
-            <i-input-number value="{{ product.stock }}" min="1" max="999" bind:change="handleChangeStock"/>
+            <i-input-number value="{{ product.stock }}" min="1" max="999" bind:change="handleChangeStock" required/>
         </view>
     </i-panel>
     <i-cell title="是否上架">

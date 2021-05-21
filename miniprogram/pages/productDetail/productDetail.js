@@ -32,30 +32,9 @@ Page({
         })
     },
     async handleSubmit() {
-        if (this.data.product.name === '') {
-            $Message({
-                content: '请输入商品名称',
-                type: 'warning'
-            });
-            return
-        }
-        if (this.data.product.price === null) {
-            $Message({
-                content: '请输入商品价格',
-                type: 'warning'
-            });
-            return
-        }
         if (this.data.product.category_id === null) {
             $Message({
                 content: '请输入商品分类',
-                type: 'warning'
-            });
-            return
-        }
-        if (this.data.product.stock === 0) {
-            $Message({
-                content: '请输入商品库存',
                 type: 'warning'
             });
             return
