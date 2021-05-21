@@ -60,7 +60,7 @@ Page({
             });
             return
         }
-        修改商品
+        // 修改商品
         await wx.cloud.callFunction({
             name: 'updateProduct',
             data: {
@@ -159,7 +159,7 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow() {
+    async onShow() {
         // 将上一个界面传来的参数设置到本页面中
         let that = this;
         const eventChannel = this.getOpenerEventChannel()
@@ -167,34 +167,31 @@ Page({
             that.setData({
                 ['product']: data.product
             })
-        });
-
+        })
         this.setData({
             selectFile: this.selectFile.bind(this),
             uplaodFile: this.uplaodFile.bind(this)
         });
-        wx.cloud.callFunction({
+        // 设置分类列表
+        let categorys = await wx.cloud.callFunction({
             name: 'selectList',
             data: {
                 dbName: 'category',
                 filter: {}
             }
-        }).then(e => {
-            this.setData({
-                categorys: e.result.data
-            })
-        });
-
-        wx.cloud.callFunction({
+        }).then(e => e.result.data);
+        this.setData({
+            ['categorys']: categorys
+        })
+        let category = await wx.cloud.callFunction({
             name: 'selectList',
             data: {
                 dbName: 'category',
-                filter: {_id: that.data.category_id}
+                filter: {_id: that.data.product.category_id}
             }
-        }).then(e => {
-            this.setData({
-                ['category']: e.result.data[0]
-            })
-        });
+        }).then(e => e.result.data[0]);
+        this.setData({
+            ['category']: category
+        })
     }
 });
