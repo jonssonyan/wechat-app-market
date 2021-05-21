@@ -8,8 +8,8 @@ Page({
         categorys: [],
         category: {},
         product: {
-            name: '',
-            price: '',
+            name: null,
+            price: null,
             stock: 1,
             state: true,
             category_id: null
@@ -32,7 +32,7 @@ Page({
         })
     },
     async handleSubmit() {
-        if (this.data.product.name === '') {
+        if (this.data.product.name === null) {
             $Message({
                 content: '请输入商品名称',
                 type: 'warning'
@@ -46,14 +46,14 @@ Page({
             });
             return
         }
-        if (this.data.category === {}) {
+        if (this.data.product.category_id === null) {
             $Message({
                 content: '请输入商品分类',
                 type: 'warning'
             });
             return
         }
-        if (this.data.product.stock === null) {
+        if (this.data.product.stock === 0) {
             $Message({
                 content: '请输入商品库存',
                 type: 'warning'

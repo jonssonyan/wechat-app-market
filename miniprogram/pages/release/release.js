@@ -7,8 +7,8 @@ Page({
         categorys: [],
         category: {},
         product: {
-            name: '',
-            price: '',
+            name: null,
+            price: null,
             stock: 1,
             state: true,
             category_id: null
@@ -31,14 +31,14 @@ Page({
     },
     handleSubmit() {
         console.log(this.data.product)
-        if (this.data.product.name === '') {
+        if (this.data.product.name === null) {
             $Message({
                 content: '请输入商品名称',
                 type: 'warning'
             });
             return
         }
-        if (this.data.product.price === '') {
+        if (this.data.product.price === null) {
             $Message({
                 content: '请输入商品价格',
                 type: 'warning'
