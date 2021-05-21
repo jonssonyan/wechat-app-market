@@ -39,7 +39,3 @@
         </i-col>
     </i-row>
 </view>
-
-<i-modal title="提示" visible="{{ visible }}" bind:ok="handleOk" bind:cancel="handleOk">
-    <view>{{msg}}</view>
-</i-modal>

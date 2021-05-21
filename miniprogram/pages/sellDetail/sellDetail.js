@@ -78,5 +78,10 @@ Page({
             name: 'selectOneOrder',
             data: {filter: {_id: _id}, isBuy: false}
         }).then(e => e.result[0]);
+    },
+    backToMe() {
+        wx.switchTab({
+            url: '/pages/me/me'
+        })
     }
 })

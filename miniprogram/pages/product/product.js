@@ -19,8 +19,6 @@ Page({
             dbName: 'collection',
             collection: {}
         },
-        visible: false,
-        msg: '',
         hasUserInfo: false
     },
 
@@ -50,7 +48,7 @@ Page({
         })
         let app = getApp();
         this.setData({
-            ['hasUserInfo']:app.globalData.hasUserInfo
+            ['hasUserInfo']: app.globalData.hasUserInfo
         })
     },
 
@@ -89,32 +87,26 @@ Page({
 
     },
     async selectOneProduct() {
-        let that = this;
         const eventChannel = this.getOpenerEventChannel()
         eventChannel.on('acceptDataFromOpenerPage', function (data) {
-            that.setData({
+            this.setData({
                 ['productParam.filter._id']: data.productId
             })
         });
-        let product = {};
-        await wx.cloud.callFunction({
+        let product = await wx.cloud.callFunction({
             name: 'selectOneProduct',
-            data: that.data.productParam
-        }).then(e => {
-            product = e.result.data[0];
-        });
+            data: this.data.productParam
+        }).then(e => e.result.data[0]);
         let images = product.images;
         let tempFileURLs = [];
         for (let i = 0; i < images.length; i++) {
-            await wx.cloud.getTempFileURL({
+            let tempFileURL = await wx.cloud.getTempFileURL({
                 fileList: [{
                     fileID: images[i].file_id,
                     maxAge: 60 * 60, // one hour
                 }]
-            }).then(res => {
-                // get temp file URL
-                tempFileURLs.push(res.fileList[0].tempFileURL);
-            })
+            }).then(res => res.fileList[0].tempFileURL);
+            tempFileURLs.push(tempFileURL);
         }
         product.tempFileURLs = tempFileURLs;
         return product;
@@ -151,22 +143,11 @@ Page({
                 suc = true;
             }
         });
+        // 收藏成功后修改页面的值
         if (suc) {
             this.setData({
-                ['visible']: true,
-                ['msg']: '收藏成功'
-            })
-        } else {
-            this.setData({
-                ['visible']: true,
-                ['msg']: '您已经收藏了该商品'
+                ['product.isCollection']: true
             })
         }
-    },
-    handleOk() {
-        this.setData({
-            ['visible']: false,
-            ['product.isCollection']: true
-        })
     }
 })
