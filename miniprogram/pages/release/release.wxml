@@ -10,8 +10,8 @@
                      title="商品描述" autofocus
                      placeholder="请输入商品描述"/>
             <i-input value="{{ product.price }}" type="number" bind:change="bindPriceChange"
-                     title="商品价格(元)" autofocus
-                     placeholder="请输入商品价格"/>
+                     title="商品单价(元)" autofocus
+                     placeholder="请输入商品单价"/>
             <view style="padding: 16px">
                 <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">
                     <view class="picker">

@@ -4,8 +4,8 @@
 <i-input value="{{ product.description }}" type="text" bind:change="bindDesChange" maxlength="50" title="商品描述"
          autofocus
          placeholder="请输入商品描述"/>
-<i-input value="{{ product.price }}" bind:change="bindPriceChange" type="number" title="商品价格(元)"
-         placeholder="请输入商品价格" autofocus/>
+<i-input value="{{ product.price }}" bind:change="bindPriceChange" type="number" title="商品单价(元)"
+         placeholder="请输入商品单价" autofocus/>
 <view style="padding: 16px">
     <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">
         <view class="picker">
