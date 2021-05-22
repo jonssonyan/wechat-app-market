@@ -11,7 +11,7 @@ Page({
             product: [],
             address: '',
             num: '',
-            total_price: null,
+            total_price: '',
             user: [],
             state: null
         }
