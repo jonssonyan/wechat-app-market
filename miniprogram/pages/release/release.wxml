@@ -3,11 +3,14 @@
     <!--没有用户信息-->
     <block wx:if="{{hasUserInfo}}">
         <i-cell-group>
-            <i-input value="{{ product.name }}" maxlength="10" bind:change="bindNameChange" title="商品名称" autofocus
+            <i-input value="{{ product.name }}" type="text" maxlength="10" bind:change="bindNameChange" title="商品名称"
+                     autofocus
                      placeholder="请输入商品名称"/>
-            <i-input value="{{ product.description }}" maxlength="50" bind:change="bindDesChange" title="商品描述" autofocus
+            <i-input value="{{ product.description }}" type="text" maxlength="50" bind:change="bindDesChange"
+                     title="商品描述" autofocus
                      placeholder="请输入商品描述"/>
-            <i-input value="{{ product.price }}" maxlength="50" bind:change="bindPriceChange" title="商品价格(元)" autofocus
+            <i-input value="{{ product.price }}" type="number" bind:change="bindPriceChange"
+                     title="商品价格(元)" autofocus
                      placeholder="请输入商品价格"/>
             <view style="padding: 16px">
                 <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">

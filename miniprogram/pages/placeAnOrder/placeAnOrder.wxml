@@ -7,7 +7,7 @@
     </view>
 </i-panel>
 
-<i-input value="{{ orderParam.order.address }}" maxlength="50" title="收获地址" placeholder="请输入收获地址" autofocus
+<i-input value="{{ orderParam.order.address }}" type="text" maxlength="50" title="收获地址" placeholder="请输入收获地址" autofocus
          bind:change="bindAddressChange"/>
 
 <view style="padding: 16px">

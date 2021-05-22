@@ -44,7 +44,7 @@ Page({
                 type: 'warning'
             });
             return;
-        } else if (this.data.product.price === null) {
+        } else if (this.data.product.price === null||'') {
             $Message({
                 content: '请输入商品价格',
                 type: 'warning'
