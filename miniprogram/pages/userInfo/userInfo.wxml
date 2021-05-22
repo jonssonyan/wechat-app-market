@@ -1,0 +1,18 @@
+<!--用户详情-->
+<i-card title="{{user.nickName}}" thumb="{{user.avatarUrl}}"
+        full="true">
+    <view slot="content">
+        <i-panel title="评价列表">
+            <view style="padding: 15px;">
+                <i-cell-group>
+                    <i-card wx:for="{{comments}}" wx:key="*this" title="{{item.seller[0].nickName}}"
+                            thumb="{{item.seller[0].avatarUrl}}">
+                        <view slot="content">星星：{{item.star}}</view>
+                        <view slot="content">评论内容：{{item.content}}</view>
+                        <view slot="footer">评价时间：{{item.create_time}}</view>
+                    </i-card>
+                </i-cell-group>
+            </view>
+        </i-panel>
+    </view>
+</i-card>

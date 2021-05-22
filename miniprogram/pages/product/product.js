@@ -162,5 +162,18 @@ Page({
                 type: 'success'
             });
         }
+    },
+    async toUserInfo() {
+        let openid = await wx.cloud.callFunction({
+            name: 'getWXContext'
+        }).then(e => e.result.openid);
+        wx.navigateTo({
+            url: '/page/userInfo/userInfo',
+            events: {},
+            success: function (res) {
+                // 通过eventChannel向被打开页面传送数据
+                res.eventChannel.emit('acceptDataFromOpenerPage', {openid: openid})
+            }
+        })
     }
 })
