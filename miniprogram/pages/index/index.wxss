@@ -6,4 +6,5 @@
 .col-class {
     width: 50%;
     text-align: center;
+    padding: 10px;
 }

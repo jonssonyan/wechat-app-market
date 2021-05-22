@@ -16,7 +16,6 @@
                          bindtap="categoryClick">
                 <i-grid-icon>
                     <image src="{{'/images/picture/'+item.type+'.png'}}"/>
-                    <!--                <i-icon type="{{item.type}}" size="24"/>-->
                 </i-grid-icon>
                 <i-grid-label>{{item.name}}</i-grid-label>
             </i-grid-item>
