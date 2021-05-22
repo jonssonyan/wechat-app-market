@@ -12,7 +12,7 @@ Page({
             price: null,
             stock: 1,
             state: true,
-            category_id: null
+            category_id: ''
         },
         files: [],
         urls: []
@@ -41,17 +41,17 @@ Page({
             return;
         } else if (this.data.product.description === '') {
             $Message({
-                content: '请输入商品详情',
+                content: '请输入商品描述',
                 type: 'warning'
             });
             return;
-        } else if (this.data.product.price === null) {
+        } else if (this.data.product.price === 0) {
             $Message({
                 content: '请输入商品价格',
                 type: 'warning'
             });
             return;
-        } else if (this.data.product.category_id === null) {
+        } else if (this.data.product.category_id === '') {
             $Message({
                 content: '请输入商品分类',
                 type: 'warning'

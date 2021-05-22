@@ -40,7 +40,7 @@ Page({
             return;
         } else if (this.data.product.description === '') {
             $Message({
-                content: '请输入商品详情',
+                content: '请输入商品描述',
                 type: 'warning'
             });
             return;

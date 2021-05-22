@@ -11,7 +11,7 @@ Page({
             dbName: 'order',
             order: {
                 num: 1,
-                address: null,
+                address: '',
                 buyer: null,
                 seller: null
             }
@@ -19,15 +19,7 @@ Page({
         product: {},
         updateProductParam: {
             product: {}
-        },
-        rules: [{
-            name: 'address',
-            rules: {required: true, message: '请输入收货地址'}
-        },
-            {
-                name: 'num',
-                rules: {required: true, message: '请输入下单数量'}
-            }]
+        }
     },
 
     /**
@@ -112,20 +104,19 @@ Page({
     },
     async placeAnOrder() {
         // 表单验证
-        let suc = true;
-        this.selectComponent('#form').validate((valid, errors) => {
-            if (!valid) {
-                const firstError = Object.keys(errors)
-                if (firstError.length) {
-                    $Message({
-                        content: errors[firstError[0]].message,
-                        type: 'warning'
-                    });
-                }
-                suc = false;
-            }
-        })
-        if (!suc) return
+        if (this.data.orderParam.order.address===''){
+            $Message({
+                content: '请输入收货地址',
+                type: 'warning'
+            });
+            return
+        }else if (this.data.method===null){
+            $Message({
+                content: '请输入付款方式',
+                type: 'warning'
+            });
+            return
+        }
         let that = this;
         let openid = await wx.cloud.callFunction({
             name: 'getWXContext',
@@ -164,5 +155,10 @@ Page({
                 })
             }
         }
+    },
+    bindAddressChange(e) {
+        this.setData({
+            ['orderParam.order.address']: e.detail.detail.value
+        })
     }
 })

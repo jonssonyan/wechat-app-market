@@ -1,28 +1,25 @@
 <!--下单-->
-<mp-form id="form" rules="{{rules}}">
-    <i-input value="{{ product.name }}" title="商品名称" disabled/>
-    <i-panel title="下单数量">
-        <view style="padding: 16px">
-            <i-input-number value="{{ orderParam.order.num }}" min="1" max="{{product.stock}}"
-                            bind:change="handleChangeNum" prop="num"/>
-        </view>
-    </i-panel>
-
-    <i-input value="{{ orderParam.order.address }}" title="收获地址" placeholder="请输入收获地址" prop="address"/>
-
+<i-input value="{{ product.name }}" title="商品名称" disabled/>
+<i-panel title="下单数量">
     <view style="padding: 16px">
-        <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{methods}}">
-            <view class="picker">
-                付款方式 {{method.name}}
-            </view>
-        </picker>
+        <i-input-number value="{{ orderParam.order.num }}" min="1" max="{{product.stock}}"/>
     </view>
+</i-panel>
 
-    <i-input value="{{ orderParam.order.totalPrice }}" title="总价(元)" disabled/>
+<i-input value="{{ orderParam.order.address }}"  maxlength="50" title="收获地址" placeholder="请输入收获地址" autofocus bind:change="bindAddressChange"/>
 
-    <i-button bind:click="placeAnOrder"
-              type="success" size="small" shape="circle">立即下单
-    </i-button>
+<view style="padding: 16px">
+    <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{methods}}">
+        <view class="picker">
+            付款方式 {{method.name}}
+        </view>
+    </picker>
+</view>
 
-    <i-message id="message"/>
-</mp-form>
+<i-input value="{{ orderParam.order.totalPrice }}" title="总价(元)" disabled/>
+
+<i-button bind:click="placeAnOrder"
+          type="success" size="small" shape="circle">立即下单
+</i-button>
+
+<i-message id="message"/>
