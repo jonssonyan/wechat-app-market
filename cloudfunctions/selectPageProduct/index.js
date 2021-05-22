@@ -33,7 +33,7 @@ exports.main = async (event, context) => {
     let res = productResult.data;
     for (let i = 0; i < res.length; i++) {
         res[i].images = await db.collection('image').where({product_id: res[i]._id}).get().then(res => res.data)
-        res[i].createTime = dataToString(res[i].create_time)
+        res[i].create_time = dataToString(res[i].create_time)
     }
     return productResult;
 }
