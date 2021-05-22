@@ -11,7 +11,8 @@ Page({
             pageSize: 10,
             filter: {
                 name: ''
-            }
+            },
+            stockGt1Flag: true
         }
     },
 
