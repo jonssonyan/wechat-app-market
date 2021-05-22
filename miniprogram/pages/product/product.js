@@ -164,15 +164,13 @@ Page({
         }
     },
     async toUserInfo() {
-        let openid = await wx.cloud.callFunction({
-            name: 'getWXContext'
-        }).then(e => e.result.openid);
+        let that = this;
         wx.navigateTo({
             url: '/pages/userInfo/userInfo',
             events: {},
             success: function (res) {
                 // 通过eventChannel向被打开页面传送数据
-                res.eventChannel.emit('acceptDataFromOpenerPage', {openid: openid})
+                res.eventChannel.emit('acceptDataFromOpenerPage', {openid: that.data.product.open_id})
             }
         })
     }

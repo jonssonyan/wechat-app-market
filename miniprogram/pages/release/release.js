@@ -15,7 +15,8 @@ Page({
             category_id: ''
         },
         files: [],
-        urls: []
+        urls: [],
+        num: false
     },
     onLoad: function (options) {
 
@@ -44,7 +45,7 @@ Page({
                 type: 'warning'
             });
             return;
-        } else if (this.data.product.price === null||'') {
+        } else if (this.data.product.price === null || '') {
             $Message({
                 content: '请输入商品价格',
                 type: 'warning'
@@ -56,7 +57,7 @@ Page({
                 type: 'warning'
             });
             return;
-        } else if (this.data.files.length === 0) {
+        } else if (!this.data.num) {
             $Message({
                 content: '至少上传一张商品图片',
                 type: 'warning'
@@ -153,6 +154,9 @@ Page({
             content: '上传成功',
             type: 'success'
         });
+        this.setData({
+            ['num']: true
+        })
     },
     deleteFile(e) {
         this.data.urls.splice(e.detail.index, 1)

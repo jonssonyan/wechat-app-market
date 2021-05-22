@@ -91,7 +91,7 @@ Page({
             }).then(e => e.result.openid);
         }
         this.setData({
-            ['comment.filter.seller_open_id']: openid
+            ['commentParam.filter.seller_open_id']: openid
         })
         // 设置人员信息
         let user = await wx.cloud.callFunction({
