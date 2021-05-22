@@ -113,8 +113,19 @@ Page({
         product.tempFileURLs = tempFileURLs;
         return product;
     },
-    buy(product) {
+    async buy(product) {
         if (this.data.hasUserInfo) {
+            let openid = await wx.cloud.callFunction({
+                name: 'getWXContext',
+                data: {}
+            }).then(e => e.result.openid);
+            if (openid === this.data.product.open_id) {
+                $Message({
+                    content: '不能购买自己发布的商品',
+                    type: 'warning'
+                });
+                return
+            }
             wx.navigateTo({
                 url: '/pages/placeAnOrder/placeAnOrder',
                 events: {},

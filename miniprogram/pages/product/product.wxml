@@ -1,43 +1,42 @@
 <!--商品详情-->
-<view>
-    <swiper indicator-dots="{{indicatorDots}}"
-            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{images}}" wx:key="*this">
-            <swiper-item>
-                <view>
-                    <image mode="aspectFit" src="{{item}}"></image>
-                </view>
-            </swiper-item>
-        </block>
-    </swiper>
-    <i-input value="{{product.name}}" title="商品名称" disabled/>
-    <i-input value="{{product.description}}" title="描述" disabled/>
-    <i-input value="{{product.category[0].name}}" title="分类" disabled/>
-    <i-input value="{{product.price}}" title="价格" disabled/>
-    <i-input value="{{product.stock}}" title="库存" disabled/>
-    <i-input value="{{product.createTime}}" title="上架时间" disabled/>
-    <i-button bind:click="toUserInfo">商家 {{product.user[0].nickName }}</i-button>
+<swiper indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{images}}" wx:key="*this">
+        <swiper-item>
+            <view>
+                <image mode="aspectFit" src="{{item}}"></image>
+            </view>
+        </swiper-item>
+    </block>
+</swiper>
+<i-input value="{{product.name}}" title="商品名称" disabled/>
+<i-input value="{{product.description}}" title="描述" disabled/>
+<i-input value="{{product.category[0].name}}" title="分类" disabled/>
+<i-input value="{{product.price}}" title="价格" disabled/>
+<i-input value="{{product.stock}}" title="库存" disabled/>
+<i-input value="{{product.createTime}}" title="上架时间" disabled/>
+<i-button bind:click="toUserInfo">商家 {{product.user[0].nickName }}</i-button>
 
-    <i-row>
-        <view wx:if="{{hasUserInfo}}">
-            <block wx:if="{{product.isCollection}}">
-                <i-col span="12" i-class="col-class">
-                    <i-button type="ghost" size="small" shape="circle" disabled>已收藏
-                    </i-button>
-                </i-col>
-            </block>
-            <block wx:else>
-                <i-col span="12" i-class="col-class">
-                    <i-button data-product="{{product}}" bindtap="collection"
-                              type="info" size="small" shape="circle">收藏
-                    </i-button>
-                </i-col>
-            </block>
+<i-row>
+    <view wx:if="{{hasUserInfo}}">
+        <block wx:if="{{product.isCollection}}">
             <i-col span="12" i-class="col-class">
-                <i-button data-product="{{product}}" bindtap="buy"
-                          type="success" size="small" shape="circle">下单
+                <i-button type="ghost" size="small" shape="circle" disabled>已收藏
                 </i-button>
             </i-col>
-        </view>
-    </i-row>
-</view>
+        </block>
+        <block wx:else>
+            <i-col span="12" i-class="col-class">
+                <i-button data-product="{{product}}" bindtap="collection"
+                          type="info" size="small" shape="circle">收藏
+                </i-button>
+            </i-col>
+        </block>
+        <i-col span="12" i-class="col-class">
+            <i-button data-product="{{product}}" bindtap="buy"
+                      type="success" size="small" shape="circle">下单
+            </i-button>
+        </i-col>
+    </view>
+</i-row>
+<i-message id="message"/>
