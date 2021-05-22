@@ -104,12 +104,19 @@ Page({
         this.setData({
             ['butDisabled']: true
         });
-        await wx.cloud.callFunction({
+        let msg = await wx.cloud.callFunction({
             name: 'addComment',
             data: {
                 comment: this.data.comment
             }
         });
+        if (msg !== null) {
+            $Message({
+                content: msg,
+                type: 'warning'
+            });
+            return
+        }
         wx.switchTab({
             url: '/pages/me/me'
         })

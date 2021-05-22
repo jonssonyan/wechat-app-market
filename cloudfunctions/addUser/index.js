@@ -28,7 +28,7 @@ exports.main = async (event, context) => {
     } else {
         // 如果已经存在库里则更新用户信息
         try {
-            await db.collection('user').where({open_id: user.open_id}).update({
+            await db.collection('user').where({open_id: wxContext.OPENID}).update({
                 data: {
                     open_id: wxContext.OPENID,
                     nickName: user.nickName,
