@@ -4,9 +4,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        images: ['/images/picture/index_1.png', '/images/picture/index_2.png'],
+        images: ['/images/picture/index_1.png', '/images/picture/index_2.png','/images/picture/index_3.png'],
         indicatorDots: true,
-        autoplay: false,
+        autoplay: true,
         interval: 2000,
         duration: 500,
         categorys: [],
