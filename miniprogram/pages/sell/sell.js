@@ -160,12 +160,12 @@ Page({
             ['visible1']: false
         });
     },
-    handleClickItem({detail}) {
+    async handleClickItem({detail}) {
         let that = this;
         switch (detail.index) {
             case 0:
                 // 跳转至商品详情界面
-                wx.navigateTo({
+                await wx.navigateTo({
                     url: '/pages/sellDetail/sellDetail',
                     events: {},
                     success: function (res) {

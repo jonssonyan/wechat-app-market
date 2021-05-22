@@ -111,9 +111,9 @@ Page({
         return products;
     },
     // 商品单击事件
-    productClick(product) {
+    async productClick(product) {
         let productId = product.currentTarget.dataset.product._id;
-        wx.navigateTo({
+        await wx.navigateTo({
             url: '/pages/product/product',
             events: {},
             success: function (res) {

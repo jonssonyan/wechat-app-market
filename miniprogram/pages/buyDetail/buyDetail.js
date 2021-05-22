@@ -121,9 +121,9 @@ Page({
             url: '/pages/me/me'
         })
     },
-    toComment() {
+    async toComment() {
         let that = this;
-        wx.navigateTo({
+        await wx.navigateTo({
             url: '/pages/comment/comment',
             events: {},
             success: function (res) {
@@ -134,7 +134,7 @@ Page({
     },
     async toUserInfo() {
         let that = this;
-        wx.navigateTo({
+        await wx.navigateTo({
             url: '/pages/userInfo/userInfo',
             events: {},
             success: function (res) {

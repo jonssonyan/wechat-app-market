@@ -54,7 +54,7 @@ Page({
         let openid = await wx.cloud.callFunction({
             name: 'getWXContext'
         }).then(e => e.result.openid);
-        wx.navigateTo({
+        await wx.navigateTo({
             url: '/pages/userInfo/userInfo',
             events: {},
             success: function (res) {

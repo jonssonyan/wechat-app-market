@@ -115,9 +115,9 @@ Page({
         return products;
     },
     // 商品的单击事件
-    productClick(product) {
+    async productClick(product) {
         let productId = product.currentTarget.dataset.product._id;
-        wx.navigateTo({
+        await wx.navigateTo({
             url: '/pages/product/product',
             events: {},
             success: function (res) {
@@ -152,9 +152,9 @@ Page({
         });
     },
     // 分类的单击事件
-    categoryClick(category) {
+    async categoryClick(category) {
         let categoryId = category.currentTarget.dataset.category._id;
-        wx.navigateTo({
+        await wx.navigateTo({
             url: '/pages/productList/productList',
             events: {},
             success: function (res) {

@@ -135,12 +135,12 @@ Page({
         });
     },
     // 查看收藏商品详情
-    handleClickItem({detail}) {
+    async handleClickItem({detail}) {
         let that = this;
         switch (detail.index) {
             case 0:
                 // 跳转至商品详情界面
-                wx.navigateTo({
+               await wx.navigateTo({
                     url: '/pages/product/product',
                     events: {},
                     success: function (res) {

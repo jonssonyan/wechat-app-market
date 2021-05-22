@@ -130,7 +130,7 @@ Page({
             this.setData({
                 ['butDisabled']: true
             })
-            wx.navigateTo({
+            await wx.navigateTo({
                 url: '/pages/placeAnOrder/placeAnOrder',
                 events: {},
                 success: function (res) {
@@ -180,7 +180,7 @@ Page({
     },
     async toUserInfo() {
         let that = this;
-        wx.navigateTo({
+        await wx.navigateTo({
             url: '/pages/userInfo/userInfo',
             events: {},
             success: function (res) {
