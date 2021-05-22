@@ -1,6 +1,6 @@
 <!--商品详情，可以修改商品-->
 <i-cell-group>
-    <i-input value="{{ product.name }}" type="text" bind:change="bindNameChange" title="商品名称" maxlength="10" autofocus
+    <i-input value="{{ product.name }}" type="text" bind:change="bindNameChange" title="商品名称" maxlength="20" autofocus
              placeholder="请输入商品名称"/>
     <i-input value="{{ product.description }}" type="text" bind:change="bindDesChange" maxlength="50" title="商品描述"
              autofocus

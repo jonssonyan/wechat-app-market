@@ -3,7 +3,7 @@
     <!--没有用户信息-->
     <block wx:if="{{hasUserInfo}}">
         <i-cell-group>
-            <i-input value="{{ product.name }}" type="text" maxlength="10" bind:change="bindNameChange" title="商品名称"
+            <i-input value="{{ product.name }}" type="text" maxlength="20" bind:change="bindNameChange" title="商品名称"
                      autofocus
                      placeholder="请输入商品名称"/>
             <i-input value="{{ product.description }}" type="text" maxlength="50" bind:change="bindDesChange"
