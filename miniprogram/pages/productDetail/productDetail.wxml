@@ -1,29 +1,29 @@
 <!--商品详情，可以修改商品-->
 <i-cell-group>
-    <mp-form id="form" rules="{{rules}}">
-        <i-input value="{{ product.name }}" prop="name" title="商品名称" autofocus placeholder="请输入商品名称"/>
-        <i-input value="{{ product.description }}" prop="description" title="商品描述" autofocus placeholder="请输入商品描述"/>
-        <i-input value="{{ product.price }}" prop="price" type="number" title="商品价格(元)" placeholder="请输入商品价格"/>
-        <view style="padding: 16px">
-            <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">
-                <view class="picker">
-                    分类 {{category.name}}
-                </view>
-            </picker>
-        </view>
-        <i-panel title="库存">
-            <view style="padding: 16px">
-                <i-input-number prop="stock" value="{{ product.stock }}" min="1" max="999"
-                                bind:change="handleChangeStock"/>
+    <i-input value="{{ product.name }}" bind:change="bindNameChange" title="商品名称" autofocus placeholder="请输入商品名称"/>
+    <i-input value="{{ product.description }}" bind:change="bindDesChange" title="商品描述" autofocus
+             placeholder="请输入商品描述"/>
+    <i-input value="{{ product.price }}" bind:change="bindPriceChange" type="number" title="商品价格(元)"
+             placeholder="请输入商品价格"/>
+    <view style="padding: 16px">
+        <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{categorys}}">
+            <view class="picker">
+                分类 {{category.name}}
             </view>
-        </i-panel>
-        <i-cell title="是否上架">
-            <i-switch value="{{product.state}}" size="large" bind:change="handleChangeState" slot="footer">
-                <view slot="open">上架</view>
-                <view slot="close">下架</view>
-            </i-switch>
-        </i-cell>
-        <i-button bind:click="handleSubmit" type="success" shape="circle">保存</i-button>
-        <i-message id="message"/>
-    </mp-form>
+        </picker>
+    </view>
+    <i-panel title="库存">
+        <view style="padding: 16px">
+            <i-input-number value="{{ product.stock }}" min="1" max="999"
+                            bind:change="handleChangeStock"/>
+        </view>
+    </i-panel>
+    <i-cell title="是否上架">
+        <i-switch value="{{product.state}}" size="large" bind:change="handleChangeState" slot="footer">
+            <view slot="open">上架</view>
+            <view slot="close">下架</view>
+        </i-switch>
+    </i-cell>
+    <i-button bind:click="handleSubmit" type="success" shape="circle">保存</i-button>
+    <i-message id="message"/>
 </i-cell-group>

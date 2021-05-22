@@ -15,23 +15,7 @@ Page({
             category_id: null
         },
         files: [],
-        urls: [],
-        rules: [{
-            name: 'name',
-            rules: {required: true, message: '请输入商品名称'}
-        },
-            {
-                name: 'description',
-                rules: {required: true, message: '请输入商品描述'}
-            },
-            {
-                name: 'price',
-                rules: {required: true, message: '请输入商品价格'}
-            },
-            {
-                name: 'stock',
-                rules: {required: true, message: '请输入库存'}
-            }]
+        urls: []
     },
     onLoad: function (options) {
 
@@ -49,22 +33,25 @@ Page({
     },
     async handleSubmit() {
         // 表单校验
-        let suc = true;
-        this.selectComponent('#form').validate((valid, errors) => {
-            if (!valid) {
-                const firstError = Object.keys(errors)
-                if (firstError.length) {
-                    $Message({
-                        content: errors[firstError[0]].message,
-                        type: 'warning'
-                    });
-                }
-                suc = false;
-            }
-        })
-        if (!suc) return
-
-        if (this.data.product.category_id === null) {
+        if (this.data.product.name === '') {
+            $Message({
+                content: '请输入商品名称',
+                type: 'warning'
+            });
+            return;
+        } else if (this.data.product.description === '') {
+            $Message({
+                content: '请输入商品详情',
+                type: 'warning'
+            });
+            return;
+        } else if (this.data.product.price === null) {
+            $Message({
+                content: '请输入商品价格',
+                type: 'warning'
+            });
+            return;
+        } else if (this.data.product.category_id === null) {
             $Message({
                 content: '请输入商品分类',
                 type: 'warning'
@@ -203,6 +190,21 @@ Page({
         }).then(e => e.result.data[0]);
         this.setData({
             ['category']: category
+        })
+    },
+    bindNameChange(e) {
+        this.setData({
+            ['product.name']: e.detail.detail.value
+        })
+    },
+    bindDesChange(e) {
+        this.setData({
+            ['product.description']: e.detail.detail.value
+        })
+    },
+    bindPriceChange(e) {
+        this.setData({
+            ['product.price']: e.detail.detail.value
         })
     }
 });
