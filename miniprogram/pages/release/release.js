@@ -31,7 +31,7 @@ Page({
             ['product.state']: event.detail.value
         })
     },
-    handleSubmit() {
+    async handleSubmit() {
         // 表单校验
         if (this.data.product.name === '') {
             $Message({
@@ -65,7 +65,7 @@ Page({
             return;
         }
 
-        wx.cloud.callFunction({
+        await wx.cloud.callFunction({
             name: 'addProduct',
             data: this.data.product
         }).then((e) => {
@@ -82,6 +82,15 @@ Page({
                     console.log(e)
                 })
             })
+        });
+
+        this.setData({
+            ['product']: {},
+            ['category']: {}
+        })
+
+        wx.switchTab({
+            url: '/pages/index/index'
         });
     },
     bindPickerChange: function (e) {
