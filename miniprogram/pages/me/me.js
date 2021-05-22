@@ -23,13 +23,12 @@ Page({
                     userInfo: res.userInfo,
                     hasUserInfo: true
                 });
-
-            }
-        })
-        await wx.cloud.callFunction({
-            name: 'addUser',
-            data: {
-                user: this.data.userInfo
+                wx.cloud.callFunction({
+                    name: 'addUser',
+                    data: {
+                        user: this.data.userInfo
+                    }
+                })
             }
         })
     },
