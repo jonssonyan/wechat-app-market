@@ -5,8 +5,8 @@
         <i-panel title="评价列表">
             <view style="padding: 15px;">
                 <i-cell-group>
-                    <i-card wx:for="{{comments}}" wx:key="*this" title="{{item.seller[0].nickName}}"
-                            thumb="{{item.seller[0].avatarUrl}}">
+                    <i-card wx:for="{{comments}}" wx:key="*this" title="{{item.buyer[0].nickName}}"
+                            thumb="{{item.buyer[0].avatarUrl}}">
                         <view slot="content">星星：{{item.star}}</view>
                         <view slot="content">评论内容：{{item.content}}</view>
                         <view slot="footer">评价时间：{{item.create_time}}</view>

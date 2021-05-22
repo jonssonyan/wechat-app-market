@@ -11,8 +11,8 @@ Page({
 
     },
     // 请求API授权，获得用户头像和昵称
-    getUserProfile(e) {
-        wx.getUserProfile({
+    async getUserProfile(e) {
+        await wx.getUserProfile({
             desc: '用于完善会员资料',
             success: (res) => {
                 // 将用户信息设置到全局变量
@@ -23,12 +23,13 @@ Page({
                     userInfo: res.userInfo,
                     hasUserInfo: true
                 });
-                wx.cloud.callFunction({
-                    name: 'addUser',
-                    data: {
-                        user: res.userInfo
-                    }
-                })
+
+            }
+        })
+        await wx.cloud.callFunction({
+            name: 'addUser',
+            data: {
+                user: this.data.userInfo
             }
         })
     },
