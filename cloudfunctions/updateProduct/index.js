@@ -8,6 +8,9 @@ exports.main = async (event, context) => {
 
     const {product = {}} = event;
     if (product._id !== undefined || null || '') {
+        if (product.stock === 0) {
+            product.state = 0
+        }
         try {
             return await db.collection('product').where({
                 _id: product._id
