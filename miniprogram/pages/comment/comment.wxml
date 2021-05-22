@@ -8,3 +8,4 @@
     </view>
 </i-panel>
 <i-button bind:click="handleClick" type="primary">评价</i-button>
+<i-message id="message"/>

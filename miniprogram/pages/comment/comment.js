@@ -6,7 +6,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        comment: {}
+        comment: {
+            content:''
+        }
     },
 
     /**
@@ -84,6 +86,13 @@ Page({
         })
     },
     async handleClick() {
+        if (this.data.comment.content === '') {
+            $Message({
+                content: '请输入评论内容',
+                type: 'warning'
+            });
+            return
+        }
         if (this.data.comment.seller_open_id === this.data.comment.buyer_open_id) {
             $Message({
                 content: '不能评价自己的商品',
