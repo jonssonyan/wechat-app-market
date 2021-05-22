@@ -1,8 +1,0 @@
-.grid-item-image {
-    width: 120px;
-    height: 150px;
-}
-.col-class{
-    width: 50vh;
-    text-align: center;
-}
