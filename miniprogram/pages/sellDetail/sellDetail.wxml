@@ -5,4 +5,5 @@
 <i-input value="{{ order.total_price +'元'}}" title="总价" disabled/>
 <i-input value="{{ order.createTime }}" title="卖出时间" disabled/>
 <i-input value="{{ order.user[0].nickName }}" title="购买人" disabled/>
+<i-input value="{{ order.contact }}" title="手机号码" disabled/>
 <i-button bind:click="backToMe" type="primary">返回用户中心</i-button>

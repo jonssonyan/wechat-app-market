@@ -16,7 +16,8 @@ Page({
         },
         files: [],
         urls: [],
-        num: false
+        num: false,
+        butDisabled: false
     },
     onLoad: function (options) {
 
@@ -65,6 +66,9 @@ Page({
             return;
         }
 
+        this.setData({
+            ['butDisabled']: true
+        });
         await wx.cloud.callFunction({
             name: 'addProduct',
             data: this.data.product
@@ -83,7 +87,6 @@ Page({
                 })
             })
         });
-
         wx.switchTab({
             url: '/pages/index/index'
         });

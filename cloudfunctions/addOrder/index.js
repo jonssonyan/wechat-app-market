@@ -17,7 +17,8 @@ exports.main = async (event, context) => {
                 state: 0, // 等待收货
                 num: order.num,
                 total_price: order.totalPrice,
-                product_id: order.productId
+                product_id: order.productId,
+                contact: order.contact
             }
         })
     } catch (e) {

@@ -15,7 +15,8 @@ Page({
             pageSize: 10,
             filter: {
                 buyer: null
-            }
+            },
+            stockGt1Flag: false
         },
         visible: false,
         visible1: false,

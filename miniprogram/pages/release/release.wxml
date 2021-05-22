@@ -37,7 +37,7 @@
                     <view slot="close">下架</view>
                 </i-switch>
             </i-cell>
-            <i-button bind:click="handleSubmit" type="success" shape="circle">发布</i-button>
+            <i-button bind:click="handleSubmit" disabled="{{butDisabled}}" type="success" shape="circle">发布</i-button>
             <i-message id="message"/>
         </i-cell-group>
     </block>

@@ -18,9 +18,11 @@
     </picker>
 </view>
 
+<i-input value="{{ orderParam.order.contact }}" title="手机号码" type="text" maxlength="20" placeholder="请输入手机号码"
+         bind:change="bindContactChange" autofocus/>
 <i-input value="{{ orderParam.order.totalPrice }}" title="总价(元)" disabled/>
 
-<i-button bind:click="placeAnOrder"
+<i-button bind:click="placeAnOrder" disabled="{{butDisabled}}"
           type="success" size="small" shape="circle">立即下单
 </i-button>
 

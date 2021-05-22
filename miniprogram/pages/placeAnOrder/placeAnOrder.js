@@ -13,13 +13,15 @@ Page({
                 num: 1,
                 address: '',
                 buyer: null,
-                seller: null
+                seller: null,
+                contact: ''
             }
         },
         product: {},
         updateProductParam: {
             product: {}
-        }
+        },
+        butDisabled: false
     },
 
     /**
@@ -95,6 +97,11 @@ Page({
             ['method']: method
         });
     },
+    bindContactChange({detail}) {
+        this.setData({
+            ['orderParam.order.contact']: detail.detail.value
+        });
+    },
     // 切换下单数量
     handleChangeNum({detail}) {
         this.setData({
@@ -104,19 +111,28 @@ Page({
     },
     async placeAnOrder() {
         // 表单验证
-        if (this.data.orderParam.order.address===''){
+        if (this.data.orderParam.order.address === '') {
             $Message({
                 content: '请输入收货地址',
                 type: 'warning'
             });
             return
-        }else if (this.data.method===null){
+        } else if (this.data.method === null) {
             $Message({
                 content: '请输入付款方式',
                 type: 'warning'
             });
             return
+        } else if (this.data.orderParam.order.contact === '') {
+            $Message({
+                content: '请输入手机号码',
+                type: 'warning'
+            });
+            return
         }
+        this.setData({
+            ['butDisabled']: true
+        });
         let that = this;
         let openid = await wx.cloud.callFunction({
             name: 'getWXContext',
@@ -150,8 +166,8 @@ Page({
                     name: 'updateProduct',
                     data: that.data.updateProductParam
                 })
-                wx.reLaunch({
-                    url: '/pages/buy/buy'
+                wx.switchTab({
+                    url: '/pages/me/me'
                 })
             }
         }

@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
     const {filter = {}, stockGt1Flag = false, pageSize = 10, pageNum = 1} = event;
     const _ = db.command
     if (stockGt1Flag === true) {
-        filter.stock = _.gt(1);
+        filter.stock = _.gt(0);
     }
 
     if (filter.name !== undefined || null || '') {
