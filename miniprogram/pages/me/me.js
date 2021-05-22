@@ -43,9 +43,12 @@ Page({
         })
     },
     onShow: function () {
+        // 从全局中获取是否有用户信息，防止重新进小程序还要登录一次
+        let app = getApp();
         if (wx.getUserProfile) {
             this.setData({
-                canIUseGetUserProfile: true
+                canIUseGetUserProfile: true,
+                hasUserInfo: app.globalData.userInfo
             })
         }
     },
