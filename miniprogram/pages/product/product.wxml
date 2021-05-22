@@ -16,7 +16,8 @@
     <i-input value="{{product.price}}" title="价格" disabled/>
     <i-input value="{{product.stock}}" title="库存" disabled/>
     <i-input value="{{product.createTime}}" title="上架时间" disabled/>
-    <i-input value="{{product.user[0].nickName }}" bind:tap="toUserInfo" title="商家" disabled/>
+    <i-button bind:click="toUserInfo">商家 {{product.user[0].nickName }}</i-button>
+
     <i-row>
         <view wx:if="{{hasUserInfo}}">
             <block wx:if="{{product.isCollection}}">
@@ -32,11 +33,11 @@
                     </i-button>
                 </i-col>
             </block>
+            <i-col span="12" i-class="col-class">
+                <i-button data-product="{{product}}" bindtap="buy"
+                          type="success" size="small" shape="circle">下单
+                </i-button>
+            </i-col>
         </view>
-        <i-col span="12" i-class="col-class">
-            <i-button data-product="{{product}}" bindtap="buy"
-                      type="success" size="small" shape="circle">下单
-            </i-button>
-        </i-col>
     </i-row>
 </view>

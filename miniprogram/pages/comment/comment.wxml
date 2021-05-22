@@ -1,0 +1,10 @@
+<!--miniprogram/pages/comment/comment.wxml-->
+
+<i-input value="{{ comment.content }}" title="评价内容" placeholder="请输入评价内容" type="textarea" maxlength="200"
+         bind:change="bindContentChange" autofocus/>
+<i-panel title="星星(1-5)">
+    <view style="padding: 16px">
+        <i-input-number value="{{ comment.star }}" min="1" max="5" bind:change="handleChangeStar"/>
+    </view>
+</i-panel>
+<i-button bind:click="handleClick" type="primary">评价</i-button>

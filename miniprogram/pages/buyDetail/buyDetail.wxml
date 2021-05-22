@@ -8,6 +8,7 @@
     <i-input value="{{ order.user[0].nickName }}" title="商家" disabled/>
     <i-button wx:if="{{order.state!==1}}" bind:click="handleClick" type="info">确认收获</i-button>
     <i-button wx:if="{{order.state===1}}">已收货</i-button>
+    <i-button wx:if="{{order.state===1}}" bind:click="toComment" type="primary">评价</i-button>
     <i-button bind:click="backToMe" type="primary">返回用户中心</i-button>
 </i-cell-group>
 <i-modal title="提示" visible="{{ visible1 }}" bind:cancel="handleClose1" bind:ok="handleClick1">

@@ -33,7 +33,6 @@ Page({
      */
     onShow: function () {
         this.selectPageComment().then(res => {
-            console.log(res)
             this.setData({
                 ['comments']: res
             })

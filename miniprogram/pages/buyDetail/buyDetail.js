@@ -6,7 +6,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        visible1: false
+        visible1: false,
+        order: {}
     },
 
     /**
@@ -109,6 +110,17 @@ Page({
     backToMe() {
         wx.switchTab({
             url: '/pages/me/me'
+        })
+    },
+    toComment() {
+        let that = this;
+        wx.navigateTo({
+            url: '/pages/comment/comment',
+            events: {},
+            success: function (res) {
+                // 通过eventChannel向被打开页面传送数据
+                res.eventChannel.emit('acceptDataFromOpenerPage', {order: that.data.order})
+            }
         })
     }
 })

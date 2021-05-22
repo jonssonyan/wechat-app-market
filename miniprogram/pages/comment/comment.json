@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "i-input": "/components/input/index",
+    "i-input-number": "/components/input-number/index",
+    "i-button": "/components/button/index",
+    "i-message": "/components/message/index",
+    "i-panel": "/components/panel/index"
+  }
+}
