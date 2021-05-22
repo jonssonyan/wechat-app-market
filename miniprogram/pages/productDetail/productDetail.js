@@ -161,7 +161,7 @@ Page({
         // 将上一个界面传来的参数设置到本页面中
         let that = this;
         const eventChannel = this.getOpenerEventChannel()
-        eventChannel.on('acceptDataFromOpenerPage', function (data) {
+        await eventChannel.on('acceptDataFromOpenerPage', function (data) {
             that.setData({
                 ['product']: data.product
             })

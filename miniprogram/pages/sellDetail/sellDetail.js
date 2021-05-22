@@ -77,7 +77,7 @@ Page({
         // 将上一个界面传来的参数
         const eventChannel = this.getOpenerEventChannel()
         let _id = null;
-        eventChannel.on('acceptDataFromOpenerPage', function (data) {
+        await eventChannel.on('acceptDataFromOpenerPage', function (data) {
             _id = data.order._id
         });
         return await wx.cloud.callFunction({

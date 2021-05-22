@@ -82,7 +82,7 @@ Page({
     async selectPageComment() {
         let openid = null;
         const eventChannel = this.getOpenerEventChannel()
-        eventChannel.on('acceptDataFromOpenerPage', function (data) {
+        await eventChannel.on('acceptDataFromOpenerPage', function (data) {
             openid = data.openid
         });
         if (openid === null) {

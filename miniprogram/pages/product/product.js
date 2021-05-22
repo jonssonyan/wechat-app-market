@@ -90,7 +90,7 @@ Page({
     async selectOneProduct() {
         let that = this;
         const eventChannel = this.getOpenerEventChannel()
-        eventChannel.on('acceptDataFromOpenerPage', function (data) {
+        await eventChannel.on('acceptDataFromOpenerPage', function (data) {
             that.setData({
                 ['productParam.filter._id']: data.productId
             })
