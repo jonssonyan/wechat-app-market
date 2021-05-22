@@ -1,6 +1,6 @@
 <!--我发布的-->
 <view>
-    <block wx:if="{{orders.length!==0}}">
+    <block wx:if="{{products.length!==0}}">
         <i-card wx:for="{{products}}" extra="{{item.state?'上架':'下架'}}" wx:key="*this"
                 thumb="{{item.tempFileURL}}"
                 title="{{item.name}}" bindtap="cardClick"

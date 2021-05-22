@@ -84,11 +84,6 @@ Page({
             })
         });
 
-        this.setData({
-            ['product']: {},
-            ['category']: {}
-        })
-
         wx.switchTab({
             url: '/pages/index/index'
         });
@@ -187,7 +182,9 @@ Page({
         const app = getApp();
         let hasUserInfo = app.globalData.hasUserInfo;
         this.setData({
-            hasUserInfo: hasUserInfo
+            hasUserInfo: hasUserInfo,
+            ['product']: {},
+            ['category']: {}
         });
         // 如果又用户信息情况才加载分类等信息
         if (hasUserInfo) {
