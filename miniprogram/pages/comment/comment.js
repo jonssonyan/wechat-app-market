@@ -31,10 +31,14 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        this.showComment();
+    },
+
+    async showComment() {
         // 将上一个界面传来的参数设置到本页面中
         let that = this;
         const eventChannel = this.getOpenerEventChannel()
-        eventChannel.on('acceptDataFromOpenerPage', function (data) {
+        await eventChannel.on('acceptDataFromOpenerPage', function (data) {
             that.setData({
                 ['comment.order_id']: data.order._id,
                 ['comment.seller_open_id']: data.order.seller
