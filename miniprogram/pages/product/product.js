@@ -20,7 +20,8 @@ Page({
             dbName: 'collection',
             collection: {}
         },
-        hasUserInfo: false
+        hasUserInfo: false,
+        butDisabled: false
     },
 
     /**
@@ -126,6 +127,9 @@ Page({
                 });
                 return
             }
+            this.setData({
+                ['butDisabled']: true
+            })
             wx.navigateTo({
                 url: '/pages/placeAnOrder/placeAnOrder',
                 events: {},

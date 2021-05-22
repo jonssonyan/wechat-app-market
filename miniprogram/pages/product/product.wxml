@@ -33,7 +33,7 @@
             </i-col>
         </block>
         <i-col span="12" i-class="col-class">
-            <i-button data-product="{{product}}" bindtap="buy"
+            <i-button data-product="{{product}}" bindtap="buy" disabled="{{butDisabled}}"
                       type="success" size="small" shape="circle">下单
             </i-button>
         </i-col>

@@ -7,5 +7,5 @@
         <i-input-number value="{{ comment.star }}" min="1" max="5" bind:change="handleChangeStar"/>
     </view>
 </i-panel>
-<i-button bind:click="handleClick" type="primary">评价</i-button>
+<i-button bind:click="handleClick" type="primary" disabled="{{butDisabled}}">评价</i-button>
 <i-message id="message"/>

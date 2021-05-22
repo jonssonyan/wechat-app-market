@@ -1,14 +1,14 @@
 <!--商品列表，显示所有的商品-->
 <view>
     <i-row>
-        <i-col span="12" i-class="col-class">
+        <i-col span="12">
             <i-input value="{{ productParam.filter.name }}" bind:change="bindNameChange" type="text" maxlength="50"
                      autofocus placeholder="请输入商品名称"/>
         </i-col>
-        <i-col span="6" i-class="col-class">
+        <i-col span="6">
             <button class="button" bindtap="searchProduct" type="default" size="mini">查询</button>
         </i-col>
-        <i-col span="6" i-class="col-class">
+        <i-col span="6">
             <button class="button" bindtap="reset" type="primary" size="mini">重设</button>
         </i-col>
     </i-row>

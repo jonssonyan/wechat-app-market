@@ -9,7 +9,8 @@ Page({
         comment: {
             content: '',
             star: 1
-        }
+        },
+        butDisabled: false
     },
 
     /**
@@ -36,8 +37,7 @@ Page({
         eventChannel.on('acceptDataFromOpenerPage', function (data) {
             that.setData({
                 ['comment.order_id']: data.order._id,
-                ['comment.seller_open_id']: data.order.seller,
-                ['comment.buyer_open_id']: data.order.buyer
+                ['comment.seller_open_id']: data.order.seller
             })
         })
     },
@@ -101,6 +101,9 @@ Page({
             });
             return
         }
+        this.setData({
+            ['butDisabled']: true
+        });
         await wx.cloud.callFunction({
             name: 'addComment',
             data: {

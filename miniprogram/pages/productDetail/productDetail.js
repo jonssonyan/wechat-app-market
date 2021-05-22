@@ -15,7 +15,8 @@ Page({
             category_id: ''
         },
         files: [],
-        urls: []
+        urls: [],
+        butDisabled: false
     },
     onLoad: function (options) {
 
@@ -58,6 +59,9 @@ Page({
             });
             return
         }
+        this.setData({
+            ['butDisabled']: true
+        })
         // 修改商品
         await wx.cloud.callFunction({
             name: 'updateProduct',

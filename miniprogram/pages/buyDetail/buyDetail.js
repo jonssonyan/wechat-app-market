@@ -14,7 +14,8 @@ Page({
             total_price: '',
             user: [],
             state: null
-        }
+        },
+        butDisabled: false
     },
 
     /**
@@ -90,6 +91,7 @@ Page({
     },
     handleClick() {
         this.setData({
+            ['butDisabled']: true,
             visible1: true
         });
     },

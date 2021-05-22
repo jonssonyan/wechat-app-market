@@ -21,8 +21,8 @@ exports.main = async (event, context) => {
         await db.collection('comment').add({
             // data 字段表示需新增的 JSON 数据
             data: {
-                seller_open_id: wxContext.OPENID,
-                buyer_open_id: comment.buyer_open_id,
+                seller_open_id: comment.buyer_open_id,
+                buyer_open_id: wxContext.OPENID,
                 order_id: comment.order_id,
                 create_time: new Date().getTime(),
                 content: comment.content,
