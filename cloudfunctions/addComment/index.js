@@ -10,8 +10,8 @@ exports.main = async (event, context) => {
 
     // 一个人对一个商家的指定商品只能评价一次
     let countResult = await db.collection('comment').where({
-        seller_open_id: wxContext.OPENID,
-        buyer_open_id: comment.buyer_open_id,
+        seller_open_id: comment.seller_open_id,
+        buyer_open_id: wxContext.OPENID,
         order_id: comment.order_id
     }).count();
     // 如果已经收藏则返回false

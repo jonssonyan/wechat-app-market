@@ -94,6 +94,7 @@ Page({
             ['commentParam.filter.seller_open_id']: openid
         })
         // 设置人员信息
+        console.log(openid)
         let user = await wx.cloud.callFunction({
             name: 'selectOneUser',
             data: {filter: {open_id: openid}}
