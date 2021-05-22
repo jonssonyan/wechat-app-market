@@ -1,9 +1,9 @@
 <!--我买到的-->
-<i-input value="{{ order.product[0].name }}" title="商品名称" disabled/>
-<i-input value="{{ order.address }}" title="收货地址" disabled/>
-<i-input value="{{ order.num }}" title="数量" disabled/>
-<i-input value="{{ order.total_price +'元'}}" title="总价" disabled/>
-<i-input value="{{ order.createTime }}" title="卖出时间" disabled/>
+<i-input value="{{ order.product[0].name }}" type="text" title="商品名称" autofocus disabled/>
+<i-input value="{{ order.address }}" title="收货地址" type="text" autofocus disabled/>
+<i-input value="{{ order.num }}" title="数量" type="text" autofocus disabled/>
+<i-input value="{{ order.total_price +'元'}}" title="总价" type="text" autofocus disabled/>
+<i-input value="{{ order.createTime }}" title="卖出时间" type="text" autofocus disabled/>
 <i-button bind:click="toUserInfo">商家 {{order.user[0].nickName}}</i-button>
 <i-button wx:if="{{order.state!==1}}" bind:click="handleClick" type="info">确认收货</i-button>
 <i-button wx:if="{{order.state===1}}">已收货</i-button>
