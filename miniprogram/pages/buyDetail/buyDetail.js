@@ -100,8 +100,8 @@ Page({
             visible1: false
         });
     },
-    handleClick1() {
-        wx.cloud.callFunction({
+    async handleClick1() {
+        await wx.cloud.callFunction({
             name: 'updateOrder',
             data: {order: {_id: this.data.order._id, state: 1}}
         }).then(e => {
