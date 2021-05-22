@@ -7,7 +7,8 @@ Page({
      */
     data: {
         comment: {
-            content:''
+            content: '',
+            star: 1
         }
     },
 
