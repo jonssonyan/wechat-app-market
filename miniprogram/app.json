@@ -12,7 +12,8 @@
     "pages/placeAnOrder/placeAnOrder",
     "pages/productDetail/productDetail",
     "pages/buyDetail/buyDetail",
-    "pages/sellDetail/sellDetail"
+    "pages/sellDetail/sellDetail",
+    "pages/userInfo/userInfo"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -23,7 +23,7 @@ exports.main = async (event, context) => {
     const total = countResult.total; // 总记录数
     const totalPage = Math.ceil(total / pageNum); // 总共有多少页
     let hasMore = pageNum < totalPage;
-    let productResult = await db.collection('product').where(filter).skip((pageNum - 1) * pageSize).limit(pageSize).get().then(res => {
+    let productResult = await db.collection('product').where(filter).skip((pageNum - 1) * pageSize).orderBy('create_time', 'desc').limit(pageSize).get().then(res => {
         res.hasMore = hasMore;
         res.pageNum = pageNum;
         res.pageSize = pageSize;

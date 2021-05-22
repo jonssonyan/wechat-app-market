@@ -1,12 +1,14 @@
 <!--个人中心，我的-->
 <view>
     <block wx:if="{{!hasUserInfo}}">
-        <i-button type="success" shape="circle" wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">微信登录</i-button>
-        <i-button type="success" shape="circle" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登录</i-button>
+        <i-button type="success" shape="circle" wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">微信登录
+        </i-button>
+        <i-button type="success" shape="circle" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登录
+        </i-button>
     </block>
     <block wx:else>
         <i-card title="{{userInfo.nickName}}" thumb="{{userInfo.avatarUrl}}"
-                full="true">
+                full="true" >
             <view slot="content">
                 <i-panel title="我的交易">
                     <view style="padding: 15px;">
@@ -21,6 +23,7 @@
                     <view style="padding: 15px;">
                         <i-cell-group>
                             <i-cell title="我的收藏" is-link url="/pages/collection/collection"></i-cell>
+                            <i-cell title="我的评价" is-link url="/pages/userInfo/userInfo"></i-cell>
                         </i-cell-group>
                     </view>
                 </i-panel>

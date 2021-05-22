@@ -21,6 +21,7 @@ exports.main = async (event, context) => {
             open_id: wxContext.OPENID
         }).count();
         res[i].isCollection = countResult.total > 0;
+        res[i].user = await db.collection('user').where({open_id: res[i].open_id}).get().then(e => e.data)
     }
     return productResult;
 }
