@@ -127,5 +127,20 @@ Page({
                 ['products']: res
             })
         })
+    },
+    bindNameChange(e) {
+        this.setData({
+            ['productParam.filter.name']: e.detail.detail.value
+        })
+    },
+    reset() {
+        this.setData({
+            ['productParam.filter']: {}
+        })
+        this.selectProductPage().then(res => {
+            this.setData({
+                ['products']: res
+            })
+        })
     }
 })
