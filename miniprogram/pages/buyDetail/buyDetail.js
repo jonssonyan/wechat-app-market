@@ -108,7 +108,7 @@ Page({
                 ['order.state']: 1
             })
             $Message({
-                content: '确认收获成功',
+                content: '确认收货成功',
                 type: 'success'
             });
             this.handleClose1()
