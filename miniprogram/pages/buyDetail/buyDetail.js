@@ -129,5 +129,16 @@ Page({
                 res.eventChannel.emit('acceptDataFromOpenerPage', {order: that.data.order})
             }
         })
+    },
+    async toUserInfo() {
+        let that = this;
+        wx.navigateTo({
+            url: '/pages/userInfo/userInfo',
+            events: {},
+            success: function (res) {
+                // 通过eventChannel向被打开页面传送数据
+                res.eventChannel.emit('acceptDataFromOpenerPage', {openid: that.data.order.seller})
+            }
+        })
     }
 })

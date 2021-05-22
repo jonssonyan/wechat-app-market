@@ -1,24 +1,22 @@
 <!--我买到的-->
-<view>
-    <block wx:if="{{orders.length!==0}}">
-        <i-card wx:for="{{orders}}" wx:key="*this" thumb="{{item.products[0].tempFileURL}}"
-                extra="{{item.state===0?'等待收货':'交易完成'}}" data-order="{{item}}"
-                title="{{item.products[0].name}}"
-                bindtap="cardClick"
-                full="true">
-            <view slot="content">{{'描述：' + item.products[0].description}}</view>
-            <view slot="content">{{'总价：' + item.total_price + '元'}}</view>
-            <view slot="content">下单时间：{{item.createTime}}</view>
-        </i-card>
-        <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel
-                        bind:cancel="handleCancel"
-                        bind:click="handleClickItem"/>
-        <i-modal title="删除确认" visible="{{ visible1 }}" bind:cancel="handleClose1" bind:ok="handleClick1">
-            <view>删除后无法恢复哦</view>
-        </i-modal>
-    </block>
-    <block wx:else>
-        <i-alert>暂无购买</i-alert>
-    </block>
-</view>
+<block wx:if="{{orders.length!==0}}">
+    <i-card wx:for="{{orders}}" wx:key="*this" thumb="{{item.products[0].tempFileURL}}"
+            extra="{{item.state===0?'等待收货':'交易完成'}}" data-order="{{item}}"
+            title="{{item.products[0].name}}"
+            bindtap="cardClick"
+            full="true">
+        <view slot="content">{{'描述：' + item.products[0].description}}</view>
+        <view slot="content">{{'总价：' + item.total_price + '元'}}</view>
+        <view slot="content">下单时间：{{item.createTime}}</view>
+    </i-card>
+    <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel
+                    bind:cancel="handleCancel"
+                    bind:click="handleClickItem"/>
+    <i-modal title="删除确认" visible="{{ visible1 }}" bind:cancel="handleClose1" bind:ok="handleClick1">
+        <view>删除后无法恢复哦</view>
+    </i-modal>
+</block>
+<block wx:else>
+    <i-alert>暂无购买</i-alert>
+</block>
 <i-message id="message"/>
