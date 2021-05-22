@@ -160,7 +160,7 @@ Page({
             if (suc) {
                 this.setData({
                     ['updateProductParam.product._id']: that.data.product._id,
-                    ['updateProductParam.product.stock']: that.data.product.stock - 1
+                    ['updateProductParam.product.stock']: that.data.product.stock - that.data.num
                 })
                 await wx.cloud.callFunction({
                     name: 'updateProduct',

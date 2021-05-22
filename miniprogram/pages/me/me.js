@@ -16,7 +16,7 @@ Page({
             desc: '用于完善会员资料',
             success: (res) => {
                 // 将用户信息设置到全局变量
-                var app = getApp();
+                let app = getApp();
                 app.globalData.userInfo = res.userInfo;
                 app.globalData.hasUserInfo = true;
                 this.setData({
@@ -44,11 +44,9 @@ Page({
     },
     onShow: function () {
         // 从全局中获取是否有用户信息，防止重新进小程序还要登录一次
-        let app = getApp();
         if (wx.getUserProfile) {
             this.setData({
-                canIUseGetUserProfile: true,
-                hasUserInfo: app.globalData.userInfo
+                canIUseGetUserProfile: true
             })
         }
     },
