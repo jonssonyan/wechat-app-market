@@ -2,7 +2,13 @@
     width: 120px;
     height: 150px;
 }
-.col-class{
+
+.col-class {
     width: 50vh;
+    top: 50%;
     text-align: center;
+}
+
+.button {
+    margin: 10px;
 }

@@ -10,18 +10,18 @@
             </swiper-item>
         </block>
     </swiper>
-
-    <i-row wx:for="{{categorys}}" wx:key="*this">
-        <i-grid-item wx:for="{{item}}" wx:key="*this" data-category="{{item}}"
-                     bindtap="categoryClick">
-            <i-grid-icon>
-                <image src="{{'/images/picture/'+item.type+'.png'}}"/>
-                <!--                <i-icon type="{{item.type}}" size="24"/>-->
-            </i-grid-icon>
-            <i-grid-label>{{item.name}}</i-grid-label>
-        </i-grid-item>
-    </i-row>
-
+    <i-grid>
+        <i-row wx:for="{{categorys}}" wx:key="*this">
+            <i-grid-item wx:for="{{item}}" wx:key="*this" data-category="{{item}}"
+                         bindtap="categoryClick">
+                <i-grid-icon>
+                    <image src="{{'/images/picture/'+item.type+'.png'}}"/>
+                    <!--                <i-icon type="{{item.type}}" size="24"/>-->
+                </i-grid-icon>
+                <i-grid-label>{{item.name}}</i-grid-label>
+            </i-grid-item>
+        </i-row>
+    </i-grid>
     <i-row>
         <i-col wx:for="{{products}}" wx:key="*this" data-product="{{item}}" span="12" i-class="col-class"
                bindtap="productClick">

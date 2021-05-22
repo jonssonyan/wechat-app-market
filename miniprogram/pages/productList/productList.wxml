@@ -5,7 +5,7 @@
             <i-input value="{{ productParam.filter.name }}" autofocus placeholder="请输入商品名称"/>
         </i-col>
         <i-col span="8" i-class="col-class">
-            <i-button bind:click="searchProduct" type="primary" size="small" shape="circle">查询</i-button>
+            <button class="button" bind:click="searchProduct" type="default" size="mini" shape="circle">查询</button>
         </i-col>
     </i-row>
     <i-row>

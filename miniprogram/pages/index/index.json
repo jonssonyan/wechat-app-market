@@ -7,6 +7,7 @@
     "i-grid-label": "/components/grid-label/index",
     "i-icon": "/components/icon/index",
     "i-row": "/components/row/index",
-    "i-col": "/components/col/index"
+    "i-col": "/components/col/index",
+    "i-card": "/components/card/index"
   }
 }
