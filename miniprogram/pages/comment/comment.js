@@ -110,9 +110,10 @@ Page({
                 comment: this.data.comment
             }
         });
-        if (msg !== null) {
+        console.log(msg)
+        if (msg.result !== null) {
             $Message({
-                content: msg,
+                content: msg.result.data,
                 type: 'warning'
             });
             return

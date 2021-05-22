@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
         order_id: comment.order_id
     }).count();
     // 如果已经收藏则返回false
-    if (countResult.total > 0) return "您已经评论过了"
+    if (countResult.total > 0) return {data:"您已经评论过了"}
 
     try {
         await db.collection('comment').add({

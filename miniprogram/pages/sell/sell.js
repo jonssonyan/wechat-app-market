@@ -119,12 +119,12 @@ Page({
                 let products = orders[i].products;
                 let res = await wx.cloud.getTempFileURL({
                     fileList: [{
-                        fileID: products[i].images[0].file_id,
+                        fileID: products[0].images[0].file_id,
                         maxAge: 60 * 60, // one hour
                     }]
                 });
                 // get temp file URL
-                products[i].tempFileURL = res.fileList[0].tempFileURL
+                products[0].tempFileURL = res.fileList[0].tempFileURL
             }
             return orders;
         }
