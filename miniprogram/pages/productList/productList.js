@@ -136,7 +136,7 @@ Page({
     },
     reset() {
         this.setData({
-            ['productParam.filter']: {}
+            ['productParam.filter.name']: ''
         })
         this.selectProductPage().then(res => {
             this.setData({
