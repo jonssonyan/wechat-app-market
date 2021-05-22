@@ -7,7 +7,14 @@ Page({
      */
     data: {
         visible1: false,
-        order: {}
+        order: {
+            product: [],
+            address: '',
+            num: '',
+            total_price: null,
+            user: [],
+            state: null
+        }
     },
 
     /**

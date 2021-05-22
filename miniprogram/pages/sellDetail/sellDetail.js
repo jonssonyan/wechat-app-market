@@ -5,7 +5,13 @@ Page({
      * 页面的初始数据
      */
     data: {
-        order: {}
+        order: {
+            product: [],
+            address: '',
+            num: '',
+            total_price: null,
+            user: []
+        }
     },
 
     /**

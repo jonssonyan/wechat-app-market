@@ -7,7 +7,7 @@ const db = cloud.database();
 exports.main = async (event, context) => {
     const {filter = {}, isBuy = false} = event;
 
-    let orderResult = await db.collection('order').where(filter).limit(1).get();
+    let orderResult = await db.collection('order').where(filter).get();
     let res = orderResult.data;
     for (let i = 0; i < res.length; i++) {
         res[i].createTime = dataToString(res[i].create_time)
