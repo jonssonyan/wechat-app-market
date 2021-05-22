@@ -182,9 +182,7 @@ Page({
         const app = getApp();
         let hasUserInfo = app.globalData.hasUserInfo;
         this.setData({
-            hasUserInfo: hasUserInfo,
-            ['product']: {},
-            ['category']: {}
+            hasUserInfo: hasUserInfo
         });
         // 如果又用户信息情况才加载分类等信息
         if (hasUserInfo) {
