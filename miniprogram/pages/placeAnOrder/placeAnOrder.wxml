@@ -2,11 +2,13 @@
 <i-input value="{{ product.name }}" title="商品名称" disabled/>
 <i-panel title="下单数量">
     <view style="padding: 16px">
-        <i-input-number value="{{ orderParam.order.num }}" min="1" max="{{product.stock}}"/>
+        <i-input-number value="{{ orderParam.order.num }}" bind:change="handleChangeNum" min="1"
+                        max="{{product.stock}}"/>
     </view>
 </i-panel>
 
-<i-input value="{{ orderParam.order.address }}"  maxlength="50" title="收获地址" placeholder="请输入收获地址" autofocus bind:change="bindAddressChange"/>
+<i-input value="{{ orderParam.order.address }}" maxlength="50" title="收获地址" placeholder="请输入收获地址" autofocus
+         bind:change="bindAddressChange"/>
 
 <view style="padding: 16px">
     <picker mode="selector" bindchange="bindPickerChange" range-key="name" range="{{methods}}">

@@ -12,7 +12,7 @@ Page({
             price: null,
             stock: 1,
             state: true,
-            category_id: null
+            category_id: ''
         },
         files: [],
         urls: []
@@ -50,7 +50,7 @@ Page({
                 type: 'warning'
             });
             return;
-        } else if (this.data.product.category_id === null) {
+        } else if (this.data.product.category_id === '') {
             $Message({
                 content: '请输入商品分类',
                 type: 'warning'
