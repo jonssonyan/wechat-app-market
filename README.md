@@ -23,9 +23,13 @@
 
 ## 演示
 
-![演示](./images/demo_1.png)![演示](./images/demo_2.png)
-![演示](./images/demo_3.png)![演示](./images/demo_4.png)
-![演示](./images/demo_5.png)
+<p float="left">
+  <img src="./images/demo_1.png" width="32%" />
+  <img src="./images/demo_2.png" width="32%" /> 
+  <img src="./images/demo_3.png" width="32%" />
+  <img src="./images/demo_4.png" width="32%" />
+  <img src="./images/demo_5.png" width="32%" />
+</p>
 
 ## 参考文档
 
