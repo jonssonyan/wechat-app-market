@@ -140,12 +140,12 @@ Page({
         switch (detail.index) {
             case 0:
                 // 跳转至商品详情界面
-               await wx.navigateTo({
+                await wx.navigateTo({
                     url: '/pages/product/product',
                     events: {},
                     success: function (res) {
                         // 通过eventChannel向被打开页面传送数据
-                        res.eventChannel.emit('acceptDataFromOpenerPage', {product: that.data.product})
+                        res.eventChannel.emit('acceptDataFromOpenerPage', {productId: that.data.product._id})
                     }
                 })
                 break
