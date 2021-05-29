@@ -186,16 +186,16 @@ Page({
         let hasUserInfo = app.globalData.hasUserInfo;
 
         // 变量复位
-        this.setData({
-            ['visible']: true,
-            ['hasUserInfo']: hasUserInfo,
-            ['category']: {},
-            ['product']: {},
-            ['files']: [],
-            ['urls']: [],
-            ['num']: false,
-            ['butDisabled']: false
-        })
+        // this.setData({
+        //     ['visible']: true,
+        //     ['hasUserInfo']: hasUserInfo,
+        //     ['category']: {},
+        //     ['product']: {},
+        //     ['files']: [],
+        //     ['urls']: [],
+        //     ['num']: false,
+        //     ['butDisabled']: false
+        // })
         // 如果又用户信息情况才加载分类等信息
         if (hasUserInfo) {
             this.setData({
