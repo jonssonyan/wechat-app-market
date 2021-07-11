@@ -1,4 +1,6 @@
-# 淘淘二手市场
+# 介绍
+
+淘淘二手市场
 
 ## 技术选型
 
@@ -33,4 +35,5 @@
 
 ## 参考文档
 
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
+- [微信开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
+- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)
