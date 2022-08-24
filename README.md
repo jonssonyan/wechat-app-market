@@ -23,7 +23,7 @@
 
 前后端代码中采用小驼峰命名法，数据库采用蟒蛇命名法
 
-# 界面
+# 演示
 
 <p float="left">
   <img src="./images/demo_1.png" width="32%" />
@@ -35,5 +35,5 @@
 
 # 参考
 
-- [微信开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)
+1. [微信开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
+2. [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)
