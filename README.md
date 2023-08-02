@@ -1,6 +1,10 @@
-# Wechat App Market
+# 淘淘二手市场
 
-淘淘二手市场 基于云开发的微信小程序商城
+基于云开发的微信小程序商城
+
+# 作者
+
+[jonssonyan](https://jonssonyan.com)
 
 # 技术选型
 
