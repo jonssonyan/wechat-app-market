@@ -2,6 +2,16 @@
 
 基于云开发的微信小程序商城
 
+# 演示
+
+<p float="left">
+  <img src="./images/demo_1.png" width="32%" />
+  <img src="./images/demo_2.png" width="32%" /> 
+  <img src="./images/demo_3.png" width="32%" />
+  <img src="./images/demo_4.png" width="32%" />
+  <img src="./images/demo_5.png" width="32%" />
+</p>
+
 # 作者
 
 [jonssonyan](https://jonssonyan.com)
@@ -26,16 +36,6 @@
 # 开发规范
 
 前后端代码中采用小驼峰命名法，数据库采用蟒蛇命名法
-
-# 演示
-
-<p float="left">
-  <img src="./images/demo_1.png" width="32%" />
-  <img src="./images/demo_2.png" width="32%" /> 
-  <img src="./images/demo_3.png" width="32%" />
-  <img src="./images/demo_4.png" width="32%" />
-  <img src="./images/demo_5.png" width="32%" />
-</p>
 
 # 参考
 
