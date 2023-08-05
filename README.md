@@ -2,7 +2,7 @@
 
 基于云开发的微信小程序商城
 
-# 演示
+# UI展示
 
 <p float="left">
   <img src="./images/demo_1.png" width="32%" />
